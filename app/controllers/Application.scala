@@ -44,11 +44,12 @@ object Application extends Controller {
     regform.bindFromRequest.fold(
       formWithErrors => BadRequest(html.register("Register", formWithErrors)),
       user => {
-        try {
+        val findDetails = WebUsers.getData(user.email)
+        if (Option(findDetails) != None) {
+          Redirect(routes.Application.register).flashing("failedCreate" -> s"WebUser ${user.email} already exist")
+        } else {
           WebUsers.create(user)
           Redirect(routes.Application.login).flashing("successCreate" -> s"WebUser ${user.name} created, please Login")
-        } catch {
-          case ex: PSQLException => Redirect(routes.Application.register).flashing("failedCreate" -> s"WebUser ${user.email} already exist")
         }
       })
   }
