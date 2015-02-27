@@ -1,0 +1,32 @@
+@(message: String,page:String,email:String,logedIn:Boolean)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        @title(page)
+        @stylesheets(page)
+    </head>
+    <body>
+    	<div class="container-fluid full-content">
+    		<div class="row custom-width">
+    		
+    		@newnavme("Go!",page,email,logedIn)
+    		</div>
+    		<div class="header">
+				<p style="text-align:center"><b>@message</b></p> 
+    		</div>
+    		    		
+    		@content
+    		
+    		</div>
+    		<div style="margin-top: 4%"  class="footer">
+				<b>Powered by
+				Bootstrap 3
+				and	Play Framework @@
+				<span style="padding-bottom: 2%" class="glyphicon glyphicon-tree-deciduous" text-align="left">Knoldus Software LLP</span></b>
+			</div>
+		
+			@scripts(page)
+   	</body>
+</html>

@@ -1,0 +1,1296 @@
+2015-02-27 09:36:33,893 - [INFO] - from play in pool-4-thread-5 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2015-02-27 09:41:33,304 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 09:41:36,280 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-02-27 09:49:25,463 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 09:49:25,596 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-02-27 09:50:52,947 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 09:50:53,057 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-02-27 09:53:09,424 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 09:53:09,535 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-02-27 09:57:10,841 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 09:57:10,977 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 09:58:42,977 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 09:58:43,073 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:02:32,501 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:02:32,605 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:03:16,476 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:03:16,567 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:06:04,765 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:06:04,855 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:07:01,735 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:07:01,849 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:11:41,748 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:11:41,836 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:12:35,625 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:12:35,718 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:13:55,529 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:13:55,621 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:24:59,499 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:24:59,605 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:28:48,368 - [INFO] - from play in play-internal-execution-context-4 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:28:48,455 - [INFO] - from play in play-internal-execution-context-4 
+Application started (Dev)
+
+2015-02-27 10:45:51,191 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 10:45:51,293 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 11:07:30,284 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 11:07:30,407 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 11:32:47,356 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 11:32:47,450 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 11:32:47,478 - [ERROR] - from application in New I/O worker #7 
+
+
+! Internal server error, for (GET) [/logout] ->
+
+java.lang.ExceptionInInitializerError: null
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9$$anonfun$apply$9.apply(routes_routing.scala:179) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9$$anonfun$apply$9.apply(routes_routing.scala:179) ~[na:na]
+	at play.core.Router$HandlerInvokerFactory$$anon$13$$anon$14.call(Router.scala:217) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.Router$Routes$TaggingInvoker.call(Router.scala:464) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9.apply(routes_routing.scala:179) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9.apply(routes_routing.scala:179) ~[na:na]
+	at play.core.Router$Routes$class.call(Router.scala:326) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.call(routes_routing.scala:16) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:178) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:110) ~[na:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:218) ~[scala-library-2.11.1.jar:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:214) ~[scala-library-2.11.1.jar:na]
+	at play.core.Router$Routes$class.handlerFor(Router.scala:454) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.handlerFor(routes_routing.scala:16) ~[na:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:128) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:127) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$class.onRouteRequest(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRouteRequest(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$class.onRequestReceived(GlobalSettings.scala:81) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRequestReceived(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:40) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:39) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Success$$anonfun$map$1.apply(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Try$.apply(Try.scala:191) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Success.map(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.sendHandler$1(Server.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:72) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+Caused by: java.lang.IllegalArgumentException: No partial converter found for type: scala.Tuple3
+	at org.joda.time.convert.ConverterManager.getPartialConverter(ConverterManager.java:252) ~[joda-time-2.3.jar:2.3]
+	at org.joda.time.LocalDateTime.<init>(LocalDateTime.java:410) ~[joda-time-2.3.jar:2.3]
+	at org.joda.time.LocalDateTime.<init>(LocalDateTime.java:358) ~[joda-time-2.3.jar:2.3]
+	at controllers.Application$.<init>(Application.scala:24) ~[na:na]
+	at controllers.Application$.<clinit>(Application.scala) ~[na:na]
+	... 69 common frames omitted
+
+2015-02-27 11:32:47,481 - [ERROR] - from application in New I/O worker #7 
+Error while rendering default error page
+scala.MatchError: java.lang.ExceptionInInitializerError (of class java.lang.ExceptionInInitializerError)
+	at play.api.GlobalSettings$class.onError(GlobalSettings.scala:148) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onError(GlobalSettings.scala:206) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$class.logExceptionAndGetResult$1(Server.scala:63) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:73) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:32:56,951 - [ERROR] - from application in New I/O worker #7 
+
+
+! Internal server error, for (GET) [/logout] ->
+
+java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9$$anonfun$apply$9.apply(routes_routing.scala:179) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9$$anonfun$apply$9.apply(routes_routing.scala:179) ~[na:na]
+	at play.core.Router$HandlerInvokerFactory$$anon$13$$anon$14.call(Router.scala:217) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.Router$Routes$TaggingInvoker.call(Router.scala:464) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9.apply(routes_routing.scala:179) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9.apply(routes_routing.scala:179) ~[na:na]
+	at play.core.Router$Routes$class.call(Router.scala:326) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.call(routes_routing.scala:16) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:178) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:110) ~[na:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:218) ~[scala-library-2.11.1.jar:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:214) ~[scala-library-2.11.1.jar:na]
+	at play.core.Router$Routes$class.handlerFor(Router.scala:454) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.handlerFor(routes_routing.scala:16) ~[na:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:128) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:127) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$class.onRouteRequest(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRouteRequest(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$class.onRequestReceived(GlobalSettings.scala:81) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRequestReceived(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:40) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:39) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Success$$anonfun$map$1.apply(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Try$.apply(Try.scala:191) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Success.map(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.sendHandler$1(Server.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:72) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:32:56,952 - [ERROR] - from application in New I/O worker #7 
+Error while rendering default error page
+scala.MatchError: java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$ (of class java.lang.NoClassDefFoundError)
+	at play.api.GlobalSettings$class.onError(GlobalSettings.scala:148) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onError(GlobalSettings.scala:206) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$class.logExceptionAndGetResult$1(Server.scala:63) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:73) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:33:00,196 - [ERROR] - from application in New I/O worker #7 
+
+
+! Internal server error, for (GET) [/] ->
+
+java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$1$$anonfun$apply$1.apply(routes_routing.scala:115) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$1$$anonfun$apply$1.apply(routes_routing.scala:115) ~[na:na]
+	at play.core.Router$HandlerInvokerFactory$$anon$13$$anon$14.call(Router.scala:217) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.Router$Routes$TaggingInvoker.call(Router.scala:464) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$1.apply(routes_routing.scala:115) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$1.apply(routes_routing.scala:115) ~[na:na]
+	at play.core.Router$Routes$class.call(Router.scala:326) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.call(routes_routing.scala:16) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:114) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:110) ~[na:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:218) ~[scala-library-2.11.1.jar:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:214) ~[scala-library-2.11.1.jar:na]
+	at play.core.Router$Routes$class.handlerFor(Router.scala:454) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.handlerFor(routes_routing.scala:16) ~[na:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:128) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:127) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$class.onRouteRequest(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRouteRequest(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$class.onRequestReceived(GlobalSettings.scala:81) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRequestReceived(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:40) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:39) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Success$$anonfun$map$1.apply(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Try$.apply(Try.scala:191) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Success.map(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.sendHandler$1(Server.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:72) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:33:00,197 - [ERROR] - from application in New I/O worker #7 
+Error while rendering default error page
+scala.MatchError: java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$ (of class java.lang.NoClassDefFoundError)
+	at play.api.GlobalSettings$class.onError(GlobalSettings.scala:148) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onError(GlobalSettings.scala:206) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$class.logExceptionAndGetResult$1(Server.scala:63) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:73) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:33:05,312 - [ERROR] - from application in New I/O worker #7 
+
+
+! Internal server error, for (GET) [/myprofile?page=Profile&name=Bharat] ->
+
+java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6$$anonfun$apply$6.apply(routes_routing.scala:155) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6$$anonfun$apply$6.apply(routes_routing.scala:155) ~[na:na]
+	at play.core.Router$HandlerInvokerFactory$$anon$13$$anon$14.call(Router.scala:217) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.Router$Routes$TaggingInvoker.call(Router.scala:464) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6.apply(routes_routing.scala:155) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6.apply(routes_routing.scala:154) ~[na:na]
+	at play.core.Router$Routes$$anonfun$call$4.apply(Router.scala:336) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.Router$Routes$$anonfun$call$4.apply(Router.scala:336) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.Router$Routes$class.call(Router.scala:336) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.call(routes_routing.scala:16) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:154) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:110) ~[na:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:218) ~[scala-library-2.11.1.jar:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:214) ~[scala-library-2.11.1.jar:na]
+	at play.core.Router$Routes$class.handlerFor(Router.scala:454) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.handlerFor(routes_routing.scala:16) ~[na:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:128) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:127) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$class.onRouteRequest(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRouteRequest(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$class.onRequestReceived(GlobalSettings.scala:81) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRequestReceived(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:40) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:39) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Success$$anonfun$map$1.apply(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Try$.apply(Try.scala:191) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Success.map(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.sendHandler$1(Server.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:72) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:33:05,313 - [ERROR] - from application in New I/O worker #7 
+Error while rendering default error page
+scala.MatchError: java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$ (of class java.lang.NoClassDefFoundError)
+	at play.api.GlobalSettings$class.onError(GlobalSettings.scala:148) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onError(GlobalSettings.scala:206) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$class.logExceptionAndGetResult$1(Server.scala:63) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:73) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:33:05,926 - [ERROR] - from application in New I/O worker #7 
+
+
+! Internal server error, for (GET) [/myprofile?page=Profile&name=Bharat] ->
+
+java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6$$anonfun$apply$6.apply(routes_routing.scala:155) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6$$anonfun$apply$6.apply(routes_routing.scala:155) ~[na:na]
+	at play.core.Router$HandlerInvokerFactory$$anon$13$$anon$14.call(Router.scala:217) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.Router$Routes$TaggingInvoker.call(Router.scala:464) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6.apply(routes_routing.scala:155) ~[na:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$6.apply(routes_routing.scala:154) ~[na:na]
+	at play.core.Router$Routes$$anonfun$call$4.apply(Router.scala:336) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.Router$Routes$$anonfun$call$4.apply(Router.scala:336) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.Router$Routes$class.call(Router.scala:336) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.call(routes_routing.scala:16) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:154) ~[na:na]
+	at Routes$$anonfun$routes$1.applyOrElse(routes_routing.scala:110) ~[na:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:218) ~[scala-library-2.11.1.jar:na]
+	at scala.PartialFunction$Lifted.apply(PartialFunction.scala:214) ~[scala-library-2.11.1.jar:na]
+	at play.core.Router$Routes$class.handlerFor(Router.scala:454) ~[play_2.11-2.3.8.jar:2.3.8]
+	at Routes$.handlerFor(routes_routing.scala:16) ~[na:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:128) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1$$anonfun$apply$1.apply(GlobalSettings.scala:127) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$$anonfun$onRouteRequest$1.apply(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.flatMap(Option.scala:170) ~[scala-library-2.11.1.jar:na]
+	at play.api.GlobalSettings$class.onRouteRequest(GlobalSettings.scala:126) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRouteRequest(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.GlobalSettings$class.onRequestReceived(GlobalSettings.scala:81) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onRequestReceived(GlobalSettings.scala:206) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:40) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$sendHandler$1$1.apply(Server.scala:39) ~[play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Success$$anonfun$map$1.apply(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Try$.apply(Try.scala:191) ~[scala-library-2.11.1.jar:na]
+	at scala.util.Success.map(Try.scala:236) ~[scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.sendHandler$1(Server.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:72) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:33:05,928 - [ERROR] - from application in New I/O worker #7 
+Error while rendering default error page
+scala.MatchError: java.lang.NoClassDefFoundError: Could not initialize class controllers.Application$ (of class java.lang.NoClassDefFoundError)
+	at play.api.GlobalSettings$class.onError(GlobalSettings.scala:148) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultGlobal$.onError(GlobalSettings.scala:206) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$class.logExceptionAndGetResult$1(Server.scala:63) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:73) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.Server$$anonfun$getHandlerFor$4.apply(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either$RightProjection.flatMap(Either.scala:522) [scala-library-2.11.1.jar:na]
+	at play.core.server.Server$class.getHandlerFor(Server.scala:71) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.NettyServer.getHandlerFor(NettyServer.scala:39) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$10.apply(PlayDefaultUpstreamHandler.scala:157) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.util.Either.fold(Either.scala:99) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler.messageReceived(PlayDefaultUpstreamHandler.scala:142) [play_2.11-2.3.8.jar:2.3.8]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at com.typesafe.netty.http.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:62) [netty-http-pipelining-1.1.2.jar:na]
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:318) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.9.3.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.9.3.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+
+2015-02-27 11:35:48,993 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 11:35:49,074 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 11:40:30,925 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 11:40:31,024 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 11:41:46,721 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 11:41:46,811 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 11:46:36,725 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 11:46:36,798 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 12:25:49,741 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 12:25:49,855 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 12:43:39,856 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 12:43:39,942 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 13:13:41,531 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 13:13:41,638 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 13:48:01,084 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 13:48:01,164 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 13:48:38,306 - [ERROR] - from play in slick.db.execution.context-2 
+Cannot invoke the action, eventually got an error: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "IDX_EMAIL"
+  Detail: Key (email)=(Bharat@knoldus.com) already exists.
+
+2015-02-27 13:48:38,314 - [ERROR] - from application in slick.db.execution.context-2 
+
+
+! @6lapih0oh - Internal server error, for (POST) [/register/newuser] ->
+
+play.api.Application$$anon$1: Execution exception[[PSQLException: ERROR: duplicate key value violates unique constraint "IDX_EMAIL"
+  Detail: Key (email)=(Bharat@knoldus.com) already exists.]]
+	at play.api.Application$class.handleError(Application.scala:296) ~[play_2.11-2.3.8.jar:2.3.8]
+	at play.api.DefaultApplication.handleError(Application.scala:402) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.Option.map(Option.scala:145) [scala-library-2.11.1.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.8.jar:2.3.8]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:316) [play_2.11-2.3.8.jar:2.3.8]
+	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:344) [scala-library-2.11.1.jar:na]
+	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:343) [scala-library-2.11.1.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.1.jar:na]
+	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.8.jar:2.3.8]
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40) [scala-library-2.11.1.jar:na]
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:248) [scala-library-2.11.1.jar:na]
+	at scala.concurrent.Promise$class.complete(Promise.scala:55) [scala-library-2.11.1.jar:na]
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:153) [scala-library-2.11.1.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:23) [scala-library-2.11.1.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_31]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_31]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "IDX_EMAIL"
+  Detail: Key (email)=(Bharat@knoldus.com) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2102) ~[postgresql-9.1-901.jdbc4.jar:na]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:1835) ~[postgresql-9.1-901.jdbc4.jar:na]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:257) ~[postgresql-9.1-901.jdbc4.jar:na]
+	at org.postgresql.jdbc2.AbstractJdbc2Statement.execute(AbstractJdbc2Statement.java:500) ~[postgresql-9.1-901.jdbc4.jar:na]
+	at org.postgresql.jdbc2.AbstractJdbc2Statement.executeWithFlags(AbstractJdbc2Statement.java:388) ~[postgresql-9.1-901.jdbc4.jar:na]
+	at org.postgresql.jdbc2.AbstractJdbc2Statement.executeUpdate(AbstractJdbc2Statement.java:334) ~[postgresql-9.1-901.jdbc4.jar:na]
+	at com.jolbox.bonecp.PreparedStatementHandle.executeUpdate(PreparedStatementHandle.java:205) ~[bonecp-0.8.0.RELEASE.jar:na]
+	at scala.slick.driver.JdbcInsertInvokerComponent$BaseInsertInvoker$$anonfun$internalInsert$1.apply(JdbcInsertInvokerComponent.scala:183) ~[slick_2.11-2.1.0.jar:na]
+	at scala.slick.driver.JdbcInsertInvokerComponent$BaseInsertInvoker$$anonfun$internalInsert$1.apply(JdbcInsertInvokerComponent.scala:180) ~[slick_2.11-2.1.0.jar:na]
+	at scala.slick.jdbc.JdbcBackend$SessionDef$class.withPreparedStatement(JdbcBackend.scala:191) ~[slick_2.11-2.1.0.jar:na]
+	at scala.slick.jdbc.JdbcBackend$BaseSession.withPreparedStatement(JdbcBackend.scala:389) ~[slick_2.11-2.1.0.jar:na]
+	at scala.slick.driver.JdbcInsertInvokerComponent$BaseInsertInvoker.preparedInsert(JdbcInsertInvokerComponent.scala:170) ~[slick_2.11-2.1.0.jar:na]
+	at scala.slick.driver.JdbcInsertInvokerComponent$BaseInsertInvoker.internalInsert(JdbcInsertInvokerComponent.scala:180) ~[slick_2.11-2.1.0.jar:na]
+	at scala.slick.driver.JdbcInsertInvokerComponent$BaseInsertInvoker.insert(JdbcInsertInvokerComponent.scala:175) ~[slick_2.11-2.1.0.jar:na]
+	at models.WebUsers$.create(Models.scala:43) ~[classes/:na]
+	at controllers.Application$$anonfun$registerme$1$$anonfun$apply$2.apply(Application.scala:46) ~[classes/:na]
+	at controllers.Application$$anonfun$registerme$1$$anonfun$apply$2.apply(Application.scala:45) ~[classes/:na]
+	at play.api.data.Form.fold(Form.scala:139) ~[play_2.11-2.3.8.jar:2.3.8]
+	at controllers.Application$$anonfun$registerme$1.apply(Application.scala:43) ~[classes/:na]
+	at controllers.Application$$anonfun$registerme$1.apply(Application.scala:42) ~[classes/:na]
+	at play.api.db.slick.PredicatedDBAction$$anonfun$applyForDB$1$$anonfun$apply$10$$anonfun$apply$11.apply(DBAction.scala:186) ~[play-slick_2.11-0.8.1.jar:0.8.1]
+	at play.api.db.slick.PredicatedDBAction$$anonfun$applyForDB$1$$anonfun$apply$10$$anonfun$apply$11.apply(DBAction.scala:185) ~[play-slick_2.11-0.8.1.jar:0.8.1]
+	at scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34) ~[slick_2.11-2.1.0.jar:na]
+	at scala.slick.jdbc.PlayDatabase.withSession(PlayDatabase.scala:6) ~[play-slick_2.11-0.8.1.jar:na]
+	at play.api.db.slick.PredicatedDBAction$$anonfun$10.apply(DBAction.scala:163) ~[play-slick_2.11-0.8.1.jar:0.8.1]
+	at play.api.db.slick.PredicatedDBAction$$anonfun$10.apply(DBAction.scala:163) ~[play-slick_2.11-0.8.1.jar:0.8.1]
+	at play.api.db.slick.PredicatedDBAction$$anonfun$applyForDB$1$$anonfun$apply$10.apply(DBAction.scala:185) ~[play-slick_2.11-0.8.1.jar:0.8.1]
+	at play.api.db.slick.PredicatedDBAction$$anonfun$applyForDB$1$$anonfun$apply$10.apply(DBAction.scala:185) ~[play-slick_2.11-0.8.1.jar:0.8.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) [scala-library-2.11.1.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) [scala-library-2.11.1.jar:na]
+	... 3 common frames omitted
+
+2015-02-27 13:58:00,204 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 13:58:00,308 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 14:02:16,475 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:02:16,551 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 14:05:25,308 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:05:25,401 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 14:07:17,700 - [INFO] - from play in play-internal-execution-context-7 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:07:17,779 - [INFO] - from play in play-internal-execution-context-7 
+Application started (Dev)
+
+2015-02-27 14:35:56,697 - [INFO] - from play in play-internal-execution-context-14 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:35:56,774 - [INFO] - from play in play-internal-execution-context-14 
+Application started (Dev)
+
+2015-02-27 14:41:23,560 - [INFO] - from play in play-internal-execution-context-14 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:41:23,650 - [INFO] - from play in play-internal-execution-context-14 
+Application started (Dev)
+
+2015-02-27 14:43:35,910 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:43:35,987 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:48:45,480 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:48:45,549 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:49:55,145 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:49:55,239 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:52:41,233 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:52:41,320 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:53:13,754 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:53:13,828 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:53:48,880 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:53:48,956 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:56:27,968 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:56:28,050 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:57:03,409 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:57:03,489 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 14:58:00,800 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 14:58:00,875 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:00:15,419 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:00:15,522 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:05:11,796 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:05:11,877 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:24:06,351 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:24:06,417 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:42:25,505 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:42:25,585 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:45:02,875 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:45:02,966 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:45:23,282 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:45:23,350 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:46:05,706 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:46:05,787 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:46:53,757 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:46:53,839 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:49:54,798 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:49:54,915 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:50:30,979 - [INFO] - from play in play-internal-execution-context-16 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:50:31,058 - [INFO] - from play in play-internal-execution-context-16 
+Application started (Dev)
+
+2015-02-27 15:51:22,724 - [INFO] - from play in play-internal-execution-context-22 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:51:22,801 - [INFO] - from play in play-internal-execution-context-22 
+Application started (Dev)
+
+2015-02-27 15:52:03,795 - [INFO] - from play in play-internal-execution-context-22 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:52:03,861 - [INFO] - from play in play-internal-execution-context-22 
+Application started (Dev)
+
+2015-02-27 15:54:27,900 - [INFO] - from play in play-internal-execution-context-22 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:54:27,969 - [INFO] - from play in play-internal-execution-context-22 
+Application started (Dev)
+
+2015-02-27 15:57:06,711 - [INFO] - from play in play-internal-execution-context-25 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 15:57:06,773 - [INFO] - from play in play-internal-execution-context-25 
+Application started (Dev)
+
+2015-02-27 16:02:31,391 - [INFO] - from play in play-internal-execution-context-27 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:02:31,467 - [INFO] - from play in play-internal-execution-context-27 
+Application started (Dev)
+
+2015-02-27 16:10:38,914 - [INFO] - from play in play-internal-execution-context-30 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:10:38,986 - [INFO] - from play in play-internal-execution-context-30 
+Application started (Dev)
+
+2015-02-27 16:24:06,976 - [INFO] - from play in play-internal-execution-context-30 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:24:07,047 - [INFO] - from play in play-internal-execution-context-30 
+Application started (Dev)
+
+2015-02-27 16:25:40,026 - [INFO] - from play in play-internal-execution-context-31 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:25:40,096 - [INFO] - from play in play-internal-execution-context-31 
+Application started (Dev)
+
+2015-02-27 16:28:08,879 - [INFO] - from play in play-internal-execution-context-31 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:28:08,953 - [INFO] - from play in play-internal-execution-context-31 
+Application started (Dev)
+
+2015-02-27 16:28:54,897 - [INFO] - from play in play-internal-execution-context-31 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:28:54,959 - [INFO] - from play in play-internal-execution-context-31 
+Application started (Dev)
+
+2015-02-27 16:30:08,542 - [INFO] - from play in play-internal-execution-context-31 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:30:08,622 - [INFO] - from play in play-internal-execution-context-31 
+Application started (Dev)
+
+2015-02-27 16:30:45,362 - [INFO] - from play in play-internal-execution-context-31 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:30:45,422 - [INFO] - from play in play-internal-execution-context-31 
+Application started (Dev)
+
+2015-02-27 16:31:44,146 - [INFO] - from play in play-internal-execution-context-33 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:31:44,220 - [INFO] - from play in play-internal-execution-context-33 
+Application started (Dev)
+
+2015-02-27 16:35:29,022 - [INFO] - from play in play-internal-execution-context-33 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:35:29,088 - [INFO] - from play in play-internal-execution-context-33 
+Application started (Dev)
+
+2015-02-27 16:49:29,285 - [INFO] - from play in play-internal-execution-context-33 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:49:29,340 - [INFO] - from play in play-internal-execution-context-33 
+Application started (Dev)
+
+2015-02-27 16:50:16,767 - [INFO] - from play in play-internal-execution-context-33 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:50:16,833 - [INFO] - from play in play-internal-execution-context-33 
+Application started (Dev)
+
+2015-02-27 16:50:58,546 - [INFO] - from play in play-internal-execution-context-33 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:50:58,604 - [INFO] - from play in play-internal-execution-context-33 
+Application started (Dev)
+
+2015-02-27 16:56:45,016 - [INFO] - from play in play-internal-execution-context-33 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 16:56:45,084 - [INFO] - from play in play-internal-execution-context-33 
+Application started (Dev)
+
+2015-02-27 17:19:24,016 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:19:24,079 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:22:41,092 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:22:41,164 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:47:32,591 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:47:32,652 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:49:45,318 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:49:45,399 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:53:01,718 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:53:01,777 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:54:12,278 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:54:12,355 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:54:50,894 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:54:50,956 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:55:26,627 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:55:26,694 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 17:56:02,211 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 17:56:02,297 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:07:19,784 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:07:19,877 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:08:42,808 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:08:42,877 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:09:27,295 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:09:27,369 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:09:50,023 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:09:50,081 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:11:07,202 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:11:07,264 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:11:39,120 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:11:39,186 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:29:11,564 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:29:11,649 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:30:34,483 - [INFO] - from play in play-internal-execution-context-41 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:30:34,580 - [INFO] - from play in play-internal-execution-context-41 
+Application started (Dev)
+
+2015-02-27 18:37:49,019 - [INFO] - from play in play-internal-execution-context-54 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:37:49,088 - [INFO] - from play in play-internal-execution-context-54 
+Application started (Dev)
+
+2015-02-27 18:38:54,061 - [INFO] - from play in play-internal-execution-context-54 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:38:54,124 - [INFO] - from play in play-internal-execution-context-54 
+Application started (Dev)
+
+2015-02-27 18:40:07,738 - [INFO] - from play in play-internal-execution-context-54 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:40:07,801 - [INFO] - from play in play-internal-execution-context-54 
+Application started (Dev)
+
+2015-02-27 18:45:10,541 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:45:10,602 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 18:47:24,255 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:47:24,312 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 18:47:56,096 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:47:56,167 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 18:50:22,903 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:50:22,971 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 18:51:57,740 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:51:57,807 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 18:56:11,848 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:56:11,913 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 18:57:20,660 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:57:20,732 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 18:58:55,508 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 18:58:55,564 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 19:10:32,988 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 19:10:33,050 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 19:12:02,543 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 19:12:02,610 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 19:12:33,083 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 19:12:33,145 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+
+2015-02-27 19:14:35,608 - [INFO] - from play in play-internal-execution-context-56 
+database [default] connected at jdbc:postgresql://localhost:5432/webuser
+
+2015-02-27 19:14:35,670 - [INFO] - from play in play-internal-execution-context-56 
+Application started (Dev)
+

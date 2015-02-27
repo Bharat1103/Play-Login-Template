@@ -1,0 +1,54 @@
+@(message:String,page:String,email:String,logedIn:Boolean)
+
+	<nav role="navigation" class="navbar navbar-inverse reset-margin">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    	<div class="navbar-header">
+        	<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            	<span class="sr-only">Toggle navigation</span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+        	</button>
+        	
+        	<a href="@routes.Application.home()" class="navbar-brand">
+        	<span class="glyphicon glyphicon-home"> WebUser</span></a>
+        
+    	</div>
+    <!-- Collection of nav links and other content for toggling -->
+    	<div id="navbarCollapse" class="collapse navbar-collapse">
+        	<ul class="nav navbar-nav">
+            	<li class=@("active".when(page == "Explore"))><a href="#">
+            	<span class="glyphicon glyphicon-question-sign"> Explore</span></a></li>
+            	<li class=@("active".when(page == "Features"))><a href="#">
+            	<span class="glyphicon glyphicon-tasks"> Features</span></a></li>
+            	<li class=@("active".when(page == "Blog"))><a href="#">
+            	<span class="glyphicon glyphicon-comment"> Blog</span></a></li>
+        	</ul>
+        
+        	<div class="col-sm-3 col-md-3">
+        		<form class="navbar-form " role="search">
+        			<div class="input-group">
+            			<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+            			
+            			<div class="input-group-btn">
+                			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            			</div>
+        			</div>
+        		</form>
+        	</div>
+        
+        	<ul class="nav navbar-nav navbar-right">
+        		@if(logedIn){
+        		<li class="nav-email">welcome! @email</li>			
+				<li class=@("active".when(page == "Login"))><a href="@routes.Application.logout()">
+				<span classs="glyphicon glyphicon-log-out"> Logout</span></a></li>
+				<li class=@("active".when(page == "Edit"))><a href="@routes.Application.updateprofile("Profile",email)">
+				<span class="glyphicon glyphicon-edit"> Update</span></a></li>
+        		}else{
+        		<li class=@("active".when(page == "Login"))><a href="@routes.Application.login()">
+        		<span class="glyphicon glyphicon-log-in"> Login</span></a></li>
+        		<li class=@("active".when(page == "Register"))><a href="@routes.Application.register()">
+        		<span class="glyphicon glyphicon-user"> Register</span></a></li>}
+            </ul>
+    	</div>
+	</nav>

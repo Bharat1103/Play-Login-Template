@@ -1,0 +1,22 @@
+# Routesrs.session.get("email") match{case Some(id:String)=>
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET		    /                           controllers.Application.home
+
+GET			/register					controllers.Application.register
+POST		/register/newuser			controllers.Application.registerme
+
+GET			/login						controllers.Application.login
+POST		/authenticate				controllers.Application.authenticate
+
+GET			/myprofile					controllers.Application.myprofile(page:String,name:String)
+
+GET			/updateprofile				controllers.Application.updateprofile(page:String,email:String)
+POST		/update						controllers.Application.update(email:String)
+
+GET			/logout						controllers.Application.logout
+#GET			/navme						controllers.Application.navme(message:String,page:String)
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

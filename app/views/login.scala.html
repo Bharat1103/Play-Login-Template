@@ -1,0 +1,125 @@
+@(page:String,loginform: Form[(String,String)])(implicit flash:play.api.mvc.Flash)
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(CustomFieldInput.f) } 
+
+@main("Enter Details",page,"Guest",false){   
+	<div class="row">
+		<div class="col-sm-7 col-md-7">				
+				@flash.get("failed").map { message =>
+				<div class="alert alert-dismissable alert-danger panel-custom-margin ">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>Operation Failed!</strong> @message
+				</div>
+				}
+				
+				 @flash.get("successCreate").map { message =>
+				<div class="alert alert-dismissable alert-success panel-custom-margin ">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>Operation Complete!</strong> @message
+				</div>
+				}
+			
+		 		@flash.get("successOut").map { message =>
+				<div class="alert alert-dismissable alert-warning panel-custom-margin ">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>Operation Complete!</strong> @message
+				</div>
+				}
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-5 col-md-5">	
+				<div class="panel panel-default panel-custom-margin colormeGrey">
+						<div class="panel-heading colormeGrey">
+							<h3 class="panel-title">Login Form</h3>
+						</div>
+						
+						<div class="panel-body">
+							 @helper.form(routes.Application.authenticate(),'id->"loginForm") {
+        
+        						<fieldset>
+        
+       				    		 @inputText(loginform("email"), '_label -> "Email", 'class -> "form-control formInline")
+           		 				 @inputText(loginform("password"), '_label -> "Password", 'class -> "form-control formInline", 'type->"password")
+
+	    						</fieldset>
+        
+       			 				<div class="panel-custom-margin" >
+            						<input type="submit" value="login" class="btn btn-success btn-margin-left"> or 
+            						<a href="@routes.Application.home()" class="btn btn-default">Cancel</a> 
+        						</div>
+        
+    							}				
+						</div>
+
+				</div>
+		</div>
+		
+		<div class="col-sm-7 col-md-7">
+			<div class="row">
+				<div class="col-sm-5 col-md-5">
+					<img src="@routes.Assets.at("images/scalaimage.png")" alt="scala" width=100%>
+				</div>
+				
+				<div class="col-md-7">
+					<ul>
+						<li>
+							<div>
+								<h4>
+									<strong>Passionate Team of Scala Developers</strong>
+								</h4>
+								
+								<div>
+									<p>	We have one of the biggest team of Scala
+										Developers in India, possibly the world. Our team is
+										passionate about Scala and believes in writing clean code.
+									</p>
+								</div>
+
+
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<h4>
+									<strong>Technology Stack </strong>
+								</h4>
+								
+								<div >
+									<p> Because of our commitment towards Scala
+										, we have evolved best practices and tools for application
+										development. Our toolset is one of the most evolved for
+										efficient software development. Look at the <span class="italic">stack
+										that we use</span>.
+									</p>
+									
+								</div>
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<h4>	
+									<strong>Proven Results &amp; Satisfied Partners </strong>
+								</h4>
+						
+								<div>
+									<p> We have delivered / deployed quite a few applications on
+									    Scala which are robust, scalable, extensible and are running
+									    successfully. Our partners have been highly satisfied with
+									    our understanding, knowledge, communication and delivery.
+									    Please refer to our testimonials	and you would get an idea of what we mean.
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+}

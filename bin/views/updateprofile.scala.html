@@ -1,0 +1,57 @@
+@(page:String,email:String, regform: Form[User])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(CustomFieldInput.f) }
+
+@main("Update me",page,email,true) {
+    
+    <!-- Begin page content -->
+	<div class="row">
+		<div class="col-sm-5 col-md-5">
+			<div class="panel panel-default panel-custom-margin colormeGrey">
+				<div class="panel-heading colormeGrey">
+					<h3 class="panel-title">Update Form</h3>
+				</div>
+			
+				<div class="panel-body">
+					 @helper.form(routes.Application.update(email),'id->"accountForm") {
+        
+        		 		<fieldset>
+        
+       			    		 @inputText(regform("name"), '_label -> "Name",'class -> "form-control formInline")
+           					 @inputText(regform("email"), '_label -> "Email", 'class -> "form-control formInline")
+					 		 @inputText(regform("password"), '_label -> "Password", 'type -> "password",'class -> "form-control formInline")
+           					 @inputText(regform("phone"), '_label -> "Phone", 'class -> "form-control formInline")
+							 @inputText(regform("address"), '_label -> "Address", 'class -> "form-control formInline")
+						   	 @inputText(regform("company"), '_label -> "Company", 'class -> "form-control formInline")
+				 				 
+	    				</fieldset>
+        
+        				<div class="panel-custom-margin" >
+            				<input type="submit" value="Update WebUser" class="btn btn-success btn-margin-left"> or 
+            				<a href="@routes.Application.home()" class="btn btn-default">Cancel</a> 
+        				</div>
+       				 }	
+    
+    			</div>
+
+			</div>
+		</div>
+			
+		<div class="col-sm-5 col-md-5 test-margin" style="display:inline; height:20%; float:right">
+			<div class="panel panel-default panel-custom-margin colormeGrey">
+				<div class="panel-heading colormeGrey">
+					<h3 class="panel-title">Twitter Widget</h3>
+				</div>
+				<div class="panel-body">
+		
+						<a class="twitter-timeline" href="https://twitter.com/Knolspeak" data-widget-id="571036056997199872">Tweets by @@Knolspeak</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+						if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+						fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+			</div>
+		</div>
+	</div>			
+}
