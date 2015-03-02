@@ -32,8 +32,8 @@ object Application extends Controller {
       "email" -> email,
       "password" -> nonEmptyText))
 
-  def home = Action { implicit rs =>
-    Ok(html.home("Home"))
+  def home(page:String,email:String,logedIn:Boolean) = Action { implicit rs =>
+    Ok(html.home(page,email,logedIn))
   }
 
   def login = Action { implicit rs =>

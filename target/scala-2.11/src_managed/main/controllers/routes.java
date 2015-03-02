@@ -1,6 +1,6 @@
 // @SOURCE:/home/knoldus/play-login/conf/routes
-// @HASH:28d5d5350b244cec66dfc724e1fb0c87d61237d4
-// @DATE:Thu Feb 26 15:36:00 IST 2015
+// @HASH:0a0ef260aa2c23bf4cb37bd229d4dfa81edd5dbe
+// @DATE:Mon Mar 02 11:05:31 IST 2015
 
 package controllers;
 

@@ -1,6 +1,6 @@
 // @SOURCE:/home/knoldus/play-login/conf/routes
-// @HASH:28d5d5350b244cec66dfc724e1fb0c87d61237d4
-// @DATE:Thu Feb 26 15:36:00 IST 2015
+// @HASH:0a0ef260aa2c23bf4cb37bd229d4dfa81edd5dbe
+// @DATE:Mon Mar 02 11:05:31 IST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -60,9 +60,9 @@ def registerme(): Call = {
                         
 
 // @LINE:14
-def myprofile(page:String, name:String): Call = {
+def myprofile(page:String, email:String): Call = {
    import ReverseRouteContext.empty
-   Call("GET", _prefix + { _defaultPrefix } + "myprofile" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("page", page)), Some(implicitly[QueryStringBindable[String]].unbind("name", name)))))
+   Call("GET", _prefix + { _defaultPrefix } + "myprofile" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("page", page)), Some(implicitly[QueryStringBindable[String]].unbind("email", email)))))
 }
                         
 
@@ -77,13 +77,6 @@ def logout(): Call = {
 def register(): Call = {
    import ReverseRouteContext.empty
    Call("GET", _prefix + { _defaultPrefix } + "register")
-}
-                        
-
-// @LINE:6
-def home(): Call = {
-   import ReverseRouteContext.empty
-   Call("GET", _prefix)
 }
                         
 
@@ -105,6 +98,13 @@ def updateprofile(page:String, email:String): Call = {
 def authenticate(): Call = {
    import ReverseRouteContext.empty
    Call("POST", _prefix + { _defaultPrefix } + "authenticate")
+}
+                        
+
+// @LINE:6
+def home(page:String, email:String = "Guest", logedIn:Boolean = false): Call = {
+   import ReverseRouteContext.empty
+   Call("GET", _prefix + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("page", page)), if(email == "Guest") None else Some(implicitly[QueryStringBindable[String]].unbind("email", email)), if(logedIn == false) None else Some(implicitly[QueryStringBindable[Boolean]].unbind("logedIn", logedIn)))))
 }
                         
 
@@ -179,8 +179,8 @@ def registerme : JavascriptReverseRoute = JavascriptReverseRoute(
 def myprofile : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.myprofile",
    """
-      function(page,name) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "myprofile" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("name", name)])})
+      function(page,email) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "myprofile" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)])})
       }
    """
 )
@@ -203,17 +203,6 @@ def register : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "register"})
-      }
-   """
-)
-                        
-
-// @LINE:6
-def home : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Application.home",
-   """
-      function() {
-      return _wA({method:"GET", url:"""" + _prefix + """"})
       }
    """
 )
@@ -247,6 +236,17 @@ def authenticate : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "authenticate"})
+      }
+   """
+)
+                        
+
+// @LINE:6
+def home : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.home",
+   """
+      function(page,email,logedIn) {
+      return _wA({method:"GET", url:"""" + _prefix + """" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page), (email == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)), (logedIn == null ? null : (""" + implicitly[QueryStringBindable[Boolean]].javascriptUnbind + """)("logedIn", logedIn))])})
       }
    """
 )
@@ -315,8 +315,8 @@ def registerme(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
                       
 
 // @LINE:14
-def myprofile(page:String, name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.myprofile(page, name), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "myprofile", Seq(classOf[String], classOf[String]), "GET", """""", _prefix + """myprofile""")
+def myprofile(page:String, email:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.myprofile(page, email), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "myprofile", Seq(classOf[String], classOf[String]), "GET", """""", _prefix + """myprofile""")
 )
                       
 
@@ -329,12 +329,6 @@ def logout(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:8
 def register(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.register(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "register", Seq(), "GET", """""", _prefix + """register""")
-)
-                      
-
-// @LINE:6
-def home(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.home(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "home", Seq(), "GET", """ Home page""", _prefix + """""")
 )
                       
 
@@ -353,6 +347,12 @@ def updateprofile(page:String, email:String): play.api.mvc.HandlerRef[_] = new p
 // @LINE:12
 def authenticate(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.authenticate(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "authenticate", Seq(), "POST", """""", _prefix + """authenticate""")
+)
+                      
+
+// @LINE:6
+def home(page:String, email:String, logedIn:Boolean): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.home(page, email, logedIn), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "home", Seq(classOf[String], classOf[String], classOf[Boolean]), "GET", """ Home page""", _prefix + """""")
 )
                       
 

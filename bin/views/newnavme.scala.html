@@ -10,7 +10,7 @@
             	<span class="icon-bar"></span>
         	</button>
         	
-        	<a href="@routes.Application.home()" class="navbar-brand">
+        	<a href="@routes.Application.home(page,email,logedIn)" class="navbar-brand">
         	<span class="glyphicon glyphicon-home"> WebUser</span></a>
         
     	</div>
@@ -39,12 +39,22 @@
         
         	<ul class="nav navbar-nav navbar-right">
         		@if(logedIn){
-        		<li class="nav-email">welcome! @email</li>			
-				<li class=@("active".when(page == "Login"))><a href="@routes.Application.logout()">
-				<span classs="glyphicon glyphicon-log-out"> Logout</span></a></li>
-				<li class=@("active".when(page == "Edit"))><a href="@routes.Application.updateprofile("Profile",email)">
-				<span class="glyphicon glyphicon-edit"> Update</span></a></li>
-        		}else{
+        		<li class="nav-email">welcome! @email</li>
+        		<li class="dropdown">
+        		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+          			<ul class="dropdown-menu" role="menu">
+            			<li class=@("active".when(page == "Profile"))><a href="@routes.Application.myprofile(page,email)">
+						<span class="glyphicon glyphicon-user"> Profile</span></a></li>
+        		
+            			<li class="divider"></li>
+            			<li class=@("active".when(page == "Login"))><a href="@routes.Application.logout()">
+						<span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+						<li class=@("active".when(page == "Edit"))><a href="@routes.Application.updateprofile(page,email)">
+						<span class="glyphicon glyphicon-edit"> Update</span></a></li>
+          			</ul>
+        		</li>		
+   				}else{
+   				<li class="nav-email">welcome! @email</li>
         		<li class=@("active".when(page == "Login"))><a href="@routes.Application.login()">
         		<span class="glyphicon glyphicon-log-in"> Login</span></a></li>
         		<li class=@("active".when(page == "Register"))><a href="@routes.Application.register()">

@@ -32,30 +32,28 @@
 	
 	<div class="row">
 		<div class="col-sm-5 col-md-5">	
-				<div class="panel panel-default panel-custom-margin colormeGrey">
-						<div class="panel-heading colormeGrey">
-							<h3 class="panel-title">Login Form</h3>
-						</div>
-						
-						<div class="panel-body">
-							 @helper.form(routes.Application.authenticate(),'id->"loginForm") {
-        
-        						<fieldset>
-        
-       				    		 @inputText(loginform("email"), '_label -> "Email", 'class -> "form-control formInline")
-           		 				 @inputText(loginform("password"), '_label -> "Password", 'class -> "form-control formInline", 'type->"password")
-
-	    						</fieldset>
-        
-       			 				<div class="panel-custom-margin" >
-            						<input type="submit" value="login" class="btn btn-success btn-margin-left"> or 
-            						<a href="@routes.Application.home()" class="btn btn-default">Cancel</a> 
-        						</div>
-        
-    							}				
-						</div>
-
+			<div class="well panel panel-default panel-custom-margin colormeGrey">
+				<div class="panel-heading colormeGrey">
+					<h3 class="panel-title">Login Form</h3>
 				</div>
+			
+				<div class="panel-body">
+					 @helper.form(routes.Application.authenticate(),'id->"loginForm") {
+        			<fieldset>
+        	    		 @inputText(loginform("email"), '_label -> "Email", 'class -> "form-control formInline",'placeholder->"Registered Email")
+           				 @inputText(loginform("password"), '_label -> "Password", 'class -> "form-control formInline", 'type->"password",'placeholder->"Password")
+					</fieldset>
+    
+    				<div class="panel-custom-margin" >
+     					<input type="submit" value="login" class="btn btn-success btn-margin-left"> or 
+        				<a href="@routes.Application.home("Home","Guest",false)" class="btn btn-default">Cancel</a> 
+        			</div>
+        			}				
+				</div>
+			</div>
+			<div>
+			<img src="@routes.Assets.at("images/login2.jpeg")" width=100% style="margin:0 auto;display:block" >
+			</div>
 		</div>
 		
 		<div class="col-sm-7 col-md-7">

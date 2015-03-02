@@ -31,7 +31,7 @@ Seq[Any](format.raw/*1.59*/("""
             	<span class="icon-bar"></span>
         	</button>
         	
-        	<a href=""""),_display_(/*13.20*/routes/*13.26*/.Application.home()),format.raw/*13.45*/("""" class="navbar-brand">
+        	<a href=""""),_display_(/*13.20*/routes/*13.26*/.Application.home(page,email,logedIn)),format.raw/*13.63*/("""" class="navbar-brand">
         	<span class="glyphicon glyphicon-home"> WebUser</span></a>
         
     	</div>
@@ -60,17 +60,27 @@ Seq[Any](format.raw/*1.59*/("""
         
         	<ul class="nav navbar-nav navbar-right">
         		"""),_display_(/*41.12*/if(logedIn)/*41.23*/{_display_(Seq[Any](format.raw/*41.24*/("""
-        		"""),format.raw/*42.11*/("""<li class="nav-email">welcome! """),_display_(/*42.43*/email),format.raw/*42.48*/("""</li>			
-				<li class="""),_display_(/*43.16*/("active".when(page == "Login"))),format.raw/*43.48*/("""><a href=""""),_display_(/*43.59*/routes/*43.65*/.Application.logout()),format.raw/*43.86*/("""">
-				<span classs="glyphicon glyphicon-log-out"> Logout</span></a></li>
-				<li class="""),_display_(/*45.16*/("active".when(page == "Edit"))),format.raw/*45.47*/("""><a href=""""),_display_(/*45.58*/routes/*45.64*/.Application.updateprofile("Profile",email)),format.raw/*45.107*/("""">
-				<span class="glyphicon glyphicon-edit"> Update</span></a></li>
-        		""")))}/*47.12*/else/*47.16*/{_display_(Seq[Any](format.raw/*47.17*/("""
-        		"""),format.raw/*48.11*/("""<li class="""),_display_(/*48.22*/("active".when(page == "Login"))),format.raw/*48.54*/("""><a href=""""),_display_(/*48.65*/routes/*48.71*/.Application.login()),format.raw/*48.91*/("""">
+        		"""),format.raw/*42.11*/("""<li class="nav-email">welcome! """),_display_(/*42.43*/email),format.raw/*42.48*/("""</li>
+        		<li class="dropdown">
+        		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+          			<ul class="dropdown-menu" role="menu">
+            			<li class="""),_display_(/*46.27*/("active".when(page == "Profile"))),format.raw/*46.61*/("""><a href=""""),_display_(/*46.72*/routes/*46.78*/.Application.myprofile(page,email)),format.raw/*46.112*/("""">
+						<span class="glyphicon glyphicon-user"> Profile</span></a></li>
+        		
+            			<li class="divider"></li>
+            			<li class="""),_display_(/*50.27*/("active".when(page == "Login"))),format.raw/*50.59*/("""><a href=""""),_display_(/*50.70*/routes/*50.76*/.Application.logout()),format.raw/*50.97*/("""">
+						<span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+						<li class="""),_display_(/*52.18*/("active".when(page == "Edit"))),format.raw/*52.49*/("""><a href=""""),_display_(/*52.60*/routes/*52.66*/.Application.updateprofile(page,email)),format.raw/*52.104*/("""">
+						<span class="glyphicon glyphicon-edit"> Update</span></a></li>
+          			</ul>
+        		</li>		
+   				""")))}/*56.9*/else/*56.13*/{_display_(Seq[Any](format.raw/*56.14*/("""
+   				"""),format.raw/*57.8*/("""<li class="nav-email">welcome! """),_display_(/*57.40*/email),format.raw/*57.45*/("""</li>
+        		<li class="""),_display_(/*58.22*/("active".when(page == "Login"))),format.raw/*58.54*/("""><a href=""""),_display_(/*58.65*/routes/*58.71*/.Application.login()),format.raw/*58.91*/("""">
         		<span class="glyphicon glyphicon-log-in"> Login</span></a></li>
-        		<li class="""),_display_(/*50.22*/("active".when(page == "Register"))),format.raw/*50.57*/("""><a href=""""),_display_(/*50.68*/routes/*50.74*/.Application.register()),format.raw/*50.97*/("""">
-        		<span class="glyphicon glyphicon-user"> Register</span></a></li>""")))}),format.raw/*51.76*/("""
-            """),format.raw/*52.13*/("""</ul>
+        		<li class="""),_display_(/*60.22*/("active".when(page == "Register"))),format.raw/*60.57*/("""><a href=""""),_display_(/*60.68*/routes/*60.74*/.Application.register()),format.raw/*60.97*/("""">
+        		<span class="glyphicon glyphicon-user"> Register</span></a></li>""")))}),format.raw/*61.76*/("""
+            """),format.raw/*62.13*/("""</ul>
     	</div>
 	</nav>
 """))}
@@ -85,11 +95,11 @@ Seq[Any](format.raw/*1.59*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Fri Feb 27 17:53:01 IST 2015
+                  DATE: Mon Mar 02 11:28:20 IST 2015
                   SOURCE: /home/knoldus/play-login/app/views/newnavme.scala.html
-                  HASH: 0ea87bcc6a3b2ec8734f2759fa61059722f8575d
-                  MATRIX: 530->1|675->58|704->61|1246->576|1261->582|1301->601|1634->907|1689->941|1840->1065|1896->1100|2040->1217|2092->1248|2801->1930|2821->1941|2860->1942|2899->1953|2958->1985|2984->1990|3035->2014|3088->2046|3126->2057|3141->2063|3183->2084|3299->2173|3351->2204|3389->2215|3404->2221|3469->2264|3569->2345|3582->2349|3621->2350|3660->2361|3698->2372|3751->2404|3789->2415|3804->2421|3845->2441|3970->2539|4026->2574|4064->2585|4079->2591|4123->2614|4232->2692|4273->2705
-                  LINES: 19->1|22->1|24->3|34->13|34->13|34->13|41->20|41->20|43->22|43->22|45->24|45->24|62->41|62->41|62->41|63->42|63->42|63->42|64->43|64->43|64->43|64->43|64->43|66->45|66->45|66->45|66->45|66->45|68->47|68->47|68->47|69->48|69->48|69->48|69->48|69->48|69->48|71->50|71->50|71->50|71->50|71->50|72->51|73->52
+                  HASH: d3c305d4021ac1d0765a3ccd8c0a6182b9d0ce06
+                  MATRIX: 530->1|675->58|704->61|1246->576|1261->582|1319->619|1652->925|1707->959|1858->1083|1914->1118|2058->1235|2110->1266|2819->1948|2839->1959|2878->1960|2917->1971|2976->2003|3002->2008|3302->2281|3357->2315|3395->2326|3410->2332|3466->2366|3644->2517|3697->2549|3735->2560|3750->2566|3792->2587|3911->2679|3963->2710|4001->2721|4016->2727|4076->2765|4211->2882|4224->2886|4263->2887|4298->2895|4357->2927|4383->2932|4437->2959|4490->2991|4528->3002|4543->3008|4584->3028|4709->3126|4765->3161|4803->3172|4818->3178|4862->3201|4971->3279|5012->3292
+                  LINES: 19->1|22->1|24->3|34->13|34->13|34->13|41->20|41->20|43->22|43->22|45->24|45->24|62->41|62->41|62->41|63->42|63->42|63->42|67->46|67->46|67->46|67->46|67->46|71->50|71->50|71->50|71->50|71->50|73->52|73->52|73->52|73->52|73->52|77->56|77->56|77->56|78->57|78->57|78->57|79->58|79->58|79->58|79->58|79->58|81->60|81->60|81->60|81->60|81->60|82->61|83->62
                   -- GENERATED --
               */
           

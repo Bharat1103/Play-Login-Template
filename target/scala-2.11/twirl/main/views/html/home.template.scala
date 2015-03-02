@@ -13,15 +13,15 @@ import play.api.data._
 import views.html._
 
 /**/
-object home extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template1[String,play.twirl.api.HtmlFormat.Appendable] {
+object home extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template3[String,String,Boolean,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(page:String):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*1.2*/(page:String,email:String,logedIn: Boolean):play.twirl.api.HtmlFormat.Appendable = {
       _display_ {
 
-Seq[Any](format.raw/*1.15*/("""
+Seq[Any](format.raw/*1.45*/("""
 
-"""),_display_(/*3.2*/main("Welcome to Play",page,"Guest",false)/*3.44*/{_display_(Seq[Any](format.raw/*3.45*/("""
+"""),_display_(/*3.2*/main("Welcome to Play",page,email,logedIn)/*3.44*/{_display_(Seq[Any](format.raw/*3.45*/("""
 	
 	"""),format.raw/*5.2*/("""<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -63,19 +63,19 @@ Seq[Any](format.raw/*1.15*/("""
 """))}
   }
 
-  def render(page:String): play.twirl.api.HtmlFormat.Appendable = apply(page)
+  def render(page:String,email:String,logedIn:Boolean): play.twirl.api.HtmlFormat.Appendable = apply(page,email,logedIn)
 
-  def f:((String) => play.twirl.api.HtmlFormat.Appendable) = (page) => apply(page)
+  def f:((String,String,Boolean) => play.twirl.api.HtmlFormat.Appendable) = (page,email,logedIn) => apply(page,email,logedIn)
 
   def ref: this.type = this
 
 }
               /*
                   -- GENERATED --
-                  DATE: Fri Feb 27 18:29:11 IST 2015
+                  DATE: Mon Mar 02 10:32:35 IST 2015
                   SOURCE: /home/knoldus/play-login/app/views/home.scala.html
-                  HASH: 849ddac743521e44d233c98be2d50e7115dd8950
-                  MATRIX: 504->1|605->14|633->17|683->59|721->60|751->64|1253->539|1268->545|1327->583|1460->689|1475->695|1530->729|1658->830|1673->836|1727->869|2332->1444
+                  HASH: 49413a9b8d2c802823f853cba0c3cc957fe929db
+                  MATRIX: 519->1|650->44|678->47|728->89|766->90|796->94|1298->569|1313->575|1372->613|1505->719|1520->725|1575->759|1703->860|1718->866|1772->899|2377->1474
                   LINES: 19->1|22->1|24->3|24->3|24->3|26->5|37->16|37->16|37->16|41->20|41->20|41->20|45->24|45->24|45->24|62->41
                   -- GENERATED --
               */
