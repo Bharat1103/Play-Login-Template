@@ -8,14 +8,15 @@
 					@flash.get("successUpdate").map { message =>
 						<div class="alert alert-dismissable alert-info panel-custom-margin ">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						<strong>Operation Complete!</strong> @message
+						<span class="glyphicon glyphicon-ok"><strong> Operation Complete!</strong></span> @message
 						</div>
 					}			
 	
 	 				@flash.get("successIn").map { message =>
 						<div class="alert alert-dismissable alert-success panel-custom-margin ">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						<strong>Operation Complete!</strong> @message
+						<span class="glyphicon glyphicon-ok">
+						<strong>Operation Complete!</strong></span> @message
 						</div>
 					}
 			</div>

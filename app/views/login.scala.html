@@ -10,21 +10,23 @@
 				@flash.get("failed").map { message =>
 				<div class="alert alert-dismissable alert-danger panel-custom-margin ">
 					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>Operation Failed!</strong> @message
+					<span class="glyphicon glyphicon-alert"><strong> Operation Failed!</span></strong> @message
 				</div>
 				}
 				
 				 @flash.get("successCreate").map { message =>
 				<div class="alert alert-dismissable alert-success panel-custom-margin ">
 					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>Operation Complete!</strong> @message
+					<span class="glyphicon glyphicon-ok">
+						<strong>Operation Complete!</strong></span> @message
 				</div>
 				}
 			
 		 		@flash.get("successOut").map { message =>
 				<div class="alert alert-dismissable alert-warning panel-custom-margin ">
 					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>Operation Complete!</strong> @message
+					<span class="glyphicon glyphicon-ok">
+						<strong>Operation Complete!</strong></span> @message
 				</div>
 				}
 		</div>

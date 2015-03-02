@@ -12,7 +12,7 @@
 			@flash.get("failedCreate").map { message =>
 				<div class="alert alert-dismissable alert-danger panel-custom-margin ">
 					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>Operation Failed!</strong> @message
+					<span class="glyphicon glyphicon-alert"><strong> Operation Failed!</span></strong> @message
 				</div>
 			}
 			<div class="well panel panel-default panel-custom-margin colormeGrey" >

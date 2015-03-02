@@ -1,6 +1,6 @@
-// @SOURCE:/home/knoldus/play-login/conf/routes
-// @HASH:0a0ef260aa2c23bf4cb37bd229d4dfa81edd5dbe
-// @DATE:Mon Mar 02 11:05:31 IST 2015
+// @SOURCE:/home/knoldus/GitRepos/Play-Login-Template/conf/routes
+// @HASH:5d89936dbd872b43779110afcc05c3a06e09ce41
+// @DATE:Mon Mar 02 15:32:37 IST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -102,9 +102,9 @@ def authenticate(): Call = {
                         
 
 // @LINE:6
-def home(page:String, email:String = "Guest", logedIn:Boolean = false): Call = {
+def home(page:String = "Home", email:String = "Guest", logedIn:Boolean = false): Call = {
    import ReverseRouteContext.empty
-   Call("GET", _prefix + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("page", page)), if(email == "Guest") None else Some(implicitly[QueryStringBindable[String]].unbind("email", email)), if(logedIn == false) None else Some(implicitly[QueryStringBindable[Boolean]].unbind("logedIn", logedIn)))))
+   Call("GET", _prefix + queryString(List(if(page == "Home") None else Some(implicitly[QueryStringBindable[String]].unbind("page", page)), if(email == "Guest") None else Some(implicitly[QueryStringBindable[String]].unbind("email", email)), if(logedIn == false) None else Some(implicitly[QueryStringBindable[Boolean]].unbind("logedIn", logedIn)))))
 }
                         
 
@@ -246,7 +246,7 @@ def home : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.home",
    """
       function(page,email,logedIn) {
-      return _wA({method:"GET", url:"""" + _prefix + """" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page), (email == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)), (logedIn == null ? null : (""" + implicitly[QueryStringBindable[Boolean]].javascriptUnbind + """)("logedIn", logedIn))])})
+      return _wA({method:"GET", url:"""" + _prefix + """" + _qS([(page == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page)), (email == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)), (logedIn == null ? null : (""" + implicitly[QueryStringBindable[Boolean]].javascriptUnbind + """)("logedIn", logedIn))])})
       }
    """
 )

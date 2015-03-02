@@ -32,8 +32,8 @@ object Application extends Controller {
       "email" -> email,
       "password" -> nonEmptyText))
 
-  def home(page:String,email:String,logedIn:Boolean) = Action { implicit rs =>
-    Ok(html.home(page,email,logedIn))
+  def home(page: String, email: String, logedIn: Boolean) = Action { implicit rs =>
+    Ok(html.home("Home", email, logedIn))
   }
 
   def login = Action { implicit rs =>
@@ -67,15 +67,19 @@ object Application extends Controller {
             Redirect(routes.Application.myprofile("Profile", updatedUser.name)).
               flashing("successUpdate" -> s"WebUser ${updatedUser.name} has been updated")
           }
+          case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
         }
       })
   }
 
   def updateprofile(page: String, email: String) = DBAction { implicit rs =>
     rs.session.get("email") match {
-      case Some(email) =>
+      case Some(email) =>{
         val existingData = WebUsers.getData(email)
         Ok(html.updateprofile("Edit", email, regform.fill(existingData)))
+      }
+      case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
+
     }
   }
 
@@ -105,6 +109,7 @@ object Application extends Controller {
       rs.session.get("email") match {
         case Some(email: String) =>
           Ok(html.myprofile(page, email))
+        case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
       }
     }
   }

@@ -1,6 +1,6 @@
-// @SOURCE:/home/knoldus/play-login/conf/routes
-// @HASH:0a0ef260aa2c23bf4cb37bd229d4dfa81edd5dbe
-// @DATE:Mon Mar 02 11:05:31 IST 2015
+// @SOURCE:/home/knoldus/GitRepos/Play-Login-Template/conf/routes
+// @HASH:5d89936dbd872b43779110afcc05c3a06e09ce41
+// @DATE:Mon Mar 02 15:32:37 IST 2015
 
 
 import play.core._
@@ -101,7 +101,7 @@ controllers.Assets.at(fakeValue[String], fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """GET			/navme						controllers.Application.navme(message:String,page:String)
  Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.home(page:String, email:String ?= "Guest", logedIn:Boolean ?= false)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register/newuser""","""controllers.Application.registerme"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """myprofile""","""controllers.Application.myprofile(page:String, email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """updateprofile""","""controllers.Application.updateprofile(page:String, email:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """update""","""controllers.Application.update(email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""controllers.Application.home(page:String ?= "Home", email:String ?= "Guest", logedIn:Boolean ?= false)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register/newuser""","""controllers.Application.registerme"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """myprofile""","""controllers.Application.myprofile(page:String, email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """updateprofile""","""controllers.Application.updateprofile(page:String, email:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """update""","""controllers.Application.update(email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]]
 }}
@@ -111,7 +111,7 @@ def routes:PartialFunction[RequestHeader,Handler] = {
 
 // @LINE:6
 case controllers_Application_home0_route(params) => {
-   call(params.fromQuery[String]("page", None), params.fromQuery[String]("email", Some("Guest")), params.fromQuery[Boolean]("logedIn", Some(false))) { (page, email, logedIn) =>
+   call(params.fromQuery[String]("page", Some("Home")), params.fromQuery[String]("email", Some("Guest")), params.fromQuery[Boolean]("logedIn", Some(false))) { (page, email, logedIn) =>
         controllers_Application_home0_invoker.call(controllers.Application.home(page, email, logedIn))
    }
 }

@@ -1,6 +1,6 @@
-// @SOURCE:/home/knoldus/play-login/conf/routes
-// @HASH:0a0ef260aa2c23bf4cb37bd229d4dfa81edd5dbe
-// @DATE:Mon Mar 02 11:05:31 IST 2015
+// @SOURCE:/home/knoldus/GitRepos/Play-Login-Template/conf/routes
+// @HASH:5d89936dbd872b43779110afcc05c3a06e09ce41
+// @DATE:Mon Mar 02 15:32:37 IST 2015
 
 package controllers;
 

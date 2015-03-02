@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET		    /                           controllers.Application.home(page:String,email:String?="Guest",logedIn:Boolean?=false)
+GET		    /                           controllers.Application.home(page:String?="Home",email:String?="Guest",logedIn:Boolean?=false)
 
 GET			/register					controllers.Application.register
 POST		/register/newuser			controllers.Application.registerme
