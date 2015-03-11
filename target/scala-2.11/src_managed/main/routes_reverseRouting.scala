@@ -1,6 +1,6 @@
-// @SOURCE:/home/knoldus/GitRepos/Play-Login-Template/conf/routes
-// @HASH:5d89936dbd872b43779110afcc05c3a06e09ce41
-// @DATE:Mon Mar 02 15:32:37 IST 2015
+// @SOURCE:/home/knoldus/play-login/conf/routes
+// @HASH:651f52ceca6aa60cca17af2185aecaadaddab141
+// @DATE:Tue Mar 10 16:55:13 IST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -14,7 +14,8 @@ import _root_.controllers.Assets.Asset
 import Router.queryString
 
 
-// @LINE:22
+// @LINE:24
+// @LINE:21
 // @LINE:19
 // @LINE:17
 // @LINE:16
@@ -26,11 +27,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:22
+// @LINE:24
 class ReverseAssets {
 
 
-// @LINE:22
+// @LINE:24
 def at(file:String): Call = {
    implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
@@ -40,6 +41,7 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:21
 // @LINE:19
 // @LINE:17
 // @LINE:16
@@ -51,6 +53,13 @@ def at(file:String): Call = {
 // @LINE:6
 class ReverseApplication {
 
+
+// @LINE:21
+def uploadFile(email:String): Call = {
+   import ReverseRouteContext.empty
+   Call("POST", _prefix + { _defaultPrefix } + "upload" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("email", email)))))
+}
+                        
 
 // @LINE:9
 def registerme(): Call = {
@@ -121,7 +130,8 @@ def login(): Call = {
                   
 
 
-// @LINE:22
+// @LINE:24
+// @LINE:21
 // @LINE:19
 // @LINE:17
 // @LINE:16
@@ -134,11 +144,11 @@ def login(): Call = {
 package controllers.javascript {
 import ReverseRouteContext.empty
 
-// @LINE:22
+// @LINE:24
 class ReverseAssets {
 
 
-// @LINE:22
+// @LINE:24
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -152,6 +162,7 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:21
 // @LINE:19
 // @LINE:17
 // @LINE:16
@@ -163,6 +174,17 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 // @LINE:6
 class ReverseApplication {
 
+
+// @LINE:21
+def uploadFile : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.uploadFile",
+   """
+      function(email) {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "upload" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)])})
+      }
+   """
+)
+                        
 
 // @LINE:9
 def registerme : JavascriptReverseRoute = JavascriptReverseRoute(
@@ -269,7 +291,8 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:22
+// @LINE:24
+// @LINE:21
 // @LINE:19
 // @LINE:17
 // @LINE:16
@@ -282,11 +305,11 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
-// @LINE:22
+// @LINE:24
 class ReverseAssets {
 
 
-// @LINE:22
+// @LINE:24
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """GET			/navme						controllers.Application.navme(message:String,page:String)
  Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
@@ -296,6 +319,7 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:21
 // @LINE:19
 // @LINE:17
 // @LINE:16
@@ -307,6 +331,12 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 // @LINE:6
 class ReverseApplication {
 
+
+// @LINE:21
+def uploadFile(email:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.uploadFile(email), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "uploadFile", Seq(classOf[String]), "POST", """""", _prefix + """upload""")
+)
+                      
 
 // @LINE:9
 def registerme(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(

@@ -1,6 +1,6 @@
-// @SOURCE:/home/knoldus/GitRepos/Play-Login-Template/conf/routes
-// @HASH:5d89936dbd872b43779110afcc05c3a06e09ce41
-// @DATE:Mon Mar 02 15:32:37 IST 2015
+// @SOURCE:/home/knoldus/play-login/conf/routes
+// @HASH:651f52ceca6aa60cca17af2185aecaadaddab141
+// @DATE:Tue Mar 10 16:55:13 IST 2015
 
 
 import play.core._
@@ -94,14 +94,21 @@ controllers.Application.logout,
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "logout", Nil,"GET", """""", Routes.prefix + """logout"""))
         
 
-// @LINE:22
-private[this] lazy val controllers_Assets_at9_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
-private[this] lazy val controllers_Assets_at9_invoker = createInvoker(
+// @LINE:21
+private[this] lazy val controllers_Application_uploadFile9_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("upload"))))
+private[this] lazy val controllers_Application_uploadFile9_invoker = createInvoker(
+controllers.Application.uploadFile(fakeValue[String]),
+HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "uploadFile", Seq(classOf[String]),"POST", """""", Routes.prefix + """upload"""))
+        
+
+// @LINE:24
+private[this] lazy val controllers_Assets_at10_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
+private[this] lazy val controllers_Assets_at10_invoker = createInvoker(
 controllers.Assets.at(fakeValue[String], fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """GET			/navme						controllers.Application.navme(message:String,page:String)
  Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.home(page:String ?= "Home", email:String ?= "Guest", logedIn:Boolean ?= false)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register/newuser""","""controllers.Application.registerme"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """myprofile""","""controllers.Application.myprofile(page:String, email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """updateprofile""","""controllers.Application.updateprofile(page:String, email:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """update""","""controllers.Application.update(email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""controllers.Application.home(page:String ?= "Home", email:String ?= "Guest", logedIn:Boolean ?= false)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register/newuser""","""controllers.Application.registerme"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """myprofile""","""controllers.Application.myprofile(page:String, email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """updateprofile""","""controllers.Application.updateprofile(page:String, email:String)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """update""","""controllers.Application.update(email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """upload""","""controllers.Application.uploadFile(email:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]]
 }}
@@ -181,10 +188,18 @@ case controllers_Application_logout8_route(params) => {
 }
         
 
-// @LINE:22
-case controllers_Assets_at9_route(params) => {
+// @LINE:21
+case controllers_Application_uploadFile9_route(params) => {
+   call(params.fromQuery[String]("email", None)) { (email) =>
+        controllers_Application_uploadFile9_invoker.call(controllers.Application.uploadFile(email))
+   }
+}
+        
+
+// @LINE:24
+case controllers_Assets_at10_route(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at9_invoker.call(controllers.Assets.at(path, file))
+        controllers_Assets_at10_invoker.call(controllers.Assets.at(path, file))
    }
 }
         

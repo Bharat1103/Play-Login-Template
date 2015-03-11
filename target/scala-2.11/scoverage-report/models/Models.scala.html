@@ -1,0 +1,2496 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          models/Models.scala.html
+        </title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.3/addons/pager/jquery.tablesorter.pager.min.js"></script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier;'>1 <span style=''>package models
+</span>2 <span style=''>
+</span>3 <span style=''>import play.api.Play.current
+</span>4 <span style=''>import play.api.db.slick.Config.driver.simple._
+</span>5 <span style=''>import scala.slick.lifted.Tag
+</span>6 <span style=''>import org.joda.time.LocalDateTime
+</span>7 <span style=''>import java.text.SimpleDateFormat
+</span>8 <span style=''>
+</span>9 <span style=''>//Details of the user that we want to store in database
+</span>10 <span style=''>
+</span>11 <span style=''>case class User(name: String, email: String, password: String, phone: Long, address: String, company: String,
+</span>12 <span style=''>                created: LocalDateTime, updated: LocalDateTime, usertype: Int = 2, id: Option[Int])
+</span>13 <span style=''>
+</span>14 <span style=''>// Mapping of the case class User with the "mywebuser" table in the database
+</span>15 <span style=''>                
+</span>16 <span style=''>class WebUser(tag: Tag) extends Table[User](tag, "mywebuser") {
+</span>17 <span style=''>
+</span>18 <span style=''>  implicit val DateMapper = </span><span style='background: #AEF1AE'>MappedColumnType.base[org.joda.time.LocalDateTime, java.sql.Date](
+</span>19 <span style=''></span><span style='background: #AEF1AE'>    { utilDate => new java.sql.Date((utilDate.toDate()).getTime()) },
+</span>20 <span style=''></span><span style='background: #AEF1AE'>    { sqlDate => new org.joda.time.LocalDateTime(sqlDate.getTime()) })</span><span style=''>
+</span>21 <span style=''>
+</span>22 <span style=''>  def name: Column[String] = </span><span style='background: #AEF1AE'>column[String]("name", O.NotNull)</span><span style=''>
+</span>23 <span style=''>  def email: Column[String] = </span><span style='background: #AEF1AE'>column[String]("email", O.NotNull)</span><span style=''>
+</span>24 <span style=''>  def password: Column[String] = </span><span style='background: #AEF1AE'>column[String]("password", O.NotNull)</span><span style=''>
+</span>25 <span style=''>  def phone: Column[Long] = </span><span style='background: #AEF1AE'>column[Long]("phone", O.NotNull)</span><span style=''>
+</span>26 <span style=''>  def address: Column[String] = </span><span style='background: #AEF1AE'>column[String]("address", O.NotNull)</span><span style=''>
+</span>27 <span style=''>  def company: Column[String] = </span><span style='background: #AEF1AE'>column[String]("company", O.NotNull)</span><span style=''>
+</span>28 <span style=''>  def created: Column[LocalDateTime] = </span><span style='background: #AEF1AE'>column[LocalDateTime]("created", O.NotNull)</span><span style=''>
+</span>29 <span style=''>  def updated: Column[LocalDateTime] = </span><span style='background: #AEF1AE'>column[LocalDateTime]("updated", O.NotNull)</span><span style=''>
+</span>30 <span style=''>  def usertype: Column[Int] = </span><span style='background: #AEF1AE'>column[Int]("usertype", O.NotNull)</span><span style=''>
+</span>31 <span style=''>  def id: Column[Option[Int]] = </span><span style='background: #AEF1AE'>column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)</span><span style=''>
+</span>32 <span style=''>  def * = </span><span style='background: #AEF1AE'>(name, email, password, phone, address, company, created, updated, usertype, id) <> (User.tupled, User.unapply)</span><span style=''>
+</span>33 <span style=''>  def uniqueEmail = </span><span style='background: #AEF1AE'>index("IDX_EMAIL", email, unique = true)</span><span style=''>
+</span>34 <span style=''>}
+</span>35 <span style=''>
+</span>36 <span style=''>trait WebUsersTrait {
+</span>37 <span style=''>
+</span>38 <span style=''>  val users = </span><span style='background: #AEF1AE'>TableQuery(new WebUser(_))</span><span style=''>
+</span>39 <span style=''>
+</span>40 <span style=''>  /**
+</span>41 <span style=''>   * @param user : Details from the register form.
+</span>42 <span style=''>   * @param s : implicit session from the controller's DBAction context.
+</span>43 <span style=''>   * @return : returns integer showing number of records created (always 1 in this case).
+</span>44 <span style=''>   */
+</span>45 <span style=''>  def create(user: User)(implicit s: Session): Int = {
+</span>46 <span style=''>    //employees.ddl.create
+</span>47 <span style=''>    </span><span style='background: #AEF1AE'>users.insert(user)</span><span style=''>
+</span>48 <span style=''>  }
+</span>49 <span style=''>  
+</span>50 <span style=''>  /**
+</span>51 <span style=''> * @param email : registered email entered as "Test@knoldus.com".
+</span>52 <span style=''> * @param s : implicit session from the controller's DBAction context.
+</span>53 <span style=''> * @return : returns integer showing number of records deleted (always 1 in this case).
+</span>54 <span style=''> */
+</span>55 <span style=''>def delete(email:String)(implicit s: Session): Int = {
+</span>56 <span style=''>    </span><span style='background: #AEF1AE'>users.filter(_.email === email).delete</span><span style=''>
+</span>57 <span style=''>  }
+</span>58 <span style=''>
+</span>59 <span style=''>  /**
+</span>60 <span style=''>   * @param updatedUser : object of case class User created using Update form containg 
+</span>61 <span style=''>   *                      the changes required by the registered user.
+</span>62 <span style=''>   * @param id : Auto incremented id generated when user register in the system.
+</span>63 <span style=''>   * @param s : implicit session from the controller's DBAction context.
+</span>64 <span style=''>   * @return : returns the integer showing number of records updated (always 1 in this case).
+</span>65 <span style=''>   */
+</span>66 <span style=''>  def updateUser(updatedUser: User, id: Int)(implicit s: Session): Int = {
+</span>67 <span style=''>
+</span>68 <span style=''>    </span><span style='background: #AEF1AE'>users.filter(_.id === id).update(updatedUser)</span><span style=''>
+</span>69 <span style=''>
+</span>70 <span style=''>  }
+</span>71 <span style=''>
+</span>72 <span style=''>  /**
+</span>73 <span style=''>   * @param user : tuple containg the email and password with which any user is trying to login into the system.
+</span>74 <span style=''>   * @param s : implicit session from the controller's DBAction context.
+</span>75 <span style=''>   * @return : returns a boolean value showing whether the user login is authentic.
+</span>76 <span style=''>   */
+</span>77 <span style=''>  def connect(user: (String, String))(implicit s: Session): Boolean = {
+</span>78 <span style=''>    val reqEmail = </span><span style='background: #AEF1AE'>user._1</span><span style=''>
+</span>79 <span style=''>    val reqPassword = </span><span style='background: #AEF1AE'>user._2</span><span style=''>
+</span>80 <span style=''>
+</span>81 <span style=''>    if (</span><span style='background: #AEF1AE'>users.filter(webUser => webUser.email === reqEmail && webUser.password === reqPassword).list.isEmpty</span><span style=''>)
+</span>82 <span style=''>      </span><span style='background: #AEF1AE'>false</span><span style=''>
+</span>83 <span style=''>
+</span>84 <span style=''>    else
+</span>85 <span style=''>      </span><span style='background: #AEF1AE'>true</span><span style=''>
+</span>86 <span style=''>  }
+</span>87 <span style=''>
+</span>88 <span style=''>  /**
+</span>89 <span style=''>   * @param email : registered email of the user.
+</span>90 <span style=''>   * @param s : implicit session cfrom the controller's DBAction context.
+</span>91 <span style=''>   * @return : returns object of the case class User containing user Details, if the email exist in system.
+</span>92 <span style=''>   */
+</span>93 <span style=''>  def getData(email: String)(implicit s: Session): Option[User] = {
+</span>94 <span style=''>    val webUser = </span><span style='background: #AEF1AE'>users.filter(_.email === email).firstOption</span><span style=''>
+</span>95 <span style=''>    webUser
+</span>96 <span style=''>  }
+</span>97 <span style=''>}
+</span>98 <span style=''>object WebUsers extends WebUsersTrait 
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          291
+        </td>
+        <td>
+          648
+          -
+          855
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTypesComponent.MappedColumnTypeFactory.base
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.MappedColumnType.base[org.joda.time.LocalDateTime, java.sql.Date](((utilDate: org.joda.time.LocalDateTime) =&gt; new java.sql.Date(utilDate.toDate().getTime())), ((sqlDate: java.sql.Date) =&gt; new org.joda.time.LocalDateTime(sqlDate.getTime())))((ClassTag.apply[org.joda.time.LocalDateTime](classOf[org.joda.time.LocalDateTime]): scala.reflect.ClassTag[org.joda.time.LocalDateTime]), play.api.db.slick.Config.driver.simple.dateColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          290
+        </td>
+        <td>
+          713
+          -
+          713
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.dateColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.dateColumnType
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          286
+        </td>
+        <td>
+          752
+          -
+          780
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.util.Date.getTime
+        </td>
+        <td style="background: #AEF1AE">
+          utilDate.toDate().getTime()
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          287
+        </td>
+        <td>
+          733
+          -
+          781
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.sql.Date.&lt;init&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          new java.sql.Date(utilDate.toDate().getTime())
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          289
+        </td>
+        <td>
+          802
+          -
+          852
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          org.joda.time.LocalDateTime.&lt;init&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          new org.joda.time.LocalDateTime(sqlDate.getTime())
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          288
+        </td>
+        <td>
+          834
+          -
+          851
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.util.Date.getTime
+        </td>
+        <td style="background: #AEF1AE">
+          sqlDate.getTime()
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          295
+        </td>
+        <td>
+          886
+          -
+          919
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[String](&quot;name&quot;, WebUser.this.O.NotNull)(play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          292
+        </td>
+        <td>
+          901
+          -
+          907
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;name&quot;
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          294
+        </td>
+        <td>
+          900
+          -
+          900
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          293
+        </td>
+        <td>
+          909
+          -
+          918
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          298
+        </td>
+        <td>
+          964
+          -
+          964
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          297
+        </td>
+        <td>
+          974
+          -
+          983
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          299
+        </td>
+        <td>
+          950
+          -
+          984
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[String](&quot;email&quot;, WebUser.this.O.NotNull)(play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          296
+        </td>
+        <td>
+          965
+          -
+          972
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;email&quot;
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          301
+        </td>
+        <td>
+          1045
+          -
+          1054
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          300
+        </td>
+        <td>
+          1033
+          -
+          1043
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;password&quot;
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          303
+        </td>
+        <td>
+          1018
+          -
+          1055
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[String](&quot;password&quot;, WebUser.this.O.NotNull)(play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          302
+        </td>
+        <td>
+          1032
+          -
+          1032
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          25
+        </td>
+        <td>
+          304
+        </td>
+        <td>
+          1097
+          -
+          1104
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;phone&quot;
+        </td>
+      </tr><tr>
+        <td>
+          25
+        </td>
+        <td>
+          307
+        </td>
+        <td>
+          1084
+          -
+          1116
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[Long](&quot;phone&quot;, WebUser.this.O.NotNull)(play.api.db.slick.Config.driver.simple.longColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          25
+        </td>
+        <td>
+          306
+        </td>
+        <td>
+          1096
+          -
+          1096
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.longColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.longColumnType
+        </td>
+      </tr><tr>
+        <td>
+          25
+        </td>
+        <td>
+          305
+        </td>
+        <td>
+          1106
+          -
+          1115
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          310
+        </td>
+        <td>
+          1163
+          -
+          1163
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          309
+        </td>
+        <td>
+          1175
+          -
+          1184
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          308
+        </td>
+        <td>
+          1164
+          -
+          1173
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;address&quot;
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          311
+        </td>
+        <td>
+          1149
+          -
+          1185
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[String](&quot;address&quot;, WebUser.this.O.NotNull)(play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          313
+        </td>
+        <td>
+          1244
+          -
+          1253
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          312
+        </td>
+        <td>
+          1233
+          -
+          1242
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;company&quot;
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          315
+        </td>
+        <td>
+          1218
+          -
+          1254
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[String](&quot;company&quot;, WebUser.this.O.NotNull)(play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          314
+        </td>
+        <td>
+          1232
+          -
+          1232
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          316
+        </td>
+        <td>
+          1316
+          -
+          1325
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;created&quot;
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          319
+        </td>
+        <td>
+          1294
+          -
+          1337
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[org.joda.time.LocalDateTime](&quot;created&quot;, WebUser.this.O.NotNull)(WebUser.this.DateMapper)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          318
+        </td>
+        <td>
+          1315
+          -
+          1315
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.DateMapper
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.DateMapper
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          317
+        </td>
+        <td>
+          1327
+          -
+          1336
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          322
+        </td>
+        <td>
+          1398
+          -
+          1398
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.DateMapper
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.DateMapper
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          321
+        </td>
+        <td>
+          1410
+          -
+          1419
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          323
+        </td>
+        <td>
+          1377
+          -
+          1420
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[org.joda.time.LocalDateTime](&quot;updated&quot;, WebUser.this.O.NotNull)(WebUser.this.DateMapper)
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          320
+        </td>
+        <td>
+          1399
+          -
+          1408
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;updated&quot;
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          325
+        </td>
+        <td>
+          1475
+          -
+          1484
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTableComponent.ColumnOptions.NotNull
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.NotNull
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          327
+        </td>
+        <td>
+          1451
+          -
+          1485
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[Int](&quot;usertype&quot;, WebUser.this.O.NotNull)(play.api.db.slick.Config.driver.simple.intColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          324
+        </td>
+        <td>
+          1463
+          -
+          1473
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;usertype&quot;
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          326
+        </td>
+        <td>
+          1462
+          -
+          1462
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.intColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.intColumnType
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          331
+        </td>
+        <td>
+          1537
+          -
+          1537
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.intColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.intColumnType
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          328
+        </td>
+        <td>
+          1538
+          -
+          1542
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;id&quot;
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          330
+        </td>
+        <td>
+          1558
+          -
+          1567
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.ColumnOptions.AutoInc
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.AutoInc
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          333
+        </td>
+        <td>
+          1518
+          -
+          1568
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.Table.column
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.column[Option[Int]](&quot;id&quot;, WebUser.this.O.PrimaryKey, WebUser.this.O.AutoInc)(ast.this.TypedType.typedTypeToOptionTypedType[Int](play.api.db.slick.Config.driver.simple.intColumnType))
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          332
+        </td>
+        <td>
+          1537
+          -
+          1537
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.ast.TypedType.typedTypeToOptionTypedType
+        </td>
+        <td style="background: #AEF1AE">
+          ast.this.TypedType.typedTypeToOptionTypedType[Int](play.api.db.slick.Config.driver.simple.intColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          329
+        </td>
+        <td>
+          1544
+          -
+          1556
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.profile.RelationalTableComponent.ColumnOptions.PrimaryKey
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.O.PrimaryKey
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          346
+        </td>
+        <td>
+          1677
+          -
+          1689
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          models.User.unapply
+        </td>
+        <td style="background: #AEF1AE">
+          User.unapply(x$0)
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          355
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[Int, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          349
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[String, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          358
+        </td>
+        <td>
+          1579
+          -
+          1690
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.ToShapedValue.&lt;&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.anyToToShapedValue[(play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]])](scala.Tuple10.apply[play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]]](WebUser.this.name, WebUser.this.email, WebUser.this.password, WebUser.this.phone, WebUser.this.address, WebUser.this.company, WebUser.this.created, WebUser.this.updated, WebUser.this.usertype, WebUser.this.id)).&lt;&gt;[models.User, (String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int])](User.tupled, {
+  ((x$0: models.User) =&gt; User.unapply(x$0))
+})((ClassTag.apply[models.User](classOf[models.User]): scala.reflect.ClassTag[models.User]), lifted.this.Shape.tuple10Shape[scala.slick.lifted.FlatShapeLevel, play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]], String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[Long], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[org.joda.time.LocalDateTime], scala.slick.lifted.Column[org.joda.time.LocalDateTime], scala.slick.lifted.Column[Int], scala.slick.lifted.Column[Option[Int]]](lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[Long, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing], lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing], lifted.this.Column.columnShape[Int, Nothing], lifted.this.Column.columnShape[Option[Int], Nothing]))
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          340
+        </td>
+        <td>
+          1628
+          -
+          1635
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.created
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.created
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          343
+        </td>
+        <td>
+          1656
+          -
+          1658
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.id
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.id
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          352
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[String, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          334
+        </td>
+        <td>
+          1580
+          -
+          1584
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.name
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.name
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          337
+        </td>
+        <td>
+          1603
+          -
+          1608
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.phone
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.phone
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          360
+        </td>
+        <td>
+          1579
+          -
+          1690
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.ProvenShape.proveShapeOf
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.ProvenShape.proveShapeOf[scala.slick.lifted.MappedProjection[models.User,(String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int])], models.User](play.api.db.slick.Config.driver.simple.anyToToShapedValue[(play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]])](scala.Tuple10.apply[play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]]](WebUser.this.name, WebUser.this.email, WebUser.this.password, WebUser.this.phone, WebUser.this.address, WebUser.this.company, WebUser.this.created, WebUser.this.updated, WebUser.this.usertype, WebUser.this.id)).&lt;&gt;[models.User, (String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int])](User.tupled, {
+  ((x$0: models.User) =&gt; User.unapply(x$0))
+})((ClassTag.apply[models.User](classOf[models.User]): scala.reflect.ClassTag[models.User]), lifted.this.Shape.tuple10Shape[scala.slick.lifted.FlatShapeLevel, play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]], String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[Long], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[org.joda.time.LocalDateTime], scala.slick.lifted.Column[org.joda.time.LocalDateTime], scala.slick.lifted.Column[Int], scala.slick.lifted.Column[Option[Int]]](lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[Long, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing], lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing], lifted.this.Column.columnShape[Int, Nothing], lifted.this.Column.columnShape[Option[Int], Nothing])))(lifted.this.MappedProjection.mappedProjectionShape[scala.slick.lifted.FlatShapeLevel, models.User, (String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int])])
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          354
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          336
+        </td>
+        <td>
+          1593
+          -
+          1601
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.password
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.password
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          345
+        </td>
+        <td>
+          1664
+          -
+          1675
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.Function10.tupled
+        </td>
+        <td style="background: #AEF1AE">
+          User.tupled
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          357
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.ShapeLowPriority2.tuple10Shape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Shape.tuple10Shape[scala.slick.lifted.FlatShapeLevel, play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]], String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[Long], scala.slick.lifted.Column[String], scala.slick.lifted.Column[String], scala.slick.lifted.Column[org.joda.time.LocalDateTime], scala.slick.lifted.Column[org.joda.time.LocalDateTime], scala.slick.lifted.Column[Int], scala.slick.lifted.Column[Option[Int]]](lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[Long, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[String, Nothing], lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing], lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing], lifted.this.Column.columnShape[Int, Nothing], lifted.this.Column.columnShape[Option[Int], Nothing])
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          348
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[String, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          339
+        </td>
+        <td>
+          1619
+          -
+          1626
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.company
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.company
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          342
+        </td>
+        <td>
+          1646
+          -
+          1654
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.usertype
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.usertype
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          351
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[String, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          341
+        </td>
+        <td>
+          1637
+          -
+          1644
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.updated
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.updated
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          359
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.MappedProjection.mappedProjectionShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.MappedProjection.mappedProjectionShape[scala.slick.lifted.FlatShapeLevel, models.User, (String, String, String, Long, String, String, org.joda.time.LocalDateTime, org.joda.time.LocalDateTime, Int, Option[Int])]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          350
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[Long, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          344
+        </td>
+        <td>
+          1579
+          -
+          1659
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Tuple10.apply
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Tuple10.apply[play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[Long], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[String], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[org.joda.time.LocalDateTime], play.api.db.slick.Config.driver.simple.Column[Int], play.api.db.slick.Config.driver.simple.Column[Option[Int]]](WebUser.this.name, WebUser.this.email, WebUser.this.password, WebUser.this.phone, WebUser.this.address, WebUser.this.company, WebUser.this.created, WebUser.this.updated, WebUser.this.usertype, WebUser.this.id)
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          353
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[org.joda.time.LocalDateTime, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          335
+        </td>
+        <td>
+          1586
+          -
+          1591
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.email
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.email
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          356
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[Option[Int], Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          338
+        </td>
+        <td>
+          1610
+          -
+          1617
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.address
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.address
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          347
+        </td>
+        <td>
+          1660
+          -
+          1660
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[String, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          364
+        </td>
+        <td>
+          1716
+          -
+          1716
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.slick.lifted.ColumnLowPriority.columnShape
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.Column.columnShape[String, Nothing]
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          361
+        </td>
+        <td>
+          1717
+          -
+          1728
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;IDX_EMAIL&quot;
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          363
+        </td>
+        <td>
+          1746
+          -
+          1750
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          true
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          362
+        </td>
+        <td>
+          1730
+          -
+          1735
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.email
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.email
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          365
+        </td>
+        <td>
+          1711
+          -
+          1751
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.AbstractTable.index
+        </td>
+        <td style="background: #AEF1AE">
+          WebUser.this.index[play.api.db.slick.Config.driver.simple.Column[String]](&quot;IDX_EMAIL&quot;, WebUser.this.email, true)(lifted.this.Column.columnShape[String, Nothing])
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          367
+        </td>
+        <td>
+          1792
+          -
+          1818
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.slick.lifted.TableQuery.apply
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.TableQuery.apply[models.WebUser](((x$1: scala.slick.lifted.Tag) =&gt; new WebUser(x$1)))
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          366
+        </td>
+        <td>
+          1803
+          -
+          1817
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          models.WebUser.&lt;init&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          new WebUser(x$1)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          368
+        </td>
+        <td>
+          2132
+          -
+          2150
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.driver.JdbcInsertInvokerComponent.InsertInvokerDef.insert
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.queryToInsertInvoker[models.WebUser#TableElementType, Seq](WebUsersTrait.this.users).insert(user)(s)
+        </td>
+      </tr><tr>
+        <td>
+          56
+        </td>
+        <td>
+          369
+        </td>
+        <td>
+          2452
+          -
+          2490
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.driver.JdbcInvokerComponent.DeleteInvoker.delete
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.queryToDeleteInvoker[Seq](WebUsersTrait.this.users.filter[scala.slick.lifted.Column[Boolean]](((x$2: models.WebUser) =&gt; play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](x$2.email)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](email)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType))))(lifted.this.CanBeQueryCondition.BooleanColumnCanBeQueryCondition)).delete(s)
+        </td>
+      </tr><tr>
+        <td>
+          68
+        </td>
+        <td>
+          370
+        </td>
+        <td>
+          2995
+          -
+          3040
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.driver.JdbcInvokerComponent.UpdateInvoker.update
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.productQueryToUpdateInvoker[models.WebUser#TableElementType, Seq](WebUsersTrait.this.users.filter[scala.slick.lifted.Column[Option[Boolean]]](((x$3: models.WebUser) =&gt; play.api.db.slick.Config.driver.simple.optionColumnExtensionMethods[Int](x$3.id).===[Int, Option[Boolean]](play.api.db.slick.Config.driver.simple.valueToConstColumn[Int](id)(play.api.db.slick.Config.driver.simple.intColumnType))(lifted.this.OptionMapper2.getOptionMapper2OT[Int, Int, Boolean](play.api.db.slick.Config.driver.simple.intColumnType))))(lifted.this.CanBeQueryCondition.BooleanOptionColumnCanBeQueryCondition)).update(updatedUser)(s)
+        </td>
+      </tr><tr>
+        <td>
+          78
+        </td>
+        <td>
+          371
+        </td>
+        <td>
+          3420
+          -
+          3427
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.Tuple2._1
+        </td>
+        <td style="background: #AEF1AE">
+          user._1
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          372
+        </td>
+        <td>
+          3450
+          -
+          3457
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.Tuple2._2
+        </td>
+        <td style="background: #AEF1AE">
+          user._2
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          391
+        </td>
+        <td>
+          3467
+          -
+          3554
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.Query.filter
+        </td>
+        <td style="background: #AEF1AE">
+          WebUsersTrait.this.users.filter[scala.slick.lifted.Column[Boolean]](((webUser: models.WebUser) =&gt; play.api.db.slick.Config.driver.simple.booleanColumnExtensionMethods(play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.email)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqEmail)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType))).&amp;&amp;[Boolean, Boolean](play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.password)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqPassword)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType)))(lifted.this.OptionMapper2.getOptionMapper2TT[Boolean, Boolean, Boolean](play.api.db.slick.Config.driver.simple.booleanColumnType))))(lifted.this.CanBeQueryCondition.BooleanColumnCanBeQueryCondition)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          373
+        </td>
+        <td>
+          3491
+          -
+          3504
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.email
+        </td>
+        <td style="background: #AEF1AE">
+          webUser.email
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          382
+        </td>
+        <td>
+          3542
+          -
+          3542
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          376
+        </td>
+        <td>
+          3509
+          -
+          3517
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalProfile.Implicits.valueToConstColumn
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqEmail)(play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          385
+        </td>
+        <td>
+          3538
+          -
+          3538
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.OptionMapper2.getOptionMapper2TT
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          388
+        </td>
+        <td>
+          3518
+          -
+          3518
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.OptionMapper2.getOptionMapper2TT
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.OptionMapper2.getOptionMapper2TT[Boolean, Boolean, Boolean](play.api.db.slick.Config.driver.simple.booleanColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          379
+        </td>
+        <td>
+          3491
+          -
+          3517
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.ColumnExtensionMethods.===
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.email)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqEmail)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType))
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          387
+        </td>
+        <td>
+          3518
+          -
+          3518
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.booleanColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.booleanColumnType
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          378
+        </td>
+        <td>
+          3505
+          -
+          3505
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.OptionMapper2.getOptionMapper2TT
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          381
+        </td>
+        <td>
+          3529
+          -
+          3529
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          390
+        </td>
+        <td>
+          3479
+          -
+          3479
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.lifted.CanBeQueryCondition.BooleanColumnCanBeQueryCondition
+        </td>
+        <td style="background: #AEF1AE">
+          lifted.this.CanBeQueryCondition.BooleanColumnCanBeQueryCondition
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          375
+        </td>
+        <td>
+          3509
+          -
+          3509
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          384
+        </td>
+        <td>
+          3538
+          -
+          3538
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          383
+        </td>
+        <td>
+          3542
+          -
+          3553
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.profile.RelationalProfile.Implicits.valueToConstColumn
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqPassword)(play.api.db.slick.Config.driver.simple.stringColumnType)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          392
+        </td>
+        <td>
+          3467
+          -
+          3567
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.collection.SeqLike.isEmpty
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.queryToAppliedQueryInvoker[models.WebUser#TableElementType, Seq](WebUsersTrait.this.users.filter[scala.slick.lifted.Column[Boolean]](((webUser: models.WebUser) =&gt; play.api.db.slick.Config.driver.simple.booleanColumnExtensionMethods(play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.email)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqEmail)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType))).&amp;&amp;[Boolean, Boolean](play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.password)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqPassword)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType)))(lifted.this.OptionMapper2.getOptionMapper2TT[Boolean, Boolean, Boolean](play.api.db.slick.Config.driver.simple.booleanColumnType))))(lifted.this.CanBeQueryCondition.BooleanColumnCanBeQueryCondition)).list(s).isEmpty
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          386
+        </td>
+        <td>
+          3521
+          -
+          3553
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.ColumnExtensionMethods.===
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.password)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqPassword)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType))
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          377
+        </td>
+        <td>
+          3505
+          -
+          3505
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          389
+        </td>
+        <td>
+          3491
+          -
+          3553
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.lifted.BooleanColumnExtensionMethods.&amp;&amp;
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.booleanColumnExtensionMethods(play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.email)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqEmail)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType))).&amp;&amp;[Boolean, Boolean](play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](webUser.password)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](reqPassword)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType)))(lifted.this.OptionMapper2.getOptionMapper2TT[Boolean, Boolean, Boolean](play.api.db.slick.Config.driver.simple.booleanColumnType))
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          380
+        </td>
+        <td>
+          3521
+          -
+          3537
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.WebUser.password
+        </td>
+        <td style="background: #AEF1AE">
+          webUser.password
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          374
+        </td>
+        <td>
+          3499
+          -
+          3499
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.slick.driver.JdbcTypesComponent.ImplicitColumnTypes.stringColumnType
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.stringColumnType
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          394
+        </td>
+        <td>
+          3575
+          -
+          3580
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          false
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          393
+        </td>
+        <td>
+          3575
+          -
+          3580
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          false
+        </td>
+      </tr><tr>
+        <td>
+          85
+        </td>
+        <td>
+          396
+        </td>
+        <td>
+          3597
+          -
+          3601
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          true
+        </td>
+      </tr><tr>
+        <td>
+          85
+        </td>
+        <td>
+          395
+        </td>
+        <td>
+          3597
+          -
+          3601
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          true
+        </td>
+      </tr><tr>
+        <td>
+          94
+        </td>
+        <td>
+          397
+        </td>
+        <td>
+          3937
+          -
+          3980
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.slick.jdbc.Invoker.firstOption
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.Config.driver.simple.queryToAppliedQueryInvoker[models.WebUser#TableElementType, Seq](WebUsersTrait.this.users.filter[scala.slick.lifted.Column[Boolean]](((x$4: models.WebUser) =&gt; play.api.db.slick.Config.driver.simple.columnExtensionMethods[String](x$4.email)(play.api.db.slick.Config.driver.simple.stringColumnType).===[String, Boolean](play.api.db.slick.Config.driver.simple.valueToConstColumn[String](email)(play.api.db.slick.Config.driver.simple.stringColumnType))(lifted.this.OptionMapper2.getOptionMapper2TT[String, String, Boolean](play.api.db.slick.Config.driver.simple.stringColumnType))))(lifted.this.CanBeQueryCondition.BooleanColumnCanBeQueryCondition)).firstOption(s)
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

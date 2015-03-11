@@ -63,7 +63,7 @@ Seq[Any](format.raw/*1.75*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Fri Feb 27 18:45:09 IST 2015
+                  DATE: Tue Mar 10 16:55:15 IST 2015
                   SOURCE: /home/knoldus/play-login/app/views/main.scala.html
                   HASH: e3c87515f3b233514cdc93e6422d04d5ead330bd
                   MATRIX: 531->1|692->74|720->76|790->120|821->131|857->141|894->158|925->163|1069->281|1124->315|1158->322|1256->393|1284->400|1353->443|1381->450|1422->464|1712->729|1746->742|1778->747

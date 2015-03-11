@@ -1,6 +1,7 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(/home/knoldus/GitRepos/Play-Login-Template/conf/routes,/home/knoldus/GitRepos/Play-Login-Template/target/scala-2.11/classes/routes)[0m
-[0m[[0mdebug[0m] [0m	(/home/knoldus/GitRepos/Play-Login-Template/conf/evolutions,/home/knoldus/GitRepos/Play-Login-Template/target/scala-2.11/classes/evolutions)[0m
-[0m[[0mdebug[0m] [0m	(/home/knoldus/GitRepos/Play-Login-Template/conf/application.conf,/home/knoldus/GitRepos/Play-Login-Template/target/scala-2.11/classes/application.conf)[0m
-[0m[[0mdebug[0m] [0m	(/home/knoldus/GitRepos/Play-Login-Template/conf/evolutions/default,/home/knoldus/GitRepos/Play-Login-Template/target/scala-2.11/classes/evolutions/default)[0m
-[0m[[0mdebug[0m] [0m	(/home/knoldus/GitRepos/Play-Login-Template/conf/evolutions/default/1.sql,/home/knoldus/GitRepos/Play-Login-Template/target/scala-2.11/classes/evolutions/default/1.sql)[0m
+[0m[[0mdebug[0m] [0m	(/home/knoldus/play-login/conf/test.conf,/home/knoldus/play-login/target/scala-2.11/classes/test.conf)[0m
+[0m[[0mdebug[0m] [0m	(/home/knoldus/play-login/conf/routes,/home/knoldus/play-login/target/scala-2.11/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/home/knoldus/play-login/conf/evolutions,/home/knoldus/play-login/target/scala-2.11/classes/evolutions)[0m
+[0m[[0mdebug[0m] [0m	(/home/knoldus/play-login/conf/application.conf,/home/knoldus/play-login/target/scala-2.11/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/home/knoldus/play-login/conf/evolutions/default,/home/knoldus/play-login/target/scala-2.11/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/home/knoldus/play-login/conf/evolutions/default/1.sql,/home/knoldus/play-login/target/scala-2.11/classes/evolutions/default/1.sql)[0m

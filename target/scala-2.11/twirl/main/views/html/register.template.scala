@@ -46,19 +46,20 @@ Seq[Any](format.raw/*2.70*/("""
         	    			 """),_display_(/*27.19*/inputText(regform("name"), '_label -> "Name",'class -> "form-control formInline",'placeholder->"Name")),format.raw/*27.121*/("""
            					 """),_display_(/*28.19*/inputText(regform("email"), '_label -> "Email", 'class -> "form-control formInline",'placeholder->"Email")),format.raw/*28.125*/("""
 					 		 """),_display_(/*29.11*/inputText(regform("password"), '_label -> "Password", 'type -> "password",'class -> "form-control formInline",'placeholder->"Password")),format.raw/*29.146*/("""
-           					 """),_display_(/*30.19*/inputText(regform("phone"), '_label -> "Phone", 'class -> "form-control formInline",'placeholder->"Phone")),format.raw/*30.125*/("""
-							 """),_display_(/*31.10*/inputText(regform("address"), '_label -> "Address", 'class -> "form-control formInline",'placeholder->"Address")),format.raw/*31.122*/("""
-						   	 """),_display_(/*32.13*/inputText(regform("company"), '_label -> "Company", 'class -> "form-control formInline",'placeholder->"Company")),format.raw/*32.125*/("""
-						"""),format.raw/*33.7*/("""</fieldset>
+					 		 """),_display_(/*30.11*/inputText(regform("password_confirm"), '_label -> "Confirm", 'type -> "password",'class -> "form-control formInline",'placeholder->"Confirm Password")),format.raw/*30.161*/("""
+           					 """),_display_(/*31.19*/inputText(regform("phone"), '_label -> "Phone", 'class -> "form-control formInline",'placeholder->"Phone")),format.raw/*31.125*/("""
+							 """),_display_(/*32.10*/inputText(regform("address"), '_label -> "Address", 'class -> "form-control formInline",'placeholder->"Address")),format.raw/*32.122*/("""
+						   	 """),_display_(/*33.13*/inputText(regform("company"), '_label -> "Company", 'class -> "form-control formInline",'placeholder->"Company")),format.raw/*33.125*/("""
+						"""),format.raw/*34.7*/("""</fieldset>
             		
             			<div class="panel-custom-margin" >
             				<input type="submit" value="Create WebUser" class="btn btn-success btn-margin-left"> or 
-            				<a href=""""),_display_(/*37.27*/routes/*37.33*/.Application.home("Home")),format.raw/*37.58*/("""" class="btn btn-default">Cancel</a> 
+            				<a href=""""),_display_(/*38.27*/routes/*38.33*/.Application.home("Home")),format.raw/*38.58*/("""" class="btn btn-default">Cancel</a> 
         				</div>
         
-    				""")))}),format.raw/*40.10*/("""	
+    				""")))}),format.raw/*41.10*/("""	
     
-    			"""),format.raw/*42.8*/("""</div>
+    			"""),format.raw/*43.8*/("""</div>
 			</div>
 		</div>
 		
@@ -72,13 +73,13 @@ Seq[Any](format.raw/*2.70*/("""
 						<a class="twitter-timeline" href="https://twitter.com/Knolspeak" data-widget-id="571036056997199872" height=400>Tweets by @Knolspeak</a>
 						<script>
 						!function(d,s,id)
-						"""),format.raw/*56.7*/("""{"""),format.raw/*56.8*/("""
-							"""),format.raw/*57.8*/("""var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+						"""),format.raw/*57.7*/("""{"""),format.raw/*57.8*/("""
+							"""),format.raw/*58.8*/("""var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
 							if(!d.getElementById(id))
-							"""),format.raw/*59.8*/("""{"""),format.raw/*59.9*/("""js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+							"""),format.raw/*60.8*/("""{"""),format.raw/*60.9*/("""js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
 							fjs.parentNode.insertBefore(js,fjs);
-							"""),format.raw/*61.8*/("""}"""),format.raw/*61.9*/("""
-						"""),format.raw/*62.7*/("""}"""),format.raw/*62.8*/("""(document,"script","twitter-wjs");
+							"""),format.raw/*62.8*/("""}"""),format.raw/*62.9*/("""
+						"""),format.raw/*63.7*/("""}"""),format.raw/*63.8*/("""(document,"script","twitter-wjs");
 						</script>
 				</div>
 			</div>
@@ -96,11 +97,11 @@ Seq[Any](format.raw/*2.70*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 02 16:41:33 IST 2015
-                  SOURCE: /home/knoldus/GitRepos/Play-Login-Template/app/views/register.scala.html
-                  HASH: 2a31601d272e282aea647cea0ce71acf7c5c455f
-                  MATRIX: 580->27|743->116|775->140|849->95|877->114|905->184|934->188|977->223|1015->224|1054->236|1136->292|1150->297|1183->321|1234->334|1266->339|1527->573|1555->580|1587->585|1628->596|1659->600|1904->819|1919->825|1985->882|2025->884|2077->908|2133->937|2257->1039|2303->1058|2431->1164|2469->1175|2626->1310|2672->1329|2800->1435|2837->1445|2971->1557|3011->1570|3145->1682|3179->1689|3414->1897|3429->1903|3475->1928|3581->2003|3622->2017|4184->2553|4212->2554|4247->2562|4398->2686|4426->2687|4582->2816|4610->2817|4644->2824|4672->2825
-                  LINES: 19->2|21->6|21->6|22->2|24->5|25->6|27->8|27->8|27->8|29->10|31->12|31->12|31->12|31->12|32->13|34->15|34->15|35->16|36->17|37->18|43->24|43->24|43->24|43->24|45->26|46->27|46->27|47->28|47->28|48->29|48->29|49->30|49->30|50->31|50->31|51->32|51->32|52->33|56->37|56->37|56->37|59->40|61->42|75->56|75->56|76->57|78->59|78->59|80->61|80->61|81->62|81->62
+                  DATE: Tue Mar 10 16:55:15 IST 2015
+                  SOURCE: /home/knoldus/play-login/app/views/register.scala.html
+                  HASH: f7f255f10aa5854efef445cd51d78bedd3944b5d
+                  MATRIX: 580->27|743->116|775->140|849->95|877->114|905->184|934->188|977->223|1015->224|1054->236|1136->292|1150->297|1183->321|1234->334|1266->339|1527->573|1555->580|1587->585|1628->596|1659->600|1904->819|1919->825|1985->882|2025->884|2077->908|2133->937|2257->1039|2303->1058|2431->1164|2469->1175|2626->1310|2664->1321|2836->1471|2882->1490|3010->1596|3047->1606|3181->1718|3221->1731|3355->1843|3389->1850|3624->2058|3639->2064|3685->2089|3791->2164|3832->2178|4394->2714|4422->2715|4457->2723|4608->2847|4636->2848|4792->2977|4820->2978|4854->2985|4882->2986
+                  LINES: 19->2|21->6|21->6|22->2|24->5|25->6|27->8|27->8|27->8|29->10|31->12|31->12|31->12|31->12|32->13|34->15|34->15|35->16|36->17|37->18|43->24|43->24|43->24|43->24|45->26|46->27|46->27|47->28|47->28|48->29|48->29|49->30|49->30|50->31|50->31|51->32|51->32|52->33|52->33|53->34|57->38|57->38|57->38|60->41|62->43|76->57|76->57|77->58|79->60|79->60|81->62|81->62|82->63|82->63
                   -- GENERATED --
               */
           

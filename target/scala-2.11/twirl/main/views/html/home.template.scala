@@ -29,20 +29,24 @@ Seq[Any](format.raw/*1.45*/("""
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<li data-target="#myCarousel" data-slide-to="1"></li>
 						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
 					</ol>
 
 			<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox" width=100%>
 						<div class="item active">
-							<img src=""""),_display_(/*16.19*/routes/*16.25*/.Assets.at("images/playframework.png")),format.raw/*16.63*/("""" alt="Play Framework" height=200px width= 100%>
+							<img src=""""),_display_(/*17.19*/routes/*17.25*/.Assets.at("images/playframework.png")),format.raw/*17.63*/("""" alt="Play Framework" height=200px width= 100%>
 						</div>
 
 						<div class="item">
-							<img src=""""),_display_(/*20.19*/routes/*20.25*/.Assets.at("images/bootstrap.jpg")),format.raw/*20.59*/("""" alt="Bootstrap" height= 200px width=100%>
+							<img src=""""),_display_(/*21.19*/routes/*21.25*/.Assets.at("images/bootstrap.jpg")),format.raw/*21.59*/("""" alt="Bootstrap" height= 200px width=100%>
 						</div>
 
 						<div class="item">
-							<img src=""""),_display_(/*24.19*/routes/*24.25*/.Assets.at("images/typesafe.jpg")),format.raw/*24.58*/("""" alt="Typesafe" height=200px width=100%>
+							<img src=""""),_display_(/*25.19*/routes/*25.25*/.Assets.at("images/typesafe.jpg")),format.raw/*25.58*/("""" alt="Typesafe" height=200px width=100%>
+						</div>
+						<div class="item">
+							<img src=""""),_display_(/*28.19*/routes/*28.25*/.Assets.at("images/Knoldus.png")),format.raw/*28.57*/("""" alt="Knoldus" height=200px width=100%>
 						</div>
 					</div>
 
@@ -59,7 +63,7 @@ Seq[Any](format.raw/*1.45*/("""
 					</a>
 	</div>
 				
-""")))}),format.raw/*41.2*/("""
+""")))}),format.raw/*45.2*/("""
 """))}
   }
 
@@ -72,11 +76,11 @@ Seq[Any](format.raw/*1.45*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 02 10:32:35 IST 2015
+                  DATE: Tue Mar 10 16:55:15 IST 2015
                   SOURCE: /home/knoldus/play-login/app/views/home.scala.html
-                  HASH: 49413a9b8d2c802823f853cba0c3cc957fe929db
-                  MATRIX: 519->1|650->44|678->47|728->89|766->90|796->94|1298->569|1313->575|1372->613|1505->719|1520->725|1575->759|1703->860|1718->866|1772->899|2377->1474
-                  LINES: 19->1|22->1|24->3|24->3|24->3|26->5|37->16|37->16|37->16|41->20|41->20|41->20|45->24|45->24|45->24|62->41
+                  HASH: dd5de7f1f339ded2c70861fa1d549bdebd1a4d0b
+                  MATRIX: 519->1|650->44|678->47|728->89|766->90|796->94|1358->629|1373->635|1432->673|1565->779|1580->785|1635->819|1763->920|1778->926|1832->959|1957->1057|1972->1063|2025->1095|2629->1669
+                  LINES: 19->1|22->1|24->3|24->3|24->3|26->5|38->17|38->17|38->17|42->21|42->21|42->21|46->25|46->25|46->25|49->28|49->28|49->28|66->45
                   -- GENERATED --
               */
           

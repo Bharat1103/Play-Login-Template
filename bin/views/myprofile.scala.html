@@ -1,21 +1,31 @@
 @* profile Template File *@
 @(page:String,email:String)(implicit flash:play.api.mvc.Flash)
+@import helper._
 @main("DashBoard App Profile","Profile",email,true){
 
 	<div class="row">
 		<div class="col-sm-10 col-md-10">
-			<div>
+			<div>@* href="@routes.Application.uploadform(email)" *@
 					@flash.get("successUpdate").map { message =>
 						<div class="alert alert-dismissable alert-info panel-custom-margin ">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						<strong>Operation Complete!</strong> @message
+						<span class="glyphicon glyphicon-ok"><strong> Operation Complete!</strong></span> @message
+						</div>
+					}
+					
+					@flash.get("failedUpdate").map { message =>
+						<div class="alert alert-dismissable alert-danger panel-custom-margin ">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						<span class="glyphicon glyphicon-alert"><strong> Operation Failed!</strong></span> @message
 						</div>
 					}			
+				
 	
 	 				@flash.get("successIn").map { message =>
 						<div class="alert alert-dismissable alert-success panel-custom-margin ">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						<strong>Operation Complete!</strong> @message
+						<span class="glyphicon glyphicon-ok">
+						<strong>Operation Complete!</strong></span> @message
 						</div>
 					}
 			</div>
@@ -23,7 +33,38 @@
 	</div>		
 	
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-3">		
+			<div class="well img-fit" style="background-size: 100% 100%;
+					background-image: url(/assets/images/@{email}.jpeg)">
+					<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#picUpload">
+						<span class="glyphicon glyphicon-upload"></span>
+					</a>
+  					
+					<!-- Modal -->
+					<div class="modal fade" id="picUpload" tabindex="-1" role="dialog" aria-labelledby="picUploadLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+      							<div class="modal-header">
+       								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        							<h4 class="modal-title" id="myModalLabel">Setting Profile Picture</h4>
+      							</div>
+      						<div class="modal-body">
+        						<strong>Upload Picture in Basic Image Format !</strong>
+        						@form(action = routes.Application.uploadFile(email), 'enctype -> "multipart/form-data" , 'id->"uploadForm") {
+		 						<input type="file" name="fileUpload" id="fileUpload" class="form-control">
+ 								<div class="modal-footer">
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        							<button type="submit" class="btn btn-primary">Save changes</button>
+      							</div>
+ 								}
+ 							</div>
+      					</div>
+  					</div>
+				</div>
+			</div>		
+		</div>
+		
+		<div class="col-md-9">
 			<div class="jumbotron panel-custom-margin">
 				<h2>Bootstrap Template Loaded Successfully!</h2>
 					<p>Welcome to Knoldus Intership Program [KIP]</p>

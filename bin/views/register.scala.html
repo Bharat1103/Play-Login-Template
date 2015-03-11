@@ -12,7 +12,7 @@
 			@flash.get("failedCreate").map { message =>
 				<div class="alert alert-dismissable alert-danger panel-custom-margin ">
 					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>Operation Failed!</strong> @message
+					<span class="glyphicon glyphicon-alert"><strong> Operation Failed!</span></strong> @message
 				</div>
 			}
 			<div class="well panel panel-default panel-custom-margin colormeGrey" >
@@ -27,6 +27,7 @@
         	    			 @inputText(regform("name"), '_label -> "Name",'class -> "form-control formInline",'placeholder->"Name")
            					 @inputText(regform("email"), '_label -> "Email", 'class -> "form-control formInline",'placeholder->"Email")
 					 		 @inputText(regform("password"), '_label -> "Password", 'type -> "password",'class -> "form-control formInline",'placeholder->"Password")
+					 		 @inputText(regform("password_confirm"), '_label -> "Confirm", 'type -> "password",'class -> "form-control formInline",'placeholder->"Confirm Password")
            					 @inputText(regform("phone"), '_label -> "Phone", 'class -> "form-control formInline",'placeholder->"Phone")
 							 @inputText(regform("address"), '_label -> "Address", 'class -> "form-control formInline",'placeholder->"Address")
 						   	 @inputText(regform("company"), '_label -> "Company", 'class -> "form-control formInline",'placeholder->"Company")

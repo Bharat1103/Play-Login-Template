@@ -1,0 +1,2526 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          /home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/register.template.scala.html
+        </title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.3/addons/pager/jquery.tablesorter.pager.min.js"></script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier;'>1 <span style=''>
+</span>2 <span style=''>package views.html
+</span>3 <span style=''>
+</span>4 <span style=''>import play.twirl.api._
+</span>5 <span style=''>import play.twirl.api.TemplateMagic._
+</span>6 <span style=''>
+</span>7 <span style=''>import play.api.templates.PlayMagic._
+</span>8 <span style=''>import models._
+</span>9 <span style=''>import controllers._
+</span>10 <span style=''>import play.api.i18n._
+</span>11 <span style=''>import play.api.mvc._
+</span>12 <span style=''>import play.api.data._
+</span>13 <span style=''>import views.html._
+</span>14 <span style=''>
+</span>15 <span style=''>/* login Template File */
+</span>16 <span style=''>object register extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template3[String,Form[User],play.api.mvc.Flash,play.twirl.api.HtmlFormat.Appendable] {
+</span>17 <span style=''>
+</span>18 <span style=''>  /* login Template File */
+</span>19 <span style=''>  def apply/*2.2*/(page:String,regform: Form[User])(implicit flash:play.api.mvc.Flash):play.twirl.api.HtmlFormat.Appendable = {
+</span>20 <span style=''>      </span><span style='background: #AEF1AE'>_display_ {import helper._
+</span>21 <span style=''></span><span style='background: #AEF1AE'>implicit def /*6.2*/implicitFieldConstructor/*6.26*/ = {{ FieldConstructor(CustomFieldInput.f) }};
+</span>22 <span style=''></span><span style='background: #AEF1AE'>Seq[Any](format.raw/*2.70*/("""
+</span>23 <span style=''></span><span style='background: #AEF1AE'>
+</span>24 <span style=''></span><span style='background: #AEF1AE'>"""),format.raw/*5.1*/("""
+</span>25 <span style=''></span><span style='background: #AEF1AE'>"""),format.raw/*6.70*/(""" 
+</span>26 <span style=''></span><span style='background: #AEF1AE'>
+</span>27 <span style=''></span><span style='background: #AEF1AE'>"""),_display_(/*8.2*/main("Register",page,"Guest",false)/*8.37*/{_display_(Seq[Any](format.raw/*8.38*/("""   
+</span>28 <span style=''></span><span style='background: #AEF1AE'>   
+</span>29 <span style=''></span><span style='background: #AEF1AE'>    """),format.raw/*10.5*/("""<div class="row">
+</span>30 <span style=''></span><span style='background: #AEF1AE'>		<div class="col-sm-5 col-md-5">
+</span>31 <span style=''></span><span style='background: #AEF1AE'>			"""),_display_(/*12.5*/flash/*12.10*/.get("failedCreate").map/*12.34*/ { message =>_display_(Seq[Any](format.raw/*12.47*/("""
+</span>32 <span style=''></span><span style='background: #AEF1AE'>				"""),format.raw/*13.5*/("""<div class="alert alert-dismissable alert-danger panel-custom-margin ">
+</span>33 <span style=''></span><span style='background: #AEF1AE'>					<button type="button" class="close" data-dismiss="alert">×</button>
+</span>34 <span style=''></span><span style='background: #AEF1AE'>					<span class="glyphicon glyphicon-alert"><strong> Operation Failed!</span></strong> """),_display_(/*15.90*/message),format.raw/*15.97*/("""
+</span>35 <span style=''></span><span style='background: #AEF1AE'>				"""),format.raw/*16.5*/("""</div>
+</span>36 <span style=''></span><span style='background: #AEF1AE'>			""")))}),format.raw/*17.5*/("""
+</span>37 <span style=''></span><span style='background: #AEF1AE'>			"""),format.raw/*18.4*/("""<div class="well panel panel-default panel-custom-margin colormeGrey" >
+</span>38 <span style=''></span><span style='background: #AEF1AE'>				<div class="panel-heading colormeGrey">
+</span>39 <span style=''></span><span style='background: #AEF1AE'>					<h3 class="panel-title">Registration Form</h3>
+</span>40 <span style=''></span><span style='background: #AEF1AE'>				</div>
+</span>41 <span style=''></span><span style='background: #AEF1AE'>			
+</span>42 <span style=''></span><span style='background: #AEF1AE'>				<div class="panel-body">
+</span>43 <span style=''></span><span style='background: #AEF1AE'>					 """),_display_(/*24.8*/helper/*24.14*/.form(routes.Application.registerme(),'id->"accountForm")/*24.71*/ {_display_(Seq[Any](format.raw/*24.73*/("""
+</span>44 <span style=''></span><span style='background: #AEF1AE'>        	
+</span>45 <span style=''></span><span style='background: #AEF1AE'>        	 			"""),format.raw/*26.14*/("""<fieldset>
+</span>46 <span style=''></span><span style='background: #AEF1AE'>        	    			 """),_display_(/*27.19*/inputText(regform("name"), '_label -> "Name",'class -> "form-control formInline",'placeholder->"Name")),format.raw/*27.121*/("""
+</span>47 <span style=''></span><span style='background: #AEF1AE'>           					 """),_display_(/*28.19*/inputText(regform("email"), '_label -> "Email", 'class -> "form-control formInline",'placeholder->"Email")),format.raw/*28.125*/("""
+</span>48 <span style=''></span><span style='background: #AEF1AE'>					 		 """),_display_(/*29.11*/inputText(regform("password"), '_label -> "Password", 'type -> "password",'class -> "form-control formInline",'placeholder->"Password")),format.raw/*29.146*/("""
+</span>49 <span style=''></span><span style='background: #AEF1AE'>					 		 """),_display_(/*30.11*/inputText(regform("password_confirm"), '_label -> "Confirm", 'type -> "password",'class -> "form-control formInline",'placeholder->"Confirm Password")),format.raw/*30.161*/("""
+</span>50 <span style=''></span><span style='background: #AEF1AE'>           					 """),_display_(/*31.19*/inputText(regform("phone"), '_label -> "Phone", 'class -> "form-control formInline",'placeholder->"Phone")),format.raw/*31.125*/("""
+</span>51 <span style=''></span><span style='background: #AEF1AE'>							 """),_display_(/*32.10*/inputText(regform("address"), '_label -> "Address", 'class -> "form-control formInline",'placeholder->"Address")),format.raw/*32.122*/("""
+</span>52 <span style=''></span><span style='background: #AEF1AE'>						   	 """),_display_(/*33.13*/inputText(regform("company"), '_label -> "Company", 'class -> "form-control formInline",'placeholder->"Company")),format.raw/*33.125*/("""
+</span>53 <span style=''></span><span style='background: #AEF1AE'>						"""),format.raw/*34.7*/("""</fieldset>
+</span>54 <span style=''></span><span style='background: #AEF1AE'>            		
+</span>55 <span style=''></span><span style='background: #AEF1AE'>            			<div class="panel-custom-margin" >
+</span>56 <span style=''></span><span style='background: #AEF1AE'>            				<input type="submit" value="Create WebUser" class="btn btn-success btn-margin-left"> or 
+</span>57 <span style=''></span><span style='background: #AEF1AE'>            				<a href=""""),_display_(/*38.27*/routes/*38.33*/.Application.home("Home")),format.raw/*38.58*/("""" class="btn btn-default">Cancel</a> 
+</span>58 <span style=''></span><span style='background: #AEF1AE'>        				</div>
+</span>59 <span style=''></span><span style='background: #AEF1AE'>        
+</span>60 <span style=''></span><span style='background: #AEF1AE'>    				""")))}),format.raw/*41.10*/("""	
+</span>61 <span style=''></span><span style='background: #AEF1AE'>    
+</span>62 <span style=''></span><span style='background: #AEF1AE'>    			"""),format.raw/*43.8*/("""</div>
+</span>63 <span style=''></span><span style='background: #AEF1AE'>			</div>
+</span>64 <span style=''></span><span style='background: #AEF1AE'>		</div>
+</span>65 <span style=''></span><span style='background: #AEF1AE'>		
+</span>66 <span style=''></span><span style='background: #AEF1AE'>		<div class="col-sm-5 col-md-5 test-margin">
+</span>67 <span style=''></span><span style='background: #AEF1AE'>			<div class="well panel panel-default panel-custom-margin colormeGrey" style="display:block; margin-left:0 auto;margin-right:0 auto">
+</span>68 <span style=''></span><span style='background: #AEF1AE'>				<div class="panel-heading colormeGrey">
+</span>69 <span style=''></span><span style='background: #AEF1AE'>					<h3 class="panel-title">Twitter Widget</h3>
+</span>70 <span style=''></span><span style='background: #AEF1AE'>				</div>
+</span>71 <span style=''></span><span style='background: #AEF1AE'>				<div class="panel-body">
+</span>72 <span style=''></span><span style='background: #AEF1AE'>		
+</span>73 <span style=''></span><span style='background: #AEF1AE'>						<a class="twitter-timeline" href="https://twitter.com/Knolspeak" data-widget-id="571036056997199872" height=400>Tweets by @Knolspeak</a>
+</span>74 <span style=''></span><span style='background: #AEF1AE'>						<script>
+</span>75 <span style=''></span><span style='background: #AEF1AE'>						!function(d,s,id)
+</span>76 <span style=''></span><span style='background: #AEF1AE'>						"""),format.raw/*57.7*/("""{"""),format.raw/*57.8*/("""
+</span>77 <span style=''></span><span style='background: #AEF1AE'>							"""),format.raw/*58.8*/("""var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+</span>78 <span style=''></span><span style='background: #AEF1AE'>							if(!d.getElementById(id))
+</span>79 <span style=''></span><span style='background: #AEF1AE'>							"""),format.raw/*60.8*/("""{"""),format.raw/*60.9*/("""js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+</span>80 <span style=''></span><span style='background: #AEF1AE'>							fjs.parentNode.insertBefore(js,fjs);
+</span>81 <span style=''></span><span style='background: #AEF1AE'>							"""),format.raw/*62.8*/("""}"""),format.raw/*62.9*/("""
+</span>82 <span style=''></span><span style='background: #AEF1AE'>						"""),format.raw/*63.7*/("""}"""),format.raw/*63.8*/("""(document,"script","twitter-wjs");
+</span>83 <span style=''></span><span style='background: #AEF1AE'>						</script>
+</span>84 <span style=''></span><span style='background: #AEF1AE'>				</div>
+</span>85 <span style=''></span><span style='background: #AEF1AE'>			</div>
+</span>86 <span style=''></span><span style='background: #AEF1AE'>		</div>
+</span>87 <span style=''></span><span style='background: #AEF1AE'>	</div>	
+</span>88 <span style=''></span><span style='background: #AEF1AE'>""")))}))}</span><span style=''>
+</span>89 <span style=''>  }
+</span>90 <span style=''>
+</span>91 <span style=''>  def render(page:String,regform:Form[User],flash:play.api.mvc.Flash): play.twirl.api.HtmlFormat.Appendable = </span><span style='background: #F0ADAD'>apply(page,regform)(flash)</span><span style=''>
+</span>92 <span style=''>
+</span>93 <span style=''>  def f:((String,Form[User]) => (play.api.mvc.Flash) => play.twirl.api.HtmlFormat.Appendable) = (page,regform) => (flash) => </span><span style='background: #F0ADAD'>apply(page,regform)(flash)</span><span style=''>
+</span>94 <span style=''>
+</span>95 <span style=''>  def ref: this.type = this
+</span>96 <span style=''>
+</span>97 <span style=''>}
+</span>98 <span style=''>              /*
+</span>99 <span style=''>                  -- GENERATED --
+</span>100 <span style=''>                  DATE: Tue Mar 10 16:55:15 IST 2015
+</span>101 <span style=''>                  SOURCE: /home/knoldus/play-login/app/views/register.scala.html
+</span>102 <span style=''>                  HASH: f7f255f10aa5854efef445cd51d78bedd3944b5d
+</span>103 <span style=''>                  MATRIX: 580->27|743->116|775->140|849->95|877->114|905->184|934->188|977->223|1015->224|1054->236|1136->292|1150->297|1183->321|1234->334|1266->339|1527->573|1555->580|1587->585|1628->596|1659->600|1904->819|1919->825|1985->882|2025->884|2077->908|2133->937|2257->1039|2303->1058|2431->1164|2469->1175|2626->1310|2664->1321|2836->1471|2882->1490|3010->1596|3047->1606|3181->1718|3221->1731|3355->1843|3389->1850|3624->2058|3639->2064|3685->2089|3791->2164|3832->2178|4394->2714|4422->2715|4457->2723|4608->2847|4636->2848|4792->2977|4820->2978|4854->2985|4882->2986
+</span>104 <span style=''>                  LINES: 19->2|21->6|21->6|22->2|24->5|25->6|27->8|27->8|27->8|29->10|31->12|31->12|31->12|31->12|32->13|34->15|34->15|35->16|36->17|37->18|43->24|43->24|43->24|43->24|45->26|46->27|46->27|47->28|47->28|48->29|48->29|49->30|49->30|50->31|50->31|51->32|51->32|52->33|52->33|53->34|57->38|57->38|57->38|60->41|62->43|76->57|76->57|77->58|79->60|79->60|81->62|81->62|82->63|82->63
+</span>105 <span style=''>                  -- GENERATED --
+</span>106 <span style=''>              */
+</span>107 <span style=''>          
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          1496
+        </td>
+        <td>
+          696
+          -
+          4986
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_({
+  import helper._;
+  implicit def implicitFieldConstructor: views.html.helper.FieldConstructor = helper.FieldConstructor.apply(CustomFieldInput.f);
+  collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\n&quot;), register.this.format.raw(&quot;\n&quot;), register.this.format.raw(&quot; \n\n&quot;), register.this._display_(main.apply(&quot;Register&quot;, page, &quot;Guest&quot;, false)(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;   \n   \n    &quot;), register.this.format.raw(&quot;&lt;div class=\&quot;row\&quot;&gt;\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5\&quot;&gt;\n\t\t\t&quot;), register.this._display_(flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\n\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; &gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Registration Form&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\t\t\t &quot;), register.this._display_(helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))), register.this.format.raw(&quot;\t\n    \n    \t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t\t\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5 test-margin\&quot;&gt;\n\t\t\t&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; style=\&quot;display:block; margin-left:0 auto;margin-right:0 auto\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Twitter Widget&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\n\t\t\t\t\t\t&lt;a class=\&quot;twitter-timeline\&quot; href=\&quot;https://twitter.com/Knolspeak\&quot; data-widget-id=\&quot;571036056997199872\&quot; height=400&gt;Tweets by @Knolspeak&lt;/a&gt;\n\t\t\t\t\t\t&lt;script&gt;\n\t\t\t\t\t\t!function(d,s,id)\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';\n\t\t\t\t\t\t\tif(!d.getElementById(id))\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;js=d.createElement(s);js.id=id;js.src=p+\&quot;://platform.twitter.com/widgets.js\&quot;;\n\t\t\t\t\t\t\tfjs.parentNode.insertBefore(js,fjs);\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;(document,\&quot;script\&quot;,\&quot;twitter-wjs\&quot;);\n\t\t\t\t\t\t&lt;/script&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\t\n&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))
+})(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          1495
+        </td>
+        <td>
+          706
+          -
+          706
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          21
+        </td>
+        <td>
+          1387
+        </td>
+        <td>
+          781
+          -
+          817
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.helper.FieldConstructor.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.FieldConstructor.apply(CustomFieldInput.f)
+        </td>
+      </tr><tr>
+        <td>
+          21
+        </td>
+        <td>
+          1386
+        </td>
+        <td>
+          798
+          -
+          816
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          views.html.CustomFieldInput.f
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.f
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          1494
+        </td>
+        <td>
+          822
+          -
+          4985
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\n&quot;), register.this.format.raw(&quot;\n&quot;), register.this.format.raw(&quot; \n\n&quot;), register.this._display_(main.apply(&quot;Register&quot;, page, &quot;Guest&quot;, false)(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;   \n   \n    &quot;), register.this.format.raw(&quot;&lt;div class=\&quot;row\&quot;&gt;\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5\&quot;&gt;\n\t\t\t&quot;), register.this._display_(flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\n\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; &gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Registration Form&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\t\t\t &quot;), register.this._display_(helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))), register.this.format.raw(&quot;\t\n    \n    \t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t\t\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5 test-margin\&quot;&gt;\n\t\t\t&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; style=\&quot;display:block; margin-left:0 auto;margin-right:0 auto\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Twitter Widget&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\n\t\t\t\t\t\t&lt;a class=\&quot;twitter-timeline\&quot; href=\&quot;https://twitter.com/Knolspeak\&quot; data-widget-id=\&quot;571036056997199872\&quot; height=400&gt;Tweets by @Knolspeak&lt;/a&gt;\n\t\t\t\t\t\t&lt;script&gt;\n\t\t\t\t\t\t!function(d,s,id)\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';\n\t\t\t\t\t\t\tif(!d.getElementById(id))\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;js=d.createElement(s);js.id=id;js.src=p+\&quot;://platform.twitter.com/widgets.js\&quot;;\n\t\t\t\t\t\t\tfjs.parentNode.insertBefore(js,fjs);\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;(document,\&quot;script\&quot;,\&quot;twitter-wjs\&quot;);\n\t\t\t\t\t\t&lt;/script&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\t\n&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          1388
+        </td>
+        <td>
+          831
+          -
+          859
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1389
+        </td>
+        <td>
+          860
+          -
+          886
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          25
+        </td>
+        <td>
+          1390
+        </td>
+        <td>
+          887
+          -
+          916
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot; \n\n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1393
+        </td>
+        <td>
+          963
+          -
+          968
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          false
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1492
+        </td>
+        <td>
+          934
+          -
+          4983
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.main.apply
+        </td>
+        <td style="background: #AEF1AE">
+          main.apply(&quot;Register&quot;, page, &quot;Guest&quot;, false)(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;   \n   \n    &quot;), register.this.format.raw(&quot;&lt;div class=\&quot;row\&quot;&gt;\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5\&quot;&gt;\n\t\t\t&quot;), register.this._display_(flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\n\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; &gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Registration Form&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\t\t\t &quot;), register.this._display_(helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))), register.this.format.raw(&quot;\t\n    \n    \t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t\t\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5 test-margin\&quot;&gt;\n\t\t\t&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; style=\&quot;display:block; margin-left:0 auto;margin-right:0 auto\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Twitter Widget&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\n\t\t\t\t\t\t&lt;a class=\&quot;twitter-timeline\&quot; href=\&quot;https://twitter.com/Knolspeak\&quot; data-widget-id=\&quot;571036056997199872\&quot; height=400&gt;Tweets by @Knolspeak&lt;/a&gt;\n\t\t\t\t\t\t&lt;script&gt;\n\t\t\t\t\t\t!function(d,s,id)\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';\n\t\t\t\t\t\t\tif(!d.getElementById(id))\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;js=d.createElement(s);js.id=id;js.src=p+\&quot;://platform.twitter.com/widgets.js\&quot;;\n\t\t\t\t\t\t\tfjs.parentNode.insertBefore(js,fjs);\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;(document,\&quot;script\&quot;,\&quot;twitter-wjs\&quot;);\n\t\t\t\t\t\t&lt;/script&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\t\n&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1491
+        </td>
+        <td>
+          978
+          -
+          4982
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;   \n   \n    &quot;), register.this.format.raw(&quot;&lt;div class=\&quot;row\&quot;&gt;\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5\&quot;&gt;\n\t\t\t&quot;), register.this._display_(flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\n\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; &gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Registration Form&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\t\t\t &quot;), register.this._display_(helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))), register.this.format.raw(&quot;\t\n    \n    \t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t\t\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5 test-margin\&quot;&gt;\n\t\t\t&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; style=\&quot;display:block; margin-left:0 auto;margin-right:0 auto\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Twitter Widget&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\n\t\t\t\t\t\t&lt;a class=\&quot;twitter-timeline\&quot; href=\&quot;https://twitter.com/Knolspeak\&quot; data-widget-id=\&quot;571036056997199872\&quot; height=400&gt;Tweets by @Knolspeak&lt;/a&gt;\n\t\t\t\t\t\t&lt;script&gt;\n\t\t\t\t\t\t!function(d,s,id)\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';\n\t\t\t\t\t\t\tif(!d.getElementById(id))\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;js=d.createElement(s);js.id=id;js.src=p+\&quot;://platform.twitter.com/widgets.js\&quot;;\n\t\t\t\t\t\t\tfjs.parentNode.insertBefore(js,fjs);\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;(document,\&quot;script\&quot;,\&quot;twitter-wjs\&quot;);\n\t\t\t\t\t\t&lt;/script&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\t\n&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1392
+        </td>
+        <td>
+          955
+          -
+          962
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Guest&quot;
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1490
+        </td>
+        <td>
+          987
+          -
+          987
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1493
+        </td>
+        <td>
+          917
+          -
+          4984
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(main.apply(&quot;Register&quot;, page, &quot;Guest&quot;, false)(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;   \n   \n    &quot;), register.this.format.raw(&quot;&lt;div class=\&quot;row\&quot;&gt;\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5\&quot;&gt;\n\t\t\t&quot;), register.this._display_(flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\n\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; &gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Registration Form&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\t\t\t &quot;), register.this._display_(helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))), register.this.format.raw(&quot;\t\n    \n    \t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t\t\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5 test-margin\&quot;&gt;\n\t\t\t&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; style=\&quot;display:block; margin-left:0 auto;margin-right:0 auto\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Twitter Widget&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\n\t\t\t\t\t\t&lt;a class=\&quot;twitter-timeline\&quot; href=\&quot;https://twitter.com/Knolspeak\&quot; data-widget-id=\&quot;571036056997199872\&quot; height=400&gt;Tweets by @Knolspeak&lt;/a&gt;\n\t\t\t\t\t\t&lt;script&gt;\n\t\t\t\t\t\t!function(d,s,id)\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';\n\t\t\t\t\t\t\tif(!d.getElementById(id))\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;js=d.createElement(s);js.id=id;js.src=p+\&quot;://platform.twitter.com/widgets.js\&quot;;\n\t\t\t\t\t\t\tfjs.parentNode.insertBefore(js,fjs);\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;(document,\&quot;script\&quot;,\&quot;twitter-wjs\&quot;);\n\t\t\t\t\t\t&lt;/script&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\t\n&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))))
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1394
+        </td>
+        <td>
+          997
+          -
+          1035
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;   \n   \n    &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1391
+        </td>
+        <td>
+          939
+          -
+          949
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Register&quot;
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1489
+        </td>
+        <td>
+          988
+          -
+          4981
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](register.this.format.raw(&quot;   \n   \n    &quot;), register.this.format.raw(&quot;&lt;div class=\&quot;row\&quot;&gt;\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5\&quot;&gt;\n\t\t\t&quot;), register.this._display_(flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\n\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; &gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Registration Form&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\t\t\t &quot;), register.this._display_(helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))), register.this.format.raw(&quot;\t\n    \n    \t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t\t\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5 test-margin\&quot;&gt;\n\t\t\t&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; style=\&quot;display:block; margin-left:0 auto;margin-right:0 auto\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Twitter Widget&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\n\t\t\t\t\t\t&lt;a class=\&quot;twitter-timeline\&quot; href=\&quot;https://twitter.com/Knolspeak\&quot; data-widget-id=\&quot;571036056997199872\&quot; height=400&gt;Tweets by @Knolspeak&lt;/a&gt;\n\t\t\t\t\t\t&lt;script&gt;\n\t\t\t\t\t\t!function(d,s,id)\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';\n\t\t\t\t\t\t\tif(!d.getElementById(id))\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;{&quot;), register.this.format.raw(&quot;js=d.createElement(s);js.id=id;js.src=p+\&quot;://platform.twitter.com/widgets.js\&quot;;\n\t\t\t\t\t\t\tfjs.parentNode.insertBefore(js,fjs);\n\t\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;}&quot;), register.this.format.raw(&quot;(document,\&quot;script\&quot;,\&quot;twitter-wjs\&quot;);\n\t\t\t\t\t\t&lt;/script&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\t\n&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          1395
+        </td>
+        <td>
+          1036
+          -
+          1117
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;&lt;div class=\&quot;row\&quot;&gt;\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5\&quot;&gt;\n\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1402
+        </td>
+        <td>
+          1206
+          -
+          1606
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1405
+        </td>
+        <td>
+          1136
+          -
+          1608
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Option.map
+        </td>
+        <td style="background: #AEF1AE">
+          flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))))
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1396
+        </td>
+        <td>
+          1155
+          -
+          1169
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;failedCreate&quot;
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1407
+        </td>
+        <td>
+          1118
+          -
+          1609
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(flash.get(&quot;failedCreate&quot;).map[play.twirl.api.HtmlFormat.Appendable](((message: String) =&gt; register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1404
+        </td>
+        <td>
+          1196
+          -
+          1607
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;), register.this._display_(message), register.this.format.raw(&quot;\n\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1403
+        </td>
+        <td>
+          1205
+          -
+          1205
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1406
+        </td>
+        <td>
+          1127
+          -
+          1127
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          1397
+        </td>
+        <td>
+          1215
+          -
+          1247
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          1398
+        </td>
+        <td>
+          1248
+          -
+          1507
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;&lt;div class=\&quot;alert alert-dismissable alert-danger panel-custom-margin \&quot;&gt;\n\t\t\t\t\t&lt;button type=\&quot;button\&quot; class=\&quot;close\&quot; data-dismiss=\&quot;alert\&quot;&gt;×&lt;/button&gt;\n\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-alert\&quot;&gt;&lt;strong&gt; Operation Failed!&lt;/span&gt;&lt;/strong&gt; &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          1399
+        </td>
+        <td>
+          1508
+          -
+          1535
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(message)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          1400
+        </td>
+        <td>
+          1536
+          -
+          1568
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          35
+        </td>
+        <td>
+          1401
+        </td>
+        <td>
+          1569
+          -
+          1605
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          36
+        </td>
+        <td>
+          1408
+        </td>
+        <td>
+          1610
+          -
+          1640
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          37
+        </td>
+        <td>
+          1409
+        </td>
+        <td>
+          1641
+          -
+          1885
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; &gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Registration Form&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\t\t\t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1474
+        </td>
+        <td>
+          1996
+          -
+          1996
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1411
+        </td>
+        <td>
+          1957
+          -
+          1975
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1476
+        </td>
+        <td>
+          1904
+          -
+          3770
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.helper.form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1410
+        </td>
+        <td>
+          1925
+          -
+          1956
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.registerme
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.registerme()
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1473
+        </td>
+        <td>
+          1997
+          -
+          3768
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1412
+        </td>
+        <td>
+          2006
+          -
+          2057
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1475
+        </td>
+        <td>
+          1987
+          -
+          3769
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1477
+        </td>
+        <td>
+          1886
+          -
+          3771
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.form.apply(controllers.routes.Application.registerme(), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;id&quot;)).-&gt;[String](&quot;accountForm&quot;))(register.this._display_(collection.this.Seq.apply[Any](register.this.format.raw(&quot;\n        \t\n        \t \t\t\t&quot;), register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;), register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)), register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;), register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;), register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))))
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          1413
+        </td>
+        <td>
+          2058
+          -
+          2113
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;&lt;fieldset&gt;\n        \t    \t\t\t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          1420
+        </td>
+        <td>
+          2237
+          -
+          2283
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          1414
+        </td>
+        <td>
+          2143
+          -
+          2158
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          regform.apply(&quot;name&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          1416
+        </td>
+        <td>
+          2178
+          -
+          2213
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          1419
+        </td>
+        <td>
+          2114
+          -
+          2236
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang))
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          1415
+        </td>
+        <td>
+          2160
+          -
+          2177
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          1418
+        </td>
+        <td>
+          2133
+          -
+          2235
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.inputText.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.inputText.apply(regform.apply(&quot;name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Name&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          1417
+        </td>
+        <td>
+          2214
+          -
+          2234
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Name&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          1423
+        </td>
+        <td>
+          2351
+          -
+          2386
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          1425
+        </td>
+        <td>
+          2303
+          -
+          2409
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.inputText.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          1422
+        </td>
+        <td>
+          2331
+          -
+          2349
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          1421
+        </td>
+        <td>
+          2313
+          -
+          2329
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          regform.apply(&quot;email&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          1424
+        </td>
+        <td>
+          2387
+          -
+          2408
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          1427
+        </td>
+        <td>
+          2411
+          -
+          2449
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          1426
+        </td>
+        <td>
+          2284
+          -
+          2410
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.inputText.apply(regform.apply(&quot;email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Email&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Email&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang))
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1429
+        </td>
+        <td>
+          2500
+          -
+          2521
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1432
+        </td>
+        <td>
+          2579
+          -
+          2603
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1434
+        </td>
+        <td>
+          2450
+          -
+          2605
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang))
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1428
+        </td>
+        <td>
+          2479
+          -
+          2498
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          regform.apply(&quot;password&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1431
+        </td>
+        <td>
+          2543
+          -
+          2578
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1430
+        </td>
+        <td>
+          2523
+          -
+          2542
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1433
+        </td>
+        <td>
+          2469
+          -
+          2604
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.inputText.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.inputText.apply(regform.apply(&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          1435
+        </td>
+        <td>
+          2606
+          -
+          2644
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t\t \t\t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1438
+        </td>
+        <td>
+          2725
+          -
+          2744
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1441
+        </td>
+        <td>
+          2664
+          -
+          2814
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.inputText.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1440
+        </td>
+        <td>
+          2781
+          -
+          2813
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1443
+        </td>
+        <td>
+          2816
+          -
+          2862
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n           \t\t\t\t\t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1437
+        </td>
+        <td>
+          2703
+          -
+          2723
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1439
+        </td>
+        <td>
+          2745
+          -
+          2780
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1442
+        </td>
+        <td>
+          2645
+          -
+          2815
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.inputText.apply(regform.apply(&quot;password_confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Confirm&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;type&quot;)).-&gt;[String](&quot;password&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Confirm Password&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang))
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          1436
+        </td>
+        <td>
+          2674
+          -
+          2701
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          regform.apply(&quot;password_confirm&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          1447
+        </td>
+        <td>
+          2966
+          -
+          2987
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          1450
+        </td>
+        <td>
+          2990
+          -
+          3027
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t\t\t\t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          1449
+        </td>
+        <td>
+          2863
+          -
+          2989
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang))
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          1446
+        </td>
+        <td>
+          2930
+          -
+          2965
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          1448
+        </td>
+        <td>
+          2882
+          -
+          2988
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.inputText.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.inputText.apply(regform.apply(&quot;phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Phone&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          1445
+        </td>
+        <td>
+          2910
+          -
+          2928
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Phone&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          1444
+        </td>
+        <td>
+          2892
+          -
+          2908
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          regform.apply(&quot;phone&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          1456
+        </td>
+        <td>
+          3028
+          -
+          3160
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang))
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          1452
+        </td>
+        <td>
+          3077
+          -
+          3097
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          1455
+        </td>
+        <td>
+          3047
+          -
+          3159
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.inputText.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.inputText.apply(regform.apply(&quot;address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Address&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          1454
+        </td>
+        <td>
+          3135
+          -
+          3158
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Address&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          1457
+        </td>
+        <td>
+          3161
+          -
+          3201
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t\t\t   \t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          1451
+        </td>
+        <td>
+          3057
+          -
+          3075
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          regform.apply(&quot;address&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          51
+        </td>
+        <td>
+          1453
+        </td>
+        <td>
+          3099
+          -
+          3134
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          1459
+        </td>
+        <td>
+          3251
+          -
+          3271
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          1458
+        </td>
+        <td>
+          3231
+          -
+          3249
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.apply
+        </td>
+        <td style="background: #AEF1AE">
+          regform.apply(&quot;company&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          1461
+        </td>
+        <td>
+          3309
+          -
+          3332
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          1464
+        </td>
+        <td>
+          3335
+          -
+          3370
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          1463
+        </td>
+        <td>
+          3202
+          -
+          3334
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang))
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          1460
+        </td>
+        <td>
+          3273
+          -
+          3308
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          52
+        </td>
+        <td>
+          1462
+        </td>
+        <td>
+          3221
+          -
+          3333
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.inputText.apply
+        </td>
+        <td style="background: #AEF1AE">
+          helper.inputText.apply(regform.apply(&quot;company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;_label&quot;)).-&gt;[String](&quot;Company&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;class&quot;)).-&gt;[String](&quot;form-control formInline&quot;), scala.this.Predef.ArrowAssoc[Symbol](scala.Symbol.apply(&quot;placeholder&quot;)).-&gt;[String](&quot;Company&quot;))(implicitFieldConstructor, i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          53
+        </td>
+        <td>
+          1465
+        </td>
+        <td>
+          3371
+          -
+          3604
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;&lt;/fieldset&gt;\n            \t\t\n            \t\t\t&lt;div class=\&quot;panel-custom-margin\&quot; &gt;\n            \t\t\t\t&lt;input type=\&quot;submit\&quot; value=\&quot;Create WebUser\&quot; class=\&quot;btn btn-success btn-margin-left\&quot;&gt; or \n            \t\t\t\t&lt;a href=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          1468
+        </td>
+        <td>
+          3652
+          -
+          3652
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          controllers.ReverseApplication.home$default$3
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.home$default$3
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          1467
+        </td>
+        <td>
+          3652
+          -
+          3652
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          controllers.ReverseApplication.home$default$2
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.home$default$2
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          1470
+        </td>
+        <td>
+          3614
+          -
+          3614
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          1472
+        </td>
+        <td>
+          3666
+          -
+          3767
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\&quot; class=\&quot;btn btn-default\&quot;&gt;Cancel&lt;/a&gt; \n        \t\t\t\t&lt;/div&gt;\n        \n    \t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          1466
+        </td>
+        <td>
+          3657
+          -
+          3663
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Home&quot;
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          1469
+        </td>
+        <td>
+          3624
+          -
+          3664
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.home
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3)
+        </td>
+      </tr><tr>
+        <td>
+          57
+        </td>
+        <td>
+          1471
+        </td>
+        <td>
+          3605
+          -
+          3665
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          register.this._display_(controllers.routes.Application.home(&quot;Home&quot;, controllers.routes.Application.home$default$2, controllers.routes.Application.home$default$3))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          60
+        </td>
+        <td>
+          1478
+        </td>
+        <td>
+          3772
+          -
+          3813
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\t\n    \n    \t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          1479
+        </td>
+        <td>
+          3814
+          -
+          4375
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t\t\n\t\t&lt;div class=\&quot;col-sm-5 col-md-5 test-margin\&quot;&gt;\n\t\t\t&lt;div class=\&quot;well panel panel-default panel-custom-margin colormeGrey\&quot; style=\&quot;display:block; margin-left:0 auto;margin-right:0 auto\&quot;&gt;\n\t\t\t\t&lt;div class=\&quot;panel-heading colormeGrey\&quot;&gt;\n\t\t\t\t\t&lt;h3 class=\&quot;panel-title\&quot;&gt;Twitter Widget&lt;/h3&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t\t&lt;div class=\&quot;panel-body\&quot;&gt;\n\t\t\n\t\t\t\t\t\t&lt;a class=\&quot;twitter-timeline\&quot; href=\&quot;https://twitter.com/Knolspeak\&quot; data-widget-id=\&quot;571036056997199872\&quot; height=400&gt;Tweets by @Knolspeak&lt;/a&gt;\n\t\t\t\t\t\t&lt;script&gt;\n\t\t\t\t\t\t!function(d,s,id)\n\t\t\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          76
+        </td>
+        <td>
+          1481
+        </td>
+        <td>
+          4404
+          -
+          4438
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          76
+        </td>
+        <td>
+          1480
+        </td>
+        <td>
+          4376
+          -
+          4403
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;{&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          1482
+        </td>
+        <td>
+          4439
+          -
+          4589
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';\n\t\t\t\t\t\t\tif(!d.getElementById(id))\n\t\t\t\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1483
+        </td>
+        <td>
+          4590
+          -
+          4617
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;{&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1484
+        </td>
+        <td>
+          4618
+          -
+          4773
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;js=d.createElement(s);js.id=id;js.src=p+\&quot;://platform.twitter.com/widgets.js\&quot;;\n\t\t\t\t\t\t\tfjs.parentNode.insertBefore(js,fjs);\n\t\t\t\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1485
+        </td>
+        <td>
+          4774
+          -
+          4801
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;}&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1486
+        </td>
+        <td>
+          4802
+          -
+          4835
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;\n\t\t\t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          1488
+        </td>
+        <td>
+          4864
+          -
+          4980
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;(document,\&quot;script\&quot;,\&quot;twitter-wjs\&quot;);\n\t\t\t\t\t\t&lt;/script&gt;\n\t\t\t\t&lt;/div&gt;\n\t\t\t&lt;/div&gt;\n\t\t&lt;/div&gt;\n\t&lt;/div&gt;\t\n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          1487
+        </td>
+        <td>
+          4836
+          -
+          4863
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          register.this.format.raw(&quot;}&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          91
+        </td>
+        <td>
+          1497
+        </td>
+        <td>
+          5102
+          -
+          5128
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.register.apply
+        </td>
+        <td style="background: #F0ADAD">
+          register.this.apply(page, regform)(flash)
+        </td>
+      </tr><tr>
+        <td>
+          93
+        </td>
+        <td>
+          1498
+        </td>
+        <td>
+          5255
+          -
+          5281
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.register.apply
+        </td>
+        <td style="background: #F0ADAD">
+          register.this.apply(page, regform)(flash)
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

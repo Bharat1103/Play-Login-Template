@@ -24,7 +24,7 @@ Seq[Any](format.raw/*1.49*/("""
 """),format.raw/*4.1*/("""
 """),format.raw/*5.70*/("""
 
-"""),_display_(/*7.2*/main("Update me",page,email,true)/*7.35*/ {_display_(Seq[Any](format.raw/*7.37*/("""
+"""),_display_(/*7.2*/main("Update Details",page,email,true)/*7.40*/ {_display_(Seq[Any](format.raw/*7.42*/("""
     
     """),format.raw/*9.5*/("""<!-- Begin page content -->
 	<div class="row">
@@ -40,8 +40,8 @@ Seq[Any](format.raw/*1.49*/("""
         		 		"""),format.raw/*20.14*/("""<fieldset>
         
        			    		 """),_display_(/*22.19*/inputText(regform("name"), '_label -> "Name",'class -> "form-control formInline",'placeholder->"Name")),format.raw/*22.121*/("""
-           					 """),_display_(/*23.19*/inputText(regform("email"), '_label -> "Email", 'class -> "form-control formInline",'placeholder->"Email")),format.raw/*23.125*/("""
-					 		 """),_display_(/*24.11*/inputText(regform("password"), '_label -> "Password", 'type -> "password",'class -> "form-control formInline",'placeholder->"Password")),format.raw/*24.146*/("""
+					 		 """),_display_(/*23.11*/inputText(regform("password"), '_label -> "Password", 'type -> "password",'class -> "form-control formInline",'placeholder->"Password")),format.raw/*23.146*/("""
+           					 """),_display_(/*24.19*/inputText(regform("password_confirm"), '_label -> "Confirm", 'type -> "password",'class -> "form-control formInline",'placeholder->"Confirm Password")),format.raw/*24.169*/("""
            					 """),_display_(/*25.19*/inputText(regform("phone"), '_label -> "Phone", 'class -> "form-control formInline",'placeholder->"Phone")),format.raw/*25.125*/("""
 							 """),_display_(/*26.10*/inputText(regform("address"), '_label -> "Address", 'class -> "form-control formInline",'placeholder->"Address")),format.raw/*26.122*/("""
 						   	 """),_display_(/*27.13*/inputText(regform("company"), '_label -> "Company", 'class -> "form-control formInline",'placeholder->"Company")),format.raw/*27.125*/("""
@@ -94,10 +94,10 @@ Seq[Any](format.raw/*1.49*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 02 13:10:32 IST 2015
+                  DATE: Tue Mar 10 16:55:15 IST 2015
                   SOURCE: /home/knoldus/play-login/app/views/updateprofile.scala.html
-                  HASH: ea70f187efe7b57590d4952c2c31493d15f67c56
-                  MATRIX: 531->1|673->69|705->93|779->48|807->67|835->137|863->140|904->173|943->175|979->185|1302->482|1317->488|1384->546|1424->548|1475->571|1540->609|1664->711|1710->730|1838->836|1876->847|2033->982|2079->1001|2207->1107|2244->1117|2378->1229|2418->1242|2552->1354|2601->1375|2827->1574|2842->1580|2897->1614|2998->1684|3039->1698|3603->2236|3631->2237|3666->2245|3817->2369|3845->2370|4001->2499|4029->2500|4063->2507|4091->2508|4214->2601
+                  HASH: 855e6c2a0361ee2fd03daa33f293b6e3255964c3
+                  MATRIX: 531->1|673->69|705->93|779->48|807->67|835->137|863->140|909->178|948->180|984->190|1307->487|1322->493|1389->551|1429->553|1480->576|1545->614|1669->716|1707->727|1864->862|1910->881|2082->1031|2128->1050|2256->1156|2293->1166|2427->1278|2467->1291|2601->1403|2650->1424|2876->1623|2891->1629|2946->1663|3047->1733|3088->1747|3652->2285|3680->2286|3715->2294|3866->2418|3894->2419|4050->2548|4078->2549|4112->2556|4140->2557|4263->2650
                   LINES: 19->1|21->5|21->5|22->1|24->4|25->5|27->7|27->7|27->7|29->9|38->18|38->18|38->18|38->18|40->20|42->22|42->22|43->23|43->23|44->24|44->24|45->25|45->25|46->26|46->26|47->27|47->27|49->29|53->33|53->33|53->33|55->35|57->37|72->52|72->52|73->53|75->55|75->55|77->57|77->57|78->58|78->58|84->64
                   -- GENERATED --
               */

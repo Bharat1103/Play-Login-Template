@@ -17,34 +17,73 @@ object myprofile extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,
 
   /* profile Template File */
   def apply/*2.2*/(page:String,email:String)(implicit flash:play.api.mvc.Flash):play.twirl.api.HtmlFormat.Appendable = {
-      _display_ {
+      _display_ {import helper._
 
 Seq[Any](format.raw/*2.63*/("""
-"""),_display_(/*3.2*/main("DashBoard App Profile","Profile",email,true)/*3.52*/{_display_(Seq[Any](format.raw/*3.53*/("""
+"""),_display_(/*4.2*/main("DashBoard App Profile","Profile",email,true)/*4.52*/{_display_(Seq[Any](format.raw/*4.53*/("""
 
-	"""),format.raw/*5.2*/("""<div class="row">
+	"""),format.raw/*6.2*/("""<div class="row">
 		<div class="col-sm-10 col-md-10">
-			<div>
-					"""),_display_(/*8.7*/flash/*8.12*/.get("successUpdate").map/*8.37*/ { message =>_display_(Seq[Any](format.raw/*8.50*/("""
-						"""),format.raw/*9.7*/("""<div class="alert alert-dismissable alert-info panel-custom-margin ">
+			<div>"""),format.raw/*8.59*/("""
+					"""),_display_(/*9.7*/flash/*9.12*/.get("successUpdate").map/*9.37*/ { message =>_display_(Seq[Any](format.raw/*9.50*/("""
+						"""),format.raw/*10.7*/("""<div class="alert alert-dismissable alert-info panel-custom-margin ">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						<span class="glyphicon glyphicon-ok"><strong> Operation Complete!</strong></span> """),_display_(/*11.90*/message),format.raw/*11.97*/("""
-						"""),format.raw/*12.7*/("""</div>
-					""")))}),format.raw/*13.7*/("""			
+						<span class="glyphicon glyphicon-ok"><strong> Operation Complete!</strong></span> """),_display_(/*12.90*/message),format.raw/*12.97*/("""
+						"""),format.raw/*13.7*/("""</div>
+					""")))}),format.raw/*14.7*/("""
+					
+					"""),_display_(/*16.7*/flash/*16.12*/.get("failedUpdate").map/*16.36*/ { message =>_display_(Seq[Any](format.raw/*16.49*/("""
+						"""),format.raw/*17.7*/("""<div class="alert alert-dismissable alert-danger panel-custom-margin ">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						<span class="glyphicon glyphicon-alert"><strong> Operation Failed!</strong></span> """),_display_(/*19.91*/message),format.raw/*19.98*/("""
+						"""),format.raw/*20.7*/("""</div>
+					""")))}),format.raw/*21.7*/("""			
+				
 	
-	 				"""),_display_(/*15.8*/flash/*15.13*/.get("successIn").map/*15.34*/ { message =>_display_(Seq[Any](format.raw/*15.47*/("""
-						"""),format.raw/*16.7*/("""<div class="alert alert-dismissable alert-success panel-custom-margin ">
+	 				"""),_display_(/*24.8*/flash/*24.13*/.get("successIn").map/*24.34*/ { message =>_display_(Seq[Any](format.raw/*24.47*/("""
+						"""),format.raw/*25.7*/("""<div class="alert alert-dismissable alert-success panel-custom-margin ">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						<span class="glyphicon glyphicon-ok">
-						<strong>Operation Complete!</strong></span> """),_display_(/*19.52*/message),format.raw/*19.59*/("""
-						"""),format.raw/*20.7*/("""</div>
-					""")))}),format.raw/*21.7*/("""
-			"""),format.raw/*22.4*/("""</div>
+						<strong>Operation Complete!</strong></span> """),_display_(/*28.52*/message),format.raw/*28.59*/("""
+						"""),format.raw/*29.7*/("""</div>
+					""")))}),format.raw/*30.7*/("""
+			"""),format.raw/*31.4*/("""</div>
 		</div>	
 	</div>		
 	
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-3">		
+			<div class="well img-fit" style="background-size: 100% 100%;
+					background-image: url(/assets/images/"""),_display_(/*38.44*/{email}),format.raw/*38.51*/(""".jpeg)">
+					<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#picUpload">
+						<span class="glyphicon glyphicon-upload"></span>
+					</a>
+  					
+					<!-- Modal -->
+					<div class="modal fade" id="picUpload" tabindex="-1" role="dialog" aria-labelledby="picUploadLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+      							<div class="modal-header">
+       								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        							<h4 class="modal-title" id="myModalLabel">Setting Profile Picture</h4>
+      							</div>
+      						<div class="modal-body">
+        						<strong>Upload Picture in Basic Image Format !</strong>
+        						"""),_display_(/*53.16*/form(action = routes.Application.uploadFile(email), 'enctype -> "multipart/form-data" , 'id->"uploadForm")/*53.122*/ {_display_(Seq[Any](format.raw/*53.124*/("""
+		 						"""),format.raw/*54.10*/("""<input type="file" name="fileUpload" id="fileUpload" class="form-control" >
+ 								<div class="modal-footer">
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        							<button type="submit" class="btn btn-primary">Save changes</button>
+      							</div>
+ 								""")))}),format.raw/*59.11*/("""
+ 							"""),format.raw/*60.9*/("""</div>
+      					</div>
+  					</div>
+				</div>
+			</div>		
+		</div>
+		
+		<div class="col-md-9">
 			<div class="jumbotron panel-custom-margin">
 				<h2>Bootstrap Template Loaded Successfully!</h2>
 					<p>Welcome to Knoldus Intership Program [KIP]</p>
@@ -78,11 +117,11 @@ Seq[Any](format.raw/*2.63*/("""
 						data-widget-id="572304327700520960" height=520>Tweets by @_JamesWard</a>
 						<script>
 						!function(d,s,id)
-						"""),format.raw/*61.7*/("""{"""),format.raw/*61.8*/("""var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-							if(!d.getElementById(id))"""),format.raw/*62.33*/("""{"""),format.raw/*62.34*/("""js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+						"""),format.raw/*101.7*/("""{"""),format.raw/*101.8*/("""var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+							if(!d.getElementById(id))"""),format.raw/*102.33*/("""{"""),format.raw/*102.34*/("""js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
 								fjs.parentNode.insertBefore(js,fjs);
-							"""),format.raw/*64.8*/("""}"""),format.raw/*64.9*/("""
-						"""),format.raw/*65.7*/("""}"""),format.raw/*65.8*/("""(document,"script","twitter-wjs");
+							"""),format.raw/*104.8*/("""}"""),format.raw/*104.9*/("""
+						"""),format.raw/*105.7*/("""}"""),format.raw/*105.8*/("""(document,"script","twitter-wjs");
 						</script>
 				</div>
 			</div>
@@ -142,20 +181,20 @@ Seq[Any](format.raw/*2.63*/("""
 						<a class="twitter-timeline" href="https://twitter.com/Knolspeak" data-widget-id="571036056997199872" height=520>Tweets by @Knolspeak</a>
 						<script>
 						!function(d,s,id)
-						"""),format.raw/*125.7*/("""{"""),format.raw/*125.8*/("""
-							"""),format.raw/*126.8*/("""var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+						"""),format.raw/*165.7*/("""{"""),format.raw/*165.8*/("""
+							"""),format.raw/*166.8*/("""var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
 							if(!d.getElementById(id))
-							"""),format.raw/*128.8*/("""{"""),format.raw/*128.9*/("""js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+							"""),format.raw/*168.8*/("""{"""),format.raw/*168.9*/("""js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
 							fjs.parentNode.insertBefore(js,fjs);
-							"""),format.raw/*130.8*/("""}"""),format.raw/*130.9*/("""
-						"""),format.raw/*131.7*/("""}"""),format.raw/*131.8*/("""(document,"script","twitter-wjs");
+							"""),format.raw/*170.8*/("""}"""),format.raw/*170.9*/("""
+						"""),format.raw/*171.7*/("""}"""),format.raw/*171.8*/("""(document,"script","twitter-wjs");
 						</script>
 				</div>
 			</div>
 		</div>
 			
 	</div>
-""")))}),format.raw/*138.2*/("""
+""")))}),format.raw/*178.2*/("""
 """))}
   }
 
@@ -168,11 +207,11 @@ Seq[Any](format.raw/*2.63*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 02 16:41:33 IST 2015
-                  SOURCE: /home/knoldus/GitRepos/Play-Login-Template/app/views/myprofile.scala.html
-                  HASH: f695c04cd5b66857f29b2479777f2c711df47cc8
-                  MATRIX: 581->29|730->90|757->92|815->142|853->143|882->146|976->215|989->220|1022->245|1072->258|1105->265|1365->498|1393->505|1427->512|1470->525|1509->538|1523->543|1553->564|1604->577|1638->584|1907->826|1935->833|1969->840|2012->853|2043->857|3540->2328|3568->2329|3712->2445|3741->2446|3898->2576|3926->2577|3960->2584|3988->2585|6547->5117|6576->5118|6612->5126|6764->5250|6793->5251|6950->5380|6979->5381|7014->5388|7043->5389|7168->5483
-                  LINES: 19->2|22->2|23->3|23->3|23->3|25->5|28->8|28->8|28->8|28->8|29->9|31->11|31->11|32->12|33->13|35->15|35->15|35->15|35->15|36->16|39->19|39->19|40->20|41->21|42->22|81->61|81->61|82->62|82->62|84->64|84->64|85->65|85->65|145->125|145->125|146->126|148->128|148->128|150->130|150->130|151->131|151->131|158->138
+                  DATE: Tue Mar 10 16:55:15 IST 2015
+                  SOURCE: /home/knoldus/play-login/app/views/myprofile.scala.html
+                  HASH: 81c5431a44369684a837a800a0aed378cd91dafa
+                  MATRIX: 581->29|745->90|772->109|830->159|868->160|897->163|986->275|1018->282|1031->287|1064->312|1114->325|1148->332|1408->565|1436->572|1470->579|1513->592|1552->605|1566->610|1599->634|1650->647|1684->654|1947->890|1975->897|2009->904|2052->917|2096->935|2110->940|2140->961|2191->974|2225->981|2494->1223|2522->1230|2556->1237|2599->1250|2630->1254|2839->1436|2867->1443|3687->2236|3803->2342|3844->2344|3882->2354|4235->2676|4271->2685|5794->4181|5823->4182|5968->4298|5998->4299|6156->4429|6185->4430|6220->4437|6249->4438|8808->6970|8837->6971|8873->6979|9025->7103|9054->7104|9211->7233|9240->7234|9275->7241|9304->7242|9429->7336
+                  LINES: 19->2|22->2|23->4|23->4|23->4|25->6|27->8|28->9|28->9|28->9|28->9|29->10|31->12|31->12|32->13|33->14|35->16|35->16|35->16|35->16|36->17|38->19|38->19|39->20|40->21|43->24|43->24|43->24|43->24|44->25|47->28|47->28|48->29|49->30|50->31|57->38|57->38|72->53|72->53|72->53|73->54|78->59|79->60|120->101|120->101|121->102|121->102|123->104|123->104|124->105|124->105|184->165|184->165|185->166|187->168|187->168|189->170|189->170|190->171|190->171|197->178
                   -- GENERATED --
               */
           

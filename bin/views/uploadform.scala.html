@@ -1,0 +1,12 @@
+@* uploadform Template File *@
+@(email: String)
+@import helper._
+@main("Upload","File",email,true) {
+	
+	@form(action = routes.Application.uploadFile(email), 'enctype -> "multipart/form-data") {
+		 <input type="file" name="fileUpload">
+ 			<p>
+ 			<input type="submit" value="Upload">
+ 			</p>
+ 		}
+}

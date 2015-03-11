@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET		    /                           controllers.Application.home(page:String,email:String?="Guest",logedIn:Boolean?=false)
+GET		    /                           controllers.Application.home(page:String?="Home",email:String?="Guest",logedIn:Boolean?=false)
 
 GET			/register					controllers.Application.register
 POST		/register/newuser			controllers.Application.registerme
@@ -17,6 +17,8 @@ GET			/updateprofile				controllers.Application.updateprofile(page:String,email:
 POST		/update						controllers.Application.update(email:String)
 
 GET			/logout						controllers.Application.logout
+
+POST 		/upload						controllers.Application.uploadFile(email:String)
 #GET			/navme						controllers.Application.navme(message:String,page:String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

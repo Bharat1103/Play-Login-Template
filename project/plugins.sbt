@@ -3,6 +3,16 @@ resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releas
 // The Play plugin
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.8")
 
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.2.0")
+
+addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.6.0")
+
+resolvers += "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/"
+
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.0.4")
+
+resolvers += Classpaths.sbtPluginReleases
+
 // web plugins
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-coffeescript" % "1.0.0")

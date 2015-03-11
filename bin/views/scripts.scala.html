@@ -3,51 +3,104 @@
 
 <script src="@routes.Assets.at("bootstrap/js/jquery-2.1.3.js")"></script>
 <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
-
 <script src="@routes.Assets.at("jquery-validation-1.13.1/dist/jquery.validate.min.js")"></script>
 <script src="@routes.Assets.at("jquery-validation-1.13.1/dist/additional-methods.min.js")"></script>
-@if(page=="Login"){
 
 <script>
-$("#loginForm").validate({
-	  rules: {
-		    email: {
-		      required: true,
-		      email:true
-		    },
-		    password: {
-		      required: true
-		      }
-		    }
+$( document ).ready(function() {
+	@if(page=="Login"){
+		$("#loginForm").validate({
+			  rules: {
+				    email: {
+				      required: true,
+				      email:true
+				    },
+				    password: {
+				      required: true,
+				      minlength:8
+				      }
+				    }
+				});
+		}
+		@if(page=="Register"){
+		$("#accountForm").validate({
+		            rules : {
+		                name : {
+		                    required : true
+		                },
+		                address : {
+		                    required : true
+		                },
+		                company :{
+		                	required : true
+		                },
+		                email : {
+		                    required : true,
+		                    email : true
+		                },
+		                password : {
+		                    required : true,
+		                    minlength : 8
+		                },
+		                password_confirm: {
+							required: true,
+							minlength: 8,
+							equalTo: "#password"
+						},
+		                phone : {
+		                	digits : true,
+		                    required : true,
+		                    maxlength : 10,
+		                    minlength : 10
+		                }
+		            }
+		        });
+		}
+		
+		@if(page=="Edit"){
+		$("#accountForm").validate({
+		            rules : {
+		                name : {
+		                    required : true
+		                },
+		                password : {
+		                    required : true,
+		                    minlength : 8
+		                },
+		                password_confirm: {
+							required: true,
+							minlength: 5,
+							equalTo: "#password"
+						},
+		                phone : {	                	
+		                	digits : true,
+		                    required : true,
+		                    maxlength : 10,
+		                    minlength : 10
+		                },
+		                address : {
+		                    required : true
+		                },
+		                company :{
+		                	required : true
+		                }
+		            }
+		        });
+		}
+		
+		
+		
+		@if(page=="Profile"){
+		
+		$( "#uploadForm" ).validate({
+  			rules: {
+    			fileUpload : {
+      			required: true,
+      			accept: "image/*"
+    			}
+  			}
 		});
+		}
+});
+</script>
 
-</script>
-}
-@if(page=="Register"||page=="Edit"){
-<script>
-$("#accountForm").validate({
-            rules : {
-                name : {
-                    required : true
-                },
-                address : {
-                    required : true
-                },
-                company :{
-                	required : true,
-                },
-                email : {
-                    required : true,
-                    email : true
-                },
-                password : {
-                    required : true,
-                    minlength : 8
-                },
-                phone : {
-                    required : true
-                }
-            }
-        });
-</script>
-}

@@ -1,0 +1,2046 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          /home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/newnavme.template.scala.html
+        </title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.3/addons/pager/jquery.tablesorter.pager.min.js"></script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier;'>1 <span style=''>
+</span>2 <span style=''>package views.html
+</span>3 <span style=''>
+</span>4 <span style=''>import play.twirl.api._
+</span>5 <span style=''>import play.twirl.api.TemplateMagic._
+</span>6 <span style=''>
+</span>7 <span style=''>import play.api.templates.PlayMagic._
+</span>8 <span style=''>import models._
+</span>9 <span style=''>import controllers._
+</span>10 <span style=''>import play.api.i18n._
+</span>11 <span style=''>import play.api.mvc._
+</span>12 <span style=''>import play.api.data._
+</span>13 <span style=''>import views.html._
+</span>14 <span style=''>
+</span>15 <span style=''>/**/
+</span>16 <span style=''>object newnavme extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template4[String,String,String,Boolean,play.twirl.api.HtmlFormat.Appendable] {
+</span>17 <span style=''>
+</span>18 <span style=''>  /**/
+</span>19 <span style=''>  def apply/*1.2*/(message:String,page:String,email:String,logedIn:Boolean):play.twirl.api.HtmlFormat.Appendable = {
+</span>20 <span style=''>      </span><span style='background: #AEF1AE'>_display_ {
+</span>21 <span style=''></span><span style='background: #AEF1AE'>
+</span>22 <span style=''></span><span style='background: #AEF1AE'>Seq[Any](format.raw/*1.59*/("""
+</span>23 <span style=''></span><span style='background: #AEF1AE'>
+</span>24 <span style=''></span><span style='background: #AEF1AE'>	"""),format.raw/*3.2*/("""<nav role="navigation" class="navbar navbar-inverse reset-margin">
+</span>25 <span style=''></span><span style='background: #AEF1AE'>    <!-- Brand and toggle get grouped for better mobile display -->
+</span>26 <span style=''></span><span style='background: #AEF1AE'>    	<div class="navbar-header">
+</span>27 <span style=''></span><span style='background: #AEF1AE'>        	<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+</span>28 <span style=''></span><span style='background: #AEF1AE'>            	<span class="sr-only">Toggle navigation</span>
+</span>29 <span style=''></span><span style='background: #AEF1AE'>            	<span class="icon-bar"></span>
+</span>30 <span style=''></span><span style='background: #AEF1AE'>            	<span class="icon-bar"></span>
+</span>31 <span style=''></span><span style='background: #AEF1AE'>            	<span class="icon-bar"></span>
+</span>32 <span style=''></span><span style='background: #AEF1AE'>        	</button>
+</span>33 <span style=''></span><span style='background: #AEF1AE'>        	
+</span>34 <span style=''></span><span style='background: #AEF1AE'>        	<a href=""""),_display_(/*13.20*/routes/*13.26*/.Application.home(page,email,logedIn)),format.raw/*13.63*/("""" class="navbar-brand">
+</span>35 <span style=''></span><span style='background: #AEF1AE'>        	<span class="glyphicon glyphicon-home"> WebUser</span></a>
+</span>36 <span style=''></span><span style='background: #AEF1AE'>        
+</span>37 <span style=''></span><span style='background: #AEF1AE'>    	</div>
+</span>38 <span style=''></span><span style='background: #AEF1AE'>    <!-- Collection of nav links and other content for toggling -->
+</span>39 <span style=''></span><span style='background: #AEF1AE'>    	<div id="navbarCollapse" class="collapse navbar-collapse">
+</span>40 <span style=''></span><span style='background: #AEF1AE'>        	<ul class="nav navbar-nav">
+</span>41 <span style=''></span><span style='background: #AEF1AE'>            	<li class="""),_display_(/*20.25*/("active".when(page == "Explore"))),format.raw/*20.59*/("""><a href="#">
+</span>42 <span style=''></span><span style='background: #AEF1AE'>            	<span class="glyphicon glyphicon-question-sign"> Explore</span></a></li>
+</span>43 <span style=''></span><span style='background: #AEF1AE'>            	<li class="""),_display_(/*22.25*/("active".when(page == "Features"))),format.raw/*22.60*/("""><a href="#">
+</span>44 <span style=''></span><span style='background: #AEF1AE'>            	<span class="glyphicon glyphicon-tasks"> Features</span></a></li>
+</span>45 <span style=''></span><span style='background: #AEF1AE'>            	<li class="""),_display_(/*24.25*/("active".when(page == "Blog"))),format.raw/*24.56*/("""><a href="#">
+</span>46 <span style=''></span><span style='background: #AEF1AE'>            	<span class="glyphicon glyphicon-comment"> Blog</span></a></li>
+</span>47 <span style=''></span><span style='background: #AEF1AE'>        	</ul>
+</span>48 <span style=''></span><span style='background: #AEF1AE'>        
+</span>49 <span style=''></span><span style='background: #AEF1AE'>        	<div class="col-sm-3 col-md-3">
+</span>50 <span style=''></span><span style='background: #AEF1AE'>        		<form class="navbar-form " role="search">
+</span>51 <span style=''></span><span style='background: #AEF1AE'>        			<div class="input-group">
+</span>52 <span style=''></span><span style='background: #AEF1AE'>            			<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+</span>53 <span style=''></span><span style='background: #AEF1AE'>            			
+</span>54 <span style=''></span><span style='background: #AEF1AE'>            			<div class="input-group-btn">
+</span>55 <span style=''></span><span style='background: #AEF1AE'>                			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+</span>56 <span style=''></span><span style='background: #AEF1AE'>            			</div>
+</span>57 <span style=''></span><span style='background: #AEF1AE'>        			</div>
+</span>58 <span style=''></span><span style='background: #AEF1AE'>        		</form>
+</span>59 <span style=''></span><span style='background: #AEF1AE'>        	</div>
+</span>60 <span style=''></span><span style='background: #AEF1AE'>        
+</span>61 <span style=''></span><span style='background: #AEF1AE'>        	<ul class="nav navbar-nav navbar-right">
+</span>62 <span style=''></span><span style='background: #AEF1AE'>        		"""),_display_(/*41.12*/if(logedIn)/*41.23*/{_display_(Seq[Any](format.raw/*41.24*/("""
+</span>63 <span style=''></span><span style='background: #AEF1AE'>        		"""),format.raw/*42.11*/("""<li class="nav-email">welcome! """),_display_(/*42.43*/email),format.raw/*42.48*/("""</li>
+</span>64 <span style=''></span><span style='background: #AEF1AE'>        		<li class="dropdown">
+</span>65 <span style=''></span><span style='background: #AEF1AE'>        		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+</span>66 <span style=''></span><span style='background: #AEF1AE'>          			<ul class="dropdown-menu" role="menu">
+</span>67 <span style=''></span><span style='background: #AEF1AE'>            			<li class="""),_display_(/*46.27*/("active".when(page == "Profile"))),format.raw/*46.61*/("""><a href=""""),_display_(/*46.72*/routes/*46.78*/.Application.myprofile(page,email)),format.raw/*46.112*/("""">
+</span>68 <span style=''></span><span style='background: #AEF1AE'>						<span class="glyphicon glyphicon-user"> Profile</span></a></li>
+</span>69 <span style=''></span><span style='background: #AEF1AE'>        		
+</span>70 <span style=''></span><span style='background: #AEF1AE'>            			<li class="divider"></li>
+</span>71 <span style=''></span><span style='background: #AEF1AE'>            			<li class="""),_display_(/*50.27*/("active".when(page == "Login"))),format.raw/*50.59*/("""><a href=""""),_display_(/*50.70*/routes/*50.76*/.Application.logout()),format.raw/*50.97*/("""">
+</span>72 <span style=''></span><span style='background: #AEF1AE'>						<span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+</span>73 <span style=''></span><span style='background: #AEF1AE'>						<li class="""),_display_(/*52.18*/("active".when(page == "Edit"))),format.raw/*52.49*/("""><a href=""""),_display_(/*52.60*/routes/*52.66*/.Application.updateprofile(page,email)),format.raw/*52.104*/("""">
+</span>74 <span style=''></span><span style='background: #AEF1AE'>						<span class="glyphicon glyphicon-edit"> Update</span></a></li>
+</span>75 <span style=''></span><span style='background: #AEF1AE'>          			</ul>
+</span>76 <span style=''></span><span style='background: #AEF1AE'>        		</li>		
+</span>77 <span style=''></span><span style='background: #AEF1AE'>   				""")))}/*56.9*/else/*56.13*/{_display_(Seq[Any](format.raw/*56.14*/("""
+</span>78 <span style=''></span><span style='background: #AEF1AE'>   				"""),format.raw/*57.8*/("""<li class="nav-email">welcome! """),_display_(/*57.40*/email),format.raw/*57.45*/("""</li>
+</span>79 <span style=''></span><span style='background: #AEF1AE'>        		<li class="""),_display_(/*58.22*/("active".when(page == "Login"))),format.raw/*58.54*/("""><a href=""""),_display_(/*58.65*/routes/*58.71*/.Application.login()),format.raw/*58.91*/("""">
+</span>80 <span style=''></span><span style='background: #AEF1AE'>        		<span class="glyphicon glyphicon-log-in"> Login</span></a></li>
+</span>81 <span style=''></span><span style='background: #AEF1AE'>        		<li class="""),_display_(/*60.22*/("active".when(page == "Register"))),format.raw/*60.57*/("""><a href=""""),_display_(/*60.68*/routes/*60.74*/.Application.register()),format.raw/*60.97*/("""">
+</span>82 <span style=''></span><span style='background: #AEF1AE'>        		<span class="glyphicon glyphicon-user"> Register</span></a></li>""")))}),format.raw/*61.76*/("""
+</span>83 <span style=''></span><span style='background: #AEF1AE'>            """),format.raw/*62.13*/("""</ul>
+</span>84 <span style=''></span><span style='background: #AEF1AE'>    	</div>
+</span>85 <span style=''></span><span style='background: #AEF1AE'>	</nav>
+</span>86 <span style=''></span><span style='background: #AEF1AE'>"""))}</span><span style=''>
+</span>87 <span style=''>  }
+</span>88 <span style=''>
+</span>89 <span style=''>  def render(message:String,page:String,email:String,logedIn:Boolean): play.twirl.api.HtmlFormat.Appendable = </span><span style='background: #F0ADAD'>apply(message,page,email,logedIn)</span><span style=''>
+</span>90 <span style=''>
+</span>91 <span style=''>  def f:((String,String,String,Boolean) => play.twirl.api.HtmlFormat.Appendable) = (message,page,email,logedIn) => </span><span style='background: #F0ADAD'>apply(message,page,email,logedIn)</span><span style=''>
+</span>92 <span style=''>
+</span>93 <span style=''>  def ref: this.type = this
+</span>94 <span style=''>
+</span>95 <span style=''>}
+</span>96 <span style=''>              /*
+</span>97 <span style=''>                  -- GENERATED --
+</span>98 <span style=''>                  DATE: Tue Mar 10 16:55:15 IST 2015
+</span>99 <span style=''>                  SOURCE: /home/knoldus/play-login/app/views/newnavme.scala.html
+</span>100 <span style=''>                  HASH: d3c305d4021ac1d0765a3ccd8c0a6182b9d0ce06
+</span>101 <span style=''>                  MATRIX: 530->1|675->58|704->61|1246->576|1261->582|1319->619|1652->925|1707->959|1858->1083|1914->1118|2058->1235|2110->1266|2819->1948|2839->1959|2878->1960|2917->1971|2976->2003|3002->2008|3302->2281|3357->2315|3395->2326|3410->2332|3466->2366|3644->2517|3697->2549|3735->2560|3750->2566|3792->2587|3911->2679|3963->2710|4001->2721|4016->2727|4076->2765|4211->2882|4224->2886|4263->2887|4298->2895|4357->2927|4383->2932|4437->2959|4490->2991|4528->3002|4543->3008|4584->3028|4709->3126|4765->3161|4803->3172|4818->3178|4862->3201|4971->3279|5012->3292
+</span>102 <span style=''>                  LINES: 19->1|22->1|24->3|34->13|34->13|34->13|41->20|41->20|43->22|43->22|45->24|45->24|62->41|62->41|62->41|63->42|63->42|63->42|67->46|67->46|67->46|67->46|67->46|71->50|71->50|71->50|71->50|71->50|73->52|73->52|73->52|73->52|73->52|77->56|77->56|77->56|78->57|78->57|78->57|79->58|79->58|79->58|79->58|79->58|81->60|81->60|81->60|81->60|81->60|82->61|83->62
+</span>103 <span style=''>                  -- GENERATED --
+</span>104 <span style=''>              */
+</span>105 <span style=''>          
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          1383
+        </td>
+        <td>
+          635
+          -
+          5048
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n\n\t&quot;), newnavme.this.format.raw(&quot;&lt;nav role=\&quot;navigation\&quot; class=\&quot;navbar navbar-inverse reset-margin\&quot;&gt;\n    &lt;!-- Brand and toggle get grouped for better mobile display --&gt;\n    \t&lt;div class=\&quot;navbar-header\&quot;&gt;\n        \t&lt;button type=\&quot;button\&quot; data-target=\&quot;#navbarCollapse\&quot; data-toggle=\&quot;collapse\&quot; class=\&quot;navbar-toggle\&quot;&gt;\n            \t&lt;span class=\&quot;sr-only\&quot;&gt;Toggle navigation&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n        \t&lt;/button&gt;\n        \t\n        \t&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.home(page, email, logedIn))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot; class=\&quot;navbar-brand\&quot;&gt;\n        \t&lt;span class=\&quot;glyphicon glyphicon-home\&quot;&gt; WebUser&lt;/span&gt;&lt;/a&gt;\n        \n    \t&lt;/div&gt;\n    &lt;!-- Collection of nav links and other content for toggling --&gt;\n    \t&lt;div id=\&quot;navbarCollapse\&quot; class=\&quot;collapse navbar-collapse\&quot;&gt;\n        \t&lt;ul class=\&quot;nav navbar-nav\&quot;&gt;\n            \t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Explore&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-question-sign\&quot;&gt; Explore&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n            \t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Features&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-tasks\&quot;&gt; Features&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n            \t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Blog&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-comment\&quot;&gt; Blog&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t&lt;/ul&gt;\n        \n        \t&lt;div class=\&quot;col-sm-3 col-md-3\&quot;&gt;\n        \t\t&lt;form class=\&quot;navbar-form \&quot; role=\&quot;search\&quot;&gt;\n        \t\t\t&lt;div class=\&quot;input-group\&quot;&gt;\n            \t\t\t&lt;input type=\&quot;text\&quot; class=\&quot;form-control\&quot; placeholder=\&quot;Search\&quot; name=\&quot;srch-term\&quot; id=\&quot;srch-term\&quot;&gt;\n            \t\t\t\n            \t\t\t&lt;div class=\&quot;input-group-btn\&quot;&gt;\n                \t\t\t&lt;button class=\&quot;btn btn-default\&quot; type=\&quot;submit\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-search\&quot;&gt;&lt;/span&gt;&lt;/button&gt;\n            \t\t\t&lt;/div&gt;\n        \t\t\t&lt;/div&gt;\n        \t\t&lt;/form&gt;\n        \t&lt;/div&gt;\n        \n        \t&lt;ul class=\&quot;nav navbar-nav navbar-right\&quot;&gt;\n        \t\t&quot;), newnavme.this._display_(if (logedIn)
+  newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n        \t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=\&quot;dropdown\&quot;&gt;\n        \t\t  &lt;a href=\&quot;#\&quot; class=\&quot;dropdown-toggle\&quot; data-toggle=\&quot;dropdown\&quot; role=\&quot;button\&quot; aria-expanded=\&quot;false\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-cog\&quot;&gt;&lt;/span&gt;&lt;/a&gt;\n          \t\t\t&lt;ul class=\&quot;dropdown-menu\&quot; role=\&quot;menu\&quot;&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.myprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Profile&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t\n            \t\t\t&lt;li class=\&quot;divider\&quot;&gt;&lt;/li&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.logout())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-log-out\&quot;&gt; Logout&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n\t\t\t\t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.updateprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-edit\&quot;&gt; Update&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n          \t\t\t&lt;/ul&gt;\n        \t\t&lt;/li&gt;\t\t\n   \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+else
+  newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n   \t\t\t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.login())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-log-in\&quot;&gt; Login&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.register())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Register&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))), newnavme.this.format.raw(&quot;\n            &quot;), newnavme.this.format.raw(&quot;&lt;/ul&gt;\n    \t&lt;/div&gt;\n\t&lt;/nav&gt;\n&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          1382
+        </td>
+        <td>
+          645
+          -
+          645
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          1381
+        </td>
+        <td>
+          648
+          -
+          5047
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n\n\t&quot;), newnavme.this.format.raw(&quot;&lt;nav role=\&quot;navigation\&quot; class=\&quot;navbar navbar-inverse reset-margin\&quot;&gt;\n    &lt;!-- Brand and toggle get grouped for better mobile display --&gt;\n    \t&lt;div class=\&quot;navbar-header\&quot;&gt;\n        \t&lt;button type=\&quot;button\&quot; data-target=\&quot;#navbarCollapse\&quot; data-toggle=\&quot;collapse\&quot; class=\&quot;navbar-toggle\&quot;&gt;\n            \t&lt;span class=\&quot;sr-only\&quot;&gt;Toggle navigation&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n        \t&lt;/button&gt;\n        \t\n        \t&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.home(page, email, logedIn))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot; class=\&quot;navbar-brand\&quot;&gt;\n        \t&lt;span class=\&quot;glyphicon glyphicon-home\&quot;&gt; WebUser&lt;/span&gt;&lt;/a&gt;\n        \n    \t&lt;/div&gt;\n    &lt;!-- Collection of nav links and other content for toggling --&gt;\n    \t&lt;div id=\&quot;navbarCollapse\&quot; class=\&quot;collapse navbar-collapse\&quot;&gt;\n        \t&lt;ul class=\&quot;nav navbar-nav\&quot;&gt;\n            \t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Explore&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-question-sign\&quot;&gt; Explore&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n            \t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Features&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-tasks\&quot;&gt; Features&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n            \t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Blog&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-comment\&quot;&gt; Blog&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t&lt;/ul&gt;\n        \n        \t&lt;div class=\&quot;col-sm-3 col-md-3\&quot;&gt;\n        \t\t&lt;form class=\&quot;navbar-form \&quot; role=\&quot;search\&quot;&gt;\n        \t\t\t&lt;div class=\&quot;input-group\&quot;&gt;\n            \t\t\t&lt;input type=\&quot;text\&quot; class=\&quot;form-control\&quot; placeholder=\&quot;Search\&quot; name=\&quot;srch-term\&quot; id=\&quot;srch-term\&quot;&gt;\n            \t\t\t\n            \t\t\t&lt;div class=\&quot;input-group-btn\&quot;&gt;\n                \t\t\t&lt;button class=\&quot;btn btn-default\&quot; type=\&quot;submit\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-search\&quot;&gt;&lt;/span&gt;&lt;/button&gt;\n            \t\t\t&lt;/div&gt;\n        \t\t\t&lt;/div&gt;\n        \t\t&lt;/form&gt;\n        \t&lt;/div&gt;\n        \n        \t&lt;ul class=\&quot;nav navbar-nav navbar-right\&quot;&gt;\n        \t\t&quot;), newnavme.this._display_(if (logedIn)
+  newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n        \t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=\&quot;dropdown\&quot;&gt;\n        \t\t  &lt;a href=\&quot;#\&quot; class=\&quot;dropdown-toggle\&quot; data-toggle=\&quot;dropdown\&quot; role=\&quot;button\&quot; aria-expanded=\&quot;false\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-cog\&quot;&gt;&lt;/span&gt;&lt;/a&gt;\n          \t\t\t&lt;ul class=\&quot;dropdown-menu\&quot; role=\&quot;menu\&quot;&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.myprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Profile&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t\n            \t\t\t&lt;li class=\&quot;divider\&quot;&gt;&lt;/li&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.logout())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-log-out\&quot;&gt; Logout&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n\t\t\t\t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.updateprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-edit\&quot;&gt; Update&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n          \t\t\t&lt;/ul&gt;\n        \t\t&lt;/li&gt;\t\t\n   \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+else
+  newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n   \t\t\t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.login())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-log-in\&quot;&gt; Login&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.register())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Register&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))), newnavme.this.format.raw(&quot;\n            &quot;), newnavme.this.format.raw(&quot;&lt;/ul&gt;\n    \t&lt;/div&gt;\n\t&lt;/nav&gt;\n&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          1296
+        </td>
+        <td>
+          657
+          -
+          686
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\n\n\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1297
+        </td>
+        <td>
+          687
+          -
+          1226
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&lt;nav role=\&quot;navigation\&quot; class=\&quot;navbar navbar-inverse reset-margin\&quot;&gt;\n    &lt;!-- Brand and toggle get grouped for better mobile display --&gt;\n    \t&lt;div class=\&quot;navbar-header\&quot;&gt;\n        \t&lt;button type=\&quot;button\&quot; data-target=\&quot;#navbarCollapse\&quot; data-toggle=\&quot;collapse\&quot; class=\&quot;navbar-toggle\&quot;&gt;\n            \t&lt;span class=\&quot;sr-only\&quot;&gt;Toggle navigation&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n            \t&lt;span class=\&quot;icon-bar\&quot;&gt;&lt;/span&gt;\n        \t&lt;/button&gt;\n        \t\n        \t&lt;a href=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          1300
+        </td>
+        <td>
+          1227
+          -
+          1299
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(controllers.routes.Application.home(page, email, logedIn))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          1299
+        </td>
+        <td>
+          1236
+          -
+          1236
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          1301
+        </td>
+        <td>
+          1300
+          -
+          1632
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\&quot; class=\&quot;navbar-brand\&quot;&gt;\n        \t&lt;span class=\&quot;glyphicon glyphicon-home\&quot;&gt; WebUser&lt;/span&gt;&lt;/a&gt;\n        \n    \t&lt;/div&gt;\n    &lt;!-- Collection of nav links and other content for toggling --&gt;\n    \t&lt;div id=\&quot;navbarCollapse\&quot; class=\&quot;collapse navbar-collapse\&quot;&gt;\n        \t&lt;ul class=\&quot;nav navbar-nav\&quot;&gt;\n            \t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          1298
+        </td>
+        <td>
+          1246
+          -
+          1298
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.home
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.home(page, email, logedIn)
+        </td>
+      </tr><tr>
+        <td>
+          41
+        </td>
+        <td>
+          1306
+        </td>
+        <td>
+          1688
+          -
+          1838
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-question-sign\&quot;&gt; Explore&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n            \t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          41
+        </td>
+        <td>
+          1303
+        </td>
+        <td>
+          1667
+          -
+          1684
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Explore&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          41
+        </td>
+        <td>
+          1305
+        </td>
+        <td>
+          1633
+          -
+          1687
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Explore&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          41
+        </td>
+        <td>
+          1302
+        </td>
+        <td>
+          1653
+          -
+          1661
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          41
+        </td>
+        <td>
+          1304
+        </td>
+        <td>
+          1653
+          -
+          1685
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Explore&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1309
+        </td>
+        <td>
+          1859
+          -
+          1892
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Features&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1308
+        </td>
+        <td>
+          1873
+          -
+          1891
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Features&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1311
+        </td>
+        <td>
+          1895
+          -
+          2038
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-tasks\&quot;&gt; Features&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n            \t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1310
+        </td>
+        <td>
+          1839
+          -
+          1894
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Features&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          43
+        </td>
+        <td>
+          1307
+        </td>
+        <td>
+          1859
+          -
+          1867
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          1315
+        </td>
+        <td>
+          2039
+          -
+          2090
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Blog&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          1312
+        </td>
+        <td>
+          2059
+          -
+          2067
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          1314
+        </td>
+        <td>
+          2059
+          -
+          2088
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Blog&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          1313
+        </td>
+        <td>
+          2073
+          -
+          2087
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Blog&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          1316
+        </td>
+        <td>
+          2091
+          -
+          2799
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;#\&quot;&gt;\n            \t&lt;span class=\&quot;glyphicon glyphicon-comment\&quot;&gt; Blog&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t&lt;/ul&gt;\n        \n        \t&lt;div class=\&quot;col-sm-3 col-md-3\&quot;&gt;\n        \t\t&lt;form class=\&quot;navbar-form \&quot; role=\&quot;search\&quot;&gt;\n        \t\t\t&lt;div class=\&quot;input-group\&quot;&gt;\n            \t\t\t&lt;input type=\&quot;text\&quot; class=\&quot;form-control\&quot; placeholder=\&quot;Search\&quot; name=\&quot;srch-term\&quot; id=\&quot;srch-term\&quot;&gt;\n            \t\t\t\n            \t\t\t&lt;div class=\&quot;input-group-btn\&quot;&gt;\n                \t\t\t&lt;button class=\&quot;btn btn-default\&quot; type=\&quot;submit\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-search\&quot;&gt;&lt;/span&gt;&lt;/button&gt;\n            \t\t\t&lt;/div&gt;\n        \t\t\t&lt;/div&gt;\n        \t\t&lt;/form&gt;\n        \t&lt;/div&gt;\n        \n        \t&lt;ul class=\&quot;nav navbar-nav navbar-right\&quot;&gt;\n        \t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          1378
+        </td>
+        <td>
+          2800
+          -
+          4951
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(if (logedIn)
+  newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n        \t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=\&quot;dropdown\&quot;&gt;\n        \t\t  &lt;a href=\&quot;#\&quot; class=\&quot;dropdown-toggle\&quot; data-toggle=\&quot;dropdown\&quot; role=\&quot;button\&quot; aria-expanded=\&quot;false\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-cog\&quot;&gt;&lt;/span&gt;&lt;/a&gt;\n          \t\t\t&lt;ul class=\&quot;dropdown-menu\&quot; role=\&quot;menu\&quot;&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.myprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Profile&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t\n            \t\t\t&lt;li class=\&quot;divider\&quot;&gt;&lt;/li&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.logout())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-log-out\&quot;&gt; Logout&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n\t\t\t\t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.updateprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-edit\&quot;&gt; Update&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n          \t\t\t&lt;/ul&gt;\n        \t\t&lt;/li&gt;\t\t\n   \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+else
+  newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n   \t\t\t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.login())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-log-in\&quot;&gt; Login&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.register())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Register&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])))
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          1351
+        </td>
+        <td>
+          2840
+          -
+          4202
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n        \t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=\&quot;dropdown\&quot;&gt;\n        \t\t  &lt;a href=\&quot;#\&quot; class=\&quot;dropdown-toggle\&quot; data-toggle=\&quot;dropdown\&quot; role=\&quot;button\&quot; aria-expanded=\&quot;false\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-cog\&quot;&gt;&lt;/span&gt;&lt;/a&gt;\n          \t\t\t&lt;ul class=\&quot;dropdown-menu\&quot; role=\&quot;menu\&quot;&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.myprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Profile&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t\n            \t\t\t&lt;li class=\&quot;divider\&quot;&gt;&lt;/li&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.logout())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-log-out\&quot;&gt; Logout&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n\t\t\t\t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.updateprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-edit\&quot;&gt; Update&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n          \t\t\t&lt;/ul&gt;\n        \t\t&lt;/li&gt;\t\t\n   \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          1348
+        </td>
+        <td>
+          2850
+          -
+          4201
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n        \t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=\&quot;dropdown\&quot;&gt;\n        \t\t  &lt;a href=\&quot;#\&quot; class=\&quot;dropdown-toggle\&quot; data-toggle=\&quot;dropdown\&quot; role=\&quot;button\&quot; aria-expanded=\&quot;false\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-cog\&quot;&gt;&lt;/span&gt;&lt;/a&gt;\n          \t\t\t&lt;ul class=\&quot;dropdown-menu\&quot; role=\&quot;menu\&quot;&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.myprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Profile&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t\n            \t\t\t&lt;li class=\&quot;divider\&quot;&gt;&lt;/li&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.logout())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-log-out\&quot;&gt; Logout&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n\t\t\t\t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.updateprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-edit\&quot;&gt; Update&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n          \t\t\t&lt;/ul&gt;\n        \t\t&lt;/li&gt;\t\t\n   \t\t\t\t&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          1350
+        </td>
+        <td>
+          2840
+          -
+          4202
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n        \t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=\&quot;dropdown\&quot;&gt;\n        \t\t  &lt;a href=\&quot;#\&quot; class=\&quot;dropdown-toggle\&quot; data-toggle=\&quot;dropdown\&quot; role=\&quot;button\&quot; aria-expanded=\&quot;false\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-cog\&quot;&gt;&lt;/span&gt;&lt;/a&gt;\n          \t\t\t&lt;ul class=\&quot;dropdown-menu\&quot; role=\&quot;menu\&quot;&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.myprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Profile&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t\n            \t\t\t&lt;li class=\&quot;divider\&quot;&gt;&lt;/li&gt;\n            \t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.logout())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-log-out\&quot;&gt; Logout&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n\t\t\t\t\t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.updateprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-edit\&quot;&gt; Update&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n          \t\t\t&lt;/ul&gt;\n        \t\t&lt;/li&gt;\t\t\n   \t\t\t\t&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          1317
+        </td>
+        <td>
+          2859
+          -
+          2897
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\n        \t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          62
+        </td>
+        <td>
+          1349
+        </td>
+        <td>
+          2849
+          -
+          2849
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          63
+        </td>
+        <td>
+          1318
+        </td>
+        <td>
+          2898
+          -
+          2956
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          63
+        </td>
+        <td>
+          1320
+        </td>
+        <td>
+          2983
+          -
+          3282
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=\&quot;dropdown\&quot;&gt;\n        \t\t  &lt;a href=\&quot;#\&quot; class=\&quot;dropdown-toggle\&quot; data-toggle=\&quot;dropdown\&quot; role=\&quot;button\&quot; aria-expanded=\&quot;false\&quot;&gt;&lt;span class=\&quot;glyphicon glyphicon-cog\&quot;&gt;&lt;/span&gt;&lt;/a&gt;\n          \t\t\t&lt;ul class=\&quot;dropdown-menu\&quot; role=\&quot;menu\&quot;&gt;\n            \t\t\t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          63
+        </td>
+        <td>
+          1319
+        </td>
+        <td>
+          2957
+          -
+          2982
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(email)
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1324
+        </td>
+        <td>
+          3283
+          -
+          3337
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1327
+        </td>
+        <td>
+          3385
+          -
+          3385
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1321
+        </td>
+        <td>
+          3303
+          -
+          3311
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1329
+        </td>
+        <td>
+          3446
+          -
+          3624
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Profile&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t\n            \t\t\t&lt;li class=\&quot;divider\&quot;&gt;&lt;/li&gt;\n            \t\t\t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1323
+        </td>
+        <td>
+          3303
+          -
+          3335
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Profile&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1326
+        </td>
+        <td>
+          3395
+          -
+          3444
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.myprofile
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.myprofile(page, email)
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1328
+        </td>
+        <td>
+          3376
+          -
+          3445
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(controllers.routes.Application.myprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1322
+        </td>
+        <td>
+          3317
+          -
+          3334
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Profile&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          67
+        </td>
+        <td>
+          1325
+        </td>
+        <td>
+          3338
+          -
+          3375
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1333
+        </td>
+        <td>
+          3625
+          -
+          3677
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1336
+        </td>
+        <td>
+          3725
+          -
+          3725
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1330
+        </td>
+        <td>
+          3645
+          -
+          3653
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1338
+        </td>
+        <td>
+          3773
+          -
+          3891
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-log-out\&quot;&gt; Logout&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n\t\t\t\t\t\t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1332
+        </td>
+        <td>
+          3645
+          -
+          3675
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1335
+        </td>
+        <td>
+          3735
+          -
+          3771
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.logout
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.logout()
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1334
+        </td>
+        <td>
+          3678
+          -
+          3715
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1337
+        </td>
+        <td>
+          3716
+          -
+          3772
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(controllers.routes.Application.logout())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          1331
+        </td>
+        <td>
+          3659
+          -
+          3674
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Login&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1342
+        </td>
+        <td>
+          3892
+          -
+          3943
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1345
+        </td>
+        <td>
+          3991
+          -
+          3991
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1339
+        </td>
+        <td>
+          3912
+          -
+          3920
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1347
+        </td>
+        <td>
+          4056
+          -
+          4200
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\&quot;&gt;\n\t\t\t\t\t\t&lt;span class=\&quot;glyphicon glyphicon-edit\&quot;&gt; Update&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n          \t\t\t&lt;/ul&gt;\n        \t\t&lt;/li&gt;\t\t\n   \t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1341
+        </td>
+        <td>
+          3912
+          -
+          3941
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Edit&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1344
+        </td>
+        <td>
+          4001
+          -
+          4054
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.updateprofile
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.updateprofile(page, email)
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1343
+        </td>
+        <td>
+          3944
+          -
+          3981
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1346
+        </td>
+        <td>
+          3982
+          -
+          4055
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(controllers.routes.Application.updateprofile(page, email))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          1340
+        </td>
+        <td>
+          3926
+          -
+          3940
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Edit&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          1375
+        </td>
+        <td>
+          4234
+          -
+          4234
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          1374
+        </td>
+        <td>
+          4235
+          -
+          4948
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n   \t\t\t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.login())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-log-in\&quot;&gt; Login&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.register())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Register&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          1377
+        </td>
+        <td>
+          4225
+          -
+          4949
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n   \t\t\t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.login())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-log-in\&quot;&gt; Login&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.register())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Register&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          1352
+        </td>
+        <td>
+          4244
+          -
+          4279
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\n   \t\t\t\t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          77
+        </td>
+        <td>
+          1376
+        </td>
+        <td>
+          4225
+          -
+          4949
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(collection.this.Seq.apply[Any](newnavme.this.format.raw(&quot;\n   \t\t\t\t&quot;), newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;), newnavme.this._display_(email), newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.login())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-log-in\&quot;&gt; Login&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t&lt;li class=&quot;), newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;))), newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;), newnavme.this._display_(controllers.routes.Application.register())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Register&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          78
+        </td>
+        <td>
+          1354
+        </td>
+        <td>
+          4338
+          -
+          4363
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(email)
+        </td>
+      </tr><tr>
+        <td>
+          78
+        </td>
+        <td>
+          1353
+        </td>
+        <td>
+          4280
+          -
+          4337
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&lt;li class=\&quot;nav-email\&quot;&gt;welcome! &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          78
+        </td>
+        <td>
+          1355
+        </td>
+        <td>
+          4364
+          -
+          4417
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&lt;/li&gt;\n        \t\t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1357
+        </td>
+        <td>
+          4452
+          -
+          4467
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Login&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1360
+        </td>
+        <td>
+          4471
+          -
+          4508
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1363
+        </td>
+        <td>
+          4509
+          -
+          4564
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(controllers.routes.Application.login())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1356
+        </td>
+        <td>
+          4438
+          -
+          4446
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1359
+        </td>
+        <td>
+          4418
+          -
+          4470
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1362
+        </td>
+        <td>
+          4518
+          -
+          4518
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1361
+        </td>
+        <td>
+          4528
+          -
+          4563
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.login
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.login()
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1364
+        </td>
+        <td>
+          4565
+          -
+          4689
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-log-in\&quot;&gt; Login&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;\n        \t\t&lt;li class=&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          1358
+        </td>
+        <td>
+          4438
+          -
+          4468
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Login&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1366
+        </td>
+        <td>
+          4724
+          -
+          4742
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          page.==(&quot;Register&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1369
+        </td>
+        <td>
+          4746
+          -
+          4783
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&gt;&lt;a href=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1372
+        </td>
+        <td>
+          4784
+          -
+          4842
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(controllers.routes.Application.register())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1365
+        </td>
+        <td>
+          4710
+          -
+          4718
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;active&quot;
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1368
+        </td>
+        <td>
+          4690
+          -
+          4745
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this._display_(play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;)))
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1371
+        </td>
+        <td>
+          4793
+          -
+          4793
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1370
+        </td>
+        <td>
+          4803
+          -
+          4841
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.register
+        </td>
+        <td style="background: #AEF1AE">
+          controllers.routes.Application.register()
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1373
+        </td>
+        <td>
+          4843
+          -
+          4947
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\&quot;&gt;\n        \t\t&lt;span class=\&quot;glyphicon glyphicon-user\&quot;&gt; Register&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          81
+        </td>
+        <td>
+          1367
+        </td>
+        <td>
+          4710
+          -
+          4743
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.TemplateMagic.RichString.when
+        </td>
+        <td style="background: #AEF1AE">
+          play.twirl.api.TemplateMagic.richString(&quot;active&quot;).when(page.==(&quot;Register&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          1379
+        </td>
+        <td>
+          4952
+          -
+          4992
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;\n            &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          83
+        </td>
+        <td>
+          1380
+        </td>
+        <td>
+          4993
+          -
+          5046
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          newnavme.this.format.raw(&quot;&lt;/ul&gt;\n    \t&lt;/div&gt;\n\t&lt;/nav&gt;\n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          89
+        </td>
+        <td>
+          1384
+        </td>
+        <td>
+          5164
+          -
+          5197
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.newnavme.apply
+        </td>
+        <td style="background: #F0ADAD">
+          newnavme.this.apply(message, page, email, logedIn)
+        </td>
+      </tr><tr>
+        <td>
+          91
+        </td>
+        <td>
+          1385
+        </td>
+        <td>
+          5314
+          -
+          5347
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.newnavme.apply
+        </td>
+        <td style="background: #F0ADAD">
+          newnavme.this.apply(message, page, email, logedIn)
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

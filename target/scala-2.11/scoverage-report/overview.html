@@ -1,0 +1,989 @@
+<html>
+      <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <title id="title">Scoverage Code Coverage</title>
+      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.3/addons/pager/jquery.tablesorter.pager.min.js"></script>
+      <style>
+        .meter {
+        height: 14px;
+        position: relative;
+        background: #BB2020;
+}
+
+.meter span {
+	display: block;
+	height: 100%;
+	background-color: rgb(43,194,83);
+	background-image: -webkit-gradient(
+	  linear,
+	  left bottom,
+	  left top,
+	  color-stop(0, rgb(43,194,83)),
+	  color-stop(1, rgb(84,240,84))
+	 );
+	background-image: -webkit-linear-gradient(
+	  center bottom,
+	  rgb(43,194,83) 37%,
+	  rgb(84,240,84) 69%
+	 );
+	background-image: -moz-linear-gradient(
+	  center bottom,
+	  rgb(43,194,83) 37%,
+	  rgb(84,240,84) 69%
+	 );
+	background-image: -ms-linear-gradient(
+	  center bottom,
+	  rgb(43,194,83) 37%,
+	  rgb(84,240,84) 69%
+	 );
+	background-image: -o-linear-gradient(
+	  center bottom,
+	  rgb(43,194,83) 37%,
+	  rgb(84,240,84) 69%
+	 );
+	-webkit-box-shadow:
+	  inset 0 2px 9px  rgba(255,255,255,0.3),
+	  inset 0 -2px 6px rgba(0,0,0,0.4);
+	-moz-box-shadow:
+	  inset 0 2px 9px  rgba(255,255,255,0.3),
+	  inset 0 -2px 6px rgba(0,0,0,0.4);
+	position: relative;
+	overflow: hidden;
+}
+      </style>
+      <script>
+        $(document).ready(function() {$(&quot;#packages&quot;).tablesorter();});
+      </script>
+    </head><body style="font-family: monospace;">
+      <div class="alert alert-info">
+        <b>
+          SCoverage
+        </b>
+        generated at
+        Tue Mar 10 19:59:58 IST 2015
+      </div>
+      <div class="overview">
+        <div class="stats">
+          <table class="table">
+      <tr>
+        <td>
+          Lines of code:
+        </td>
+        <td>
+          1900
+        </td>
+        <td>
+          Files:
+        </td>
+        <td>
+          15
+        </td>
+        <td>
+          Classes:
+        </td>
+        <td>
+          17
+        </td>
+        <td>
+          Methods:
+        </td>
+        <td>
+          101
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Lines per file
+        </td>
+        <td>
+          126.67
+        </td>
+        <td>
+          Packages:
+        </td>
+        <td>
+          6
+        </td>
+        <td>
+          Clases per package:
+        </td>
+        <td>
+          2.83
+        </td>
+        <td>
+          Methods per class:
+        </td>
+        <td>
+          5.94
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Total statements:
+        </td>
+        <td>
+          1810
+        </td>
+        <td>
+          Invoked statements:
+        </td>
+        <td>
+          1466
+        </td>
+        <td>
+          Total branches:
+        </td>
+        <td>
+          32
+        </td>
+        <td>
+          Invoked branches:
+        </td>
+        <td>
+          30
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Statement coverage:
+        </td>
+        <td>
+          80.99
+          %
+        </td>
+        <td colspan="2">
+          <div class="meter">
+            <span style="width: 81%"></span>
+          </div>
+        </td>
+        <td>
+          Branch coverage:
+        </td>
+        <td>
+          93.75
+          %
+        </td>
+        <td colspan="2">
+          <div class="meter">
+            <span style="width: 94%"></span>
+          </div>
+        </td>
+      </tr>
+    </table>
+        </div>
+        <div>
+          <table class="tablesorter table table-striped" style="font-size:13px">
+      <thead>
+        <tr>
+          <th>
+            Class
+          </th>
+          <th>
+            Source file
+          </th>
+          <th>
+            Lines
+          </th>
+          <th>
+            Methods
+          </th>
+          <th>
+            Statements
+          </th>
+          <th>
+            Invoked
+          </th>
+          <th>
+            Coverage
+          </th>
+          <th>
+          </th>
+          <th>
+            Branches
+          </th>
+          <th>
+            Invoked
+          </th>
+          <th>
+            Coverage
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+      <td>
+        <a href="controllers/Application.scala.html">
+          Application
+        </a>
+      </td>
+      <td>
+        Application.scala
+      </td>
+      <td>
+        226
+      </td>
+      <td>
+        11
+      </td>
+      <td>
+        285
+      </td>
+      <td>
+        272
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 95%"></span>
+        </div>
+      </td>
+      <td>
+        95.44
+        %
+      </td>
+      <td>
+        10
+      </td>
+      <td>
+        9
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 90%"></span>
+        </div>
+      </td>
+      <td>
+        90.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/CustomFieldInput.template.scala.html">
+          CustomFieldInput
+        </a>
+      </td>
+      <td>
+        CustomFieldInput.template.scala
+      </td>
+      <td>
+        36
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        31
+      </td>
+      <td>
+        30
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 97%"></span>
+        </div>
+      </td>
+      <td>
+        96.77
+        %
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/src_managed/main/routes_reverseRouting.scala.html">
+          ReverseApplication
+        </a>
+      </td>
+      <td>
+        routes_reverseRouting.scala
+      </td>
+      <td>
+        391
+      </td>
+      <td>
+        30
+      </td>
+      <td>
+        224
+      </td>
+      <td>
+        74
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 33%"></span>
+        </div>
+      </td>
+      <td>
+        33.04
+        %
+      </td>
+      <td>
+        6
+      </td>
+      <td>
+        6
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/src_managed/main/routes_reverseRouting.scala.html">
+          ReverseAssets
+        </a>
+      </td>
+      <td>
+        routes_reverseRouting.scala
+      </td>
+      <td>
+        315
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        24
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 33%"></span>
+        </div>
+      </td>
+      <td>
+        33.33
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/src_managed/main/routes_routing.scala.html">
+          Routes
+        </a>
+      </td>
+      <td>
+        routes_routing.scala
+      </td>
+      <td>
+        202
+      </td>
+      <td>
+        5
+      </td>
+      <td>
+        373
+      </td>
+      <td>
+        253
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 68%"></span>
+        </div>
+      </td>
+      <td>
+        67.83
+        %
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 50%"></span>
+        </div>
+      </td>
+      <td>
+        50.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="models/Models.scala.html">
+          WebUser
+        </a>
+      </td>
+      <td>
+        Models.scala
+      </td>
+      <td>
+        33
+      </td>
+      <td>
+        13
+      </td>
+      <td>
+        80
+      </td>
+      <td>
+        80
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="models/Models.scala.html">
+          WebUsersTrait
+        </a>
+      </td>
+      <td>
+        Models.scala
+      </td>
+      <td>
+        94
+      </td>
+      <td>
+        6
+      </td>
+      <td>
+        32
+      </td>
+      <td>
+        32
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/home.template.scala.html">
+          home
+        </a>
+      </td>
+      <td>
+        home.template.scala
+      </td>
+      <td>
+        72
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        31
+      </td>
+      <td>
+        29
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 94%"></span>
+        </div>
+      </td>
+      <td>
+        93.55
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/login.template.scala.html">
+          login
+        </a>
+      </td>
+      <td>
+        login.template.scala
+      </td>
+      <td>
+        150
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        99
+      </td>
+      <td>
+        81
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 82%"></span>
+        </div>
+      </td>
+      <td>
+        81.82
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/main.template.scala.html">
+          main
+        </a>
+      </td>
+      <td>
+        main.template.scala
+      </td>
+      <td>
+        59
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        27
+      </td>
+      <td>
+        25
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 93%"></span>
+        </div>
+      </td>
+      <td>
+        92.59
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/myprofile.template.scala.html">
+          myprofile
+        </a>
+      </td>
+      <td>
+        myprofile.template.scala
+      </td>
+      <td>
+        203
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        89
+      </td>
+      <td>
+        79
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 89%"></span>
+        </div>
+      </td>
+      <td>
+        88.76
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/newnavme.template.scala.html">
+          newnavme
+        </a>
+      </td>
+      <td>
+        newnavme.template.scala
+      </td>
+      <td>
+        91
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        90
+      </td>
+      <td>
+        88
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 98%"></span>
+        </div>
+      </td>
+      <td>
+        97.78
+        %
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/register.template.scala.html">
+          register
+        </a>
+      </td>
+      <td>
+        register.template.scala
+      </td>
+      <td>
+        93
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        113
+      </td>
+      <td>
+        111
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 98%"></span>
+        </div>
+      </td>
+      <td>
+        98.23
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/scripts.template.scala.html">
+          scripts
+        </a>
+      </td>
+      <td>
+        scripts.template.scala
+      </td>
+      <td>
+        132
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        195
+      </td>
+      <td>
+        193
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 99%"></span>
+        </div>
+      </td>
+      <td>
+        98.97
+        %
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/stylesheets.template.scala.html">
+          stylesheets
+        </a>
+      </td>
+      <td>
+        stylesheets.template.scala
+      </td>
+      <td>
+        31
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        19
+      </td>
+      <td>
+        17
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 89%"></span>
+        </div>
+      </td>
+      <td>
+        89.47
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/title.template.scala.html">
+          title
+        </a>
+      </td>
+      <td>
+        title.template.scala
+      </td>
+      <td>
+        30
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        9
+      </td>
+      <td>
+        7
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 78%"></span>
+        </div>
+      </td>
+      <td>
+        77.78
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr><tr>
+      <td>
+        <a href="/home/knoldus/play-login/target/scala-2.11/twirl/main/views/html/updateprofile.template.scala.html">
+          updateprofile
+        </a>
+      </td>
+      <td>
+        updateprofile.template.scala
+      </td>
+      <td>
+        90
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        89
+      </td>
+      <td>
+        87
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 98%"></span>
+        </div>
+      </td>
+      <td>
+        97.75
+        %
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        <div class="meter">
+          <span style="width: 100%"></span>
+        </div>
+      </td>
+      <td>
+        100.00
+        %
+      </td>
+    </tr>
+      </tbody>
+    </table>
+        </div>
+      </div>
+    </body>
+    </html>

@@ -11,6 +11,15 @@
 	
 }
 
+.img-fit{
+	border: 5px solid;
+	height:250px;
+	width:300px;
+    border-radius: 25px;
+	margin-top:6%;
+	display:block;
+  	background-size: cover;
+}
 
 .panel-custom-margin {
 	margin-top: 2%;
@@ -22,7 +31,7 @@
 }
 
 .btn-margin-right{
-	margin-right:10%
+	margin-right:10%;
 }
 
 .search-align {
