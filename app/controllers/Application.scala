@@ -70,16 +70,17 @@ trait Application extends Controller {
     regform.bindFromRequest.fold(
       formWithErrors => BadRequest(html.register("Register", formWithErrors)),
       user => {
-        val findDetails = myWebUsers.getData(user.email).getOrElse("Not Found")
+        val findDetails = myWebUsers.getData(user.email.toLowerCase.trim).getOrElse("Not Found")
         if (findDetails != "Not Found") {
 
           val flash = play.api.mvc.Flash(Map("failedCreate" -> s"WebUser ${user.email} already exist"))
           Ok(html.register("Register", regform)(flash))
         } else {
-          myWebUsers.create(user)
+	  val createUser=user.copy(email=user.email.toLowerCase.trim)
+          myWebUsers.create(createUser)
           //For Testing without mocking
-          if (user.email == "Test@knoldus.com")
-            myWebUsers.delete("Test@knoldus.com")
+          if (user.email == "test@knoldus.com")
+            myWebUsers.delete("test@knoldus.com")
           Redirect(routes.Application.login).flashing("successCreate" -> s"WebUser ${user.name} created, please Login")
         }
       })
@@ -156,7 +157,7 @@ trait Application extends Controller {
       formWithErrors => BadRequest(html.login("Login", formWithErrors)),
       user =>
         if (myWebUsers.connect(user)) {
-          val userConn = myWebUsers.getData(user._1).get
+          val userConn = myWebUsers.getData(user._1.toLowerCase.trim).get
           val flash = play.api.mvc.Flash(Map("successIn" -> s"Welcome ${userConn.name}"))
           Ok(html.myprofile("Profile", userConn.email)(flash)).withSession("email" -> userConn.email)
         } else {

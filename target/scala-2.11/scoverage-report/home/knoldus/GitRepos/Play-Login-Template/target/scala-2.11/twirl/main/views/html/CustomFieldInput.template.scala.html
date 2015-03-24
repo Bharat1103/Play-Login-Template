@@ -1,0 +1,752 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          /home/knoldus/GitRepos/Play-Login-Template/target/scala-2.11/twirl/main/views/html/CustomFieldInput.template.scala.html
+        </title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.3/addons/pager/jquery.tablesorter.pager.min.js"></script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier;'>1 <span style=''>
+</span>2 <span style=''>package views.html
+</span>3 <span style=''>
+</span>4 <span style=''>import play.twirl.api._
+</span>5 <span style=''>import play.twirl.api.TemplateMagic._
+</span>6 <span style=''>
+</span>7 <span style=''>import play.api.templates.PlayMagic._
+</span>8 <span style=''>import models._
+</span>9 <span style=''>import controllers._
+</span>10 <span style=''>import play.api.i18n._
+</span>11 <span style=''>import play.api.mvc._
+</span>12 <span style=''>import play.api.data._
+</span>13 <span style=''>import views.html._
+</span>14 <span style=''>
+</span>15 <span style=''>/**/
+</span>16 <span style=''>object CustomFieldInput extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template1[helper.FieldElements,play.twirl.api.HtmlFormat.Appendable] {
+</span>17 <span style=''>
+</span>18 <span style=''>  /**/
+</span>19 <span style=''>  def apply/*1.2*/(elements: helper.FieldElements):play.twirl.api.HtmlFormat.Appendable = {
+</span>20 <span style=''>      </span><span style='background: #AEF1AE'>_display_ {
+</span>21 <span style=''></span><span style='background: #AEF1AE'>
+</span>22 <span style=''></span><span style='background: #AEF1AE'>Seq[Any](format.raw/*1.34*/("""
+</span>23 <span style=''></span><span style='background: #AEF1AE'>
+</span>24 <span style=''></span><span style='background: #AEF1AE'>"""),format.raw/*3.1*/("""<div class=""""),_display_(/*3.14*/if(elements.hasErrors)/*3.36*/ {_display_(Seq[Any](format.raw/*3.38*/("""error""")))}),format.raw/*3.44*/("""">
+</span>25 <span style=''></span><span style='background: #AEF1AE'>    <div class="input form-group">
+</span>26 <span style=''></span><span style='background: #AEF1AE'>    	<label> """),_display_(/*5.15*/elements/*5.23*/.label),format.raw/*5.29*/(""" """),format.raw/*5.30*/("""</label>
+</span>27 <span style=''></span><span style='background: #AEF1AE'>    	 """),_display_(/*6.8*/elements/*6.16*/.input),format.raw/*6.22*/("""
+</span>28 <span style=''></span><span style='background: #AEF1AE'>       	"""),format.raw/*7.9*/("""<span class="btn-margin-left" style="display:block"> """),_display_(/*7.63*/elements/*7.71*/.errors.mkString(", ")),format.raw/*7.93*/(""" """),format.raw/*7.94*/("""</span> 
+</span>29 <span style=''></span><span style='background: #AEF1AE'>    </div>
+</span>30 <span style=''></span><span style='background: #AEF1AE'></div>
+</span>31 <span style=''></span><span style='background: #AEF1AE'>"""))}</span><span style=''>
+</span>32 <span style=''>  }
+</span>33 <span style=''>
+</span>34 <span style=''>  def render(elements:helper.FieldElements): play.twirl.api.HtmlFormat.Appendable = </span><span style='background: #F0ADAD'>apply(elements)</span><span style=''>
+</span>35 <span style=''>
+</span>36 <span style=''>  def f:((helper.FieldElements) => play.twirl.api.HtmlFormat.Appendable) = (elements) => </span><span style='background: #AEF1AE'>apply(elements)</span><span style=''>
+</span>37 <span style=''>
+</span>38 <span style=''>  def ref: this.type = this
+</span>39 <span style=''>
+</span>40 <span style=''>}
+</span>41 <span style=''>              /*
+</span>42 <span style=''>                  -- GENERATED --
+</span>43 <span style=''>                  DATE: Tue Mar 10 16:55:15 IST 2015
+</span>44 <span style=''>                  SOURCE: /home/knoldus/play-login/app/views/CustomFieldInput.scala.html
+</span>45 <span style=''>                  HASH: 323fa0b16096f1e82b9ebfcf6b6a5a8d6816c699
+</span>46 <span style=''>                  MATRIX: 530->1|650->33|678->35|717->48|747->70|786->72|822->78|900->130|916->138|942->144|970->145|1011->161|1027->169|1053->175|1088->184|1168->238|1184->246|1226->268|1254->269
+</span>47 <span style=''>                  LINES: 19->1|22->1|24->3|24->3|24->3|24->3|24->3|26->5|26->5|26->5|26->5|27->6|27->6|27->6|28->7|28->7|28->7|28->7|28->7
+</span>48 <span style=''>                  -- GENERATED --
+</span>49 <span style=''>              */
+</span>50 <span style=''>          
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          1058
+        </td>
+        <td>
+          610
+          -
+          1291
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this._display_(collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;\n\n&quot;), CustomFieldInput.this.format.raw(&quot;&lt;div class=\&quot;&quot;), CustomFieldInput.this._display_(if (elements.hasErrors)
+  CustomFieldInput.this._display_(collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;error&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+else
+  ())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), CustomFieldInput.this.format.raw(&quot;\&quot;&gt;\n    &lt;div class=\&quot;input form-group\&quot;&gt;\n    \t&lt;label&gt; &quot;), CustomFieldInput.this._display_(elements.label(i18n.this.Lang.defaultLang))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), CustomFieldInput.this.format.raw(&quot; &quot;), CustomFieldInput.this.format.raw(&quot;&lt;/label&gt;\n    \t &quot;), CustomFieldInput.this._display_(elements.input), CustomFieldInput.this.format.raw(&quot;\n       \t&quot;), CustomFieldInput.this.format.raw(&quot;&lt;span class=\&quot;btn-margin-left\&quot; style=\&quot;display:block\&quot;&gt; &quot;), CustomFieldInput.this._display_(elements.errors(i18n.this.Lang.defaultLang).mkString(&quot;, &quot;)), CustomFieldInput.this.format.raw(&quot; &quot;), CustomFieldInput.this.format.raw(&quot;&lt;/span&gt; \n    &lt;/div&gt;\n&lt;/div&gt;\n&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          1057
+        </td>
+        <td>
+          620
+          -
+          620
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          1030
+        </td>
+        <td>
+          632
+          -
+          660
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;\n\n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          1056
+        </td>
+        <td>
+          623
+          -
+          1290
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;\n\n&quot;), CustomFieldInput.this.format.raw(&quot;&lt;div class=\&quot;&quot;), CustomFieldInput.this._display_(if (elements.hasErrors)
+  CustomFieldInput.this._display_(collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;error&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+else
+  ())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), CustomFieldInput.this.format.raw(&quot;\&quot;&gt;\n    &lt;div class=\&quot;input form-group\&quot;&gt;\n    \t&lt;label&gt; &quot;), CustomFieldInput.this._display_(elements.label(i18n.this.Lang.defaultLang))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])), CustomFieldInput.this.format.raw(&quot; &quot;), CustomFieldInput.this.format.raw(&quot;&lt;/label&gt;\n    \t &quot;), CustomFieldInput.this._display_(elements.input), CustomFieldInput.this.format.raw(&quot;\n       \t&quot;), CustomFieldInput.this.format.raw(&quot;&lt;span class=\&quot;btn-margin-left\&quot; style=\&quot;display:block\&quot;&gt; &quot;), CustomFieldInput.this._display_(elements.errors(i18n.this.Lang.defaultLang).mkString(&quot;, &quot;)), CustomFieldInput.this.format.raw(&quot; &quot;), CustomFieldInput.this.format.raw(&quot;&lt;/span&gt; \n    &lt;/div&gt;\n&lt;/div&gt;\n&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1037
+        </td>
+        <td>
+          749
+          -
+          801
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this._display_(collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;error&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1031
+        </td>
+        <td>
+          661
+          -
+          698
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;&lt;div class=\&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1040
+        </td>
+        <td>
+          708
+          -
+          708
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1034
+        </td>
+        <td>
+          759
+          -
+          800
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #AEF1AE">
+          collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;error&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1042
+        </td>
+        <td>
+          804
+          -
+          881
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;\&quot;&gt;\n    &lt;div class=\&quot;input form-group\&quot;&gt;\n    \t&lt;label&gt; &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1033
+        </td>
+        <td>
+          768
+          -
+          799
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;error&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1036
+        </td>
+        <td>
+          749
+          -
+          801
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this._display_(collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;error&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1039
+        </td>
+        <td>
+          717
+          -
+          717
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          ()
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1038
+        </td>
+        <td>
+          717
+          -
+          717
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          ()
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1032
+        </td>
+        <td>
+          720
+          -
+          738
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          views.html.helper.FieldElements.hasErrors
+        </td>
+        <td style="background: #AEF1AE">
+          elements.hasErrors
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1041
+        </td>
+        <td>
+          699
+          -
+          803
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this._display_(if (elements.hasErrors)
+  CustomFieldInput.this._display_(collection.this.Seq.apply[Any](CustomFieldInput.this.format.raw(&quot;error&quot;)))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+else
+  ())(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          24
+        </td>
+        <td>
+          1035
+        </td>
+        <td>
+          758
+          -
+          758
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          1043
+        </td>
+        <td>
+          900
+          -
+          922
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.helper.FieldElements.label
+        </td>
+        <td style="background: #AEF1AE">
+          elements.label(i18n.this.Lang.defaultLang)
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          1046
+        </td>
+        <td>
+          924
+          -
+          951
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot; &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          1045
+        </td>
+        <td>
+          882
+          -
+          923
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this._display_(elements.label(i18n.this.Lang.defaultLang))(reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html]))
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          1047
+        </td>
+        <td>
+          952
+          -
+          993
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;&lt;/label&gt;\n    \t &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          1044
+        </td>
+        <td>
+          891
+          -
+          891
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.reflect.ManifestFactory.classType
+        </td>
+        <td style="background: #AEF1AE">
+          reflect.this.ManifestFactory.classType[play.twirl.api.HtmlFormat.Appendable](classOf[play.twirl.api.Html])
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1049
+        </td>
+        <td>
+          994
+          -
+          1034
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this._display_(elements.input)
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1048
+        </td>
+        <td>
+          1011
+          -
+          1033
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          views.html.helper.FieldElements.input
+        </td>
+        <td style="background: #AEF1AE">
+          elements.input
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          1050
+        </td>
+        <td>
+          1035
+          -
+          1070
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;\n       \t&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          1052
+        </td>
+        <td>
+          1168
+          -
+          1206
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.TraversableOnce.mkString
+        </td>
+        <td style="background: #AEF1AE">
+          elements.errors(i18n.this.Lang.defaultLang).mkString(&quot;, &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          1055
+        </td>
+        <td>
+          1236
+          -
+          1289
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;&lt;/span&gt; \n    &lt;/div&gt;\n&lt;/div&gt;\n&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          1051
+        </td>
+        <td>
+          1071
+          -
+          1149
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot;&lt;span class=\&quot;btn-margin-left\&quot; style=\&quot;display:block\&quot;&gt; &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          1054
+        </td>
+        <td>
+          1208
+          -
+          1235
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.Format.raw
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.format.raw(&quot; &quot;)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          1053
+        </td>
+        <td>
+          1150
+          -
+          1207
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.twirl.api.BaseScalaTemplate._display_
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this._display_(elements.errors(i18n.this.Lang.defaultLang).mkString(&quot;, &quot;))
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          1059
+        </td>
+        <td>
+          1381
+          -
+          1396
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.CustomFieldInput.apply
+        </td>
+        <td style="background: #F0ADAD">
+          CustomFieldInput.this.apply(elements)
+        </td>
+      </tr><tr>
+        <td>
+          36
+        </td>
+        <td>
+          1060
+        </td>
+        <td>
+          1487
+          -
+          1502
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.CustomFieldInput.apply
+        </td>
+        <td style="background: #AEF1AE">
+          CustomFieldInput.this.apply(elements)
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

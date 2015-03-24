@@ -1,85 +1,9 @@
-2015-03-11 14:46:11,752 - [INFO] - from play in pool-4-thread-2 
-Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2015-03-24 15:39:36,803 - [INFO] - from play in pool-4-thread-1 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9191
 
-2015-03-11 14:46:30,936 - [INFO] - from play in play-internal-execution-context-1 
+2015-03-24 15:40:13,197 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:postgresql://localhost:5432/webuser
 
-2015-03-11 14:46:33,468 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-03-11 14:46:57,539 - [ERROR] - from play in play-internal-execution-context-3 
-Cannot invoke the action, eventually got an error: java.io.FileNotFoundException: public/uploads/tmp.png (No such file or directory)
-
-2015-03-11 14:46:57,554 - [ERROR] - from application in play-internal-execution-context-3 
-
-
-! @6le973h3g - Internal server error, for (POST) [/upload?email=Bharat%40knoldus.com] ->
-
-play.api.Application$$anon$1: Execution exception[[FileNotFoundException: public/uploads/tmp.png (No such file or directory)]]
-	at play.api.Application$class.handleError(Application.scala:296) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.DefaultApplication.handleError(Application.scala:402) [play_2.11-2.3.8.jar:2.3.8]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.8.jar:2.3.8]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.8.jar:2.3.8]
-	at scala.Option.map(Option.scala:145) [scala-library-2.11.1.jar:na]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.8.jar:2.3.8]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:316) [play_2.11-2.3.8.jar:2.3.8]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:344) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:343) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.1.jar:na]
-	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.8.jar:2.3.8]
-	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:248) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.Promise$class.complete(Promise.scala:55) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:153) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library-2.11.1.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library-2.11.1.jar:na]
-Caused by: java.io.FileNotFoundException: public/uploads/tmp.png (No such file or directory)
-	at java.io.FileOutputStream.open0(Native Method) ~[na:1.8.0_40]
-	at java.io.FileOutputStream.open(FileOutputStream.java:270) ~[na:1.8.0_40]
-	at java.io.FileOutputStream.<init>(FileOutputStream.java:213) ~[na:1.8.0_40]
-	at java.io.FileOutputStream.<init>(FileOutputStream.java:162) ~[na:1.8.0_40]
-	at play.api.libs.Files$.copyFile(Files.scala:75) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.Files$.moveFile(Files.scala:100) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.Files$TemporaryFile.moveTo(Files.scala:32) ~[play_2.11-2.3.8.jar:2.3.8]
-	at controllers.Application$$anonfun$uploadFile$1$$anonfun$apply$7.apply(Application.scala:207) ~[na:na]
-	at controllers.Application$$anonfun$uploadFile$1$$anonfun$apply$7.apply(Application.scala:205) ~[na:na]
-	at scala.Option.map(Option.scala:145) [scala-library-2.11.1.jar:na]
-	at controllers.Application$$anonfun$uploadFile$1.apply(Application.scala:205) ~[na:na]
-	at controllers.Application$$anonfun$uploadFile$1.apply(Application.scala:203) ~[na:na]
-	at play.api.mvc.ActionBuilder$$anonfun$apply$16.apply(Action.scala:433) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.ActionBuilder$$anonfun$apply$16.apply(Action.scala:432) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.Action$.invokeBlock(Action.scala:556) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.Action$.invokeBlock(Action.scala:555) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.ActionBuilder$$anon$1.apply(Action.scala:518) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4$$anonfun$apply$5.apply(Action.scala:130) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4$$anonfun$apply$5.apply(Action.scala:130) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.utils.Threads$.withContextClassLoader(Threads.scala:21) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4.apply(Action.scala:129) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4.apply(Action.scala:128) ~[play_2.11-2.3.8.jar:2.3.8]
-	at scala.Option.map(Option.scala:145) [scala-library-2.11.1.jar:na]
-	at play.api.mvc.Action$$anonfun$apply$1.apply(Action.scala:128) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.mvc.Action$$anonfun$apply$1.apply(Action.scala:121) ~[play_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.iteratee.Iteratee$$anonfun$mapM$1.apply(Iteratee.scala:483) ~[play-iteratees_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.iteratee.Iteratee$$anonfun$mapM$1.apply(Iteratee.scala:483) ~[play-iteratees_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.iteratee.Iteratee$$anonfun$flatMapM$1.apply(Iteratee.scala:519) ~[play-iteratees_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.iteratee.Iteratee$$anonfun$flatMapM$1.apply(Iteratee.scala:519) ~[play-iteratees_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.iteratee.Iteratee$$anonfun$flatMap$1$$anonfun$apply$14.apply(Iteratee.scala:496) ~[play-iteratees_2.11-2.3.8.jar:2.3.8]
-	at play.api.libs.iteratee.Iteratee$$anonfun$flatMap$1$$anonfun$apply$14.apply(Iteratee.scala:496) ~[play-iteratees_2.11-2.3.8.jar:2.3.8]
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.1.jar:na]
-	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.1.jar:na]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:41) ~[akka-actor_2.11-2.3.4.jar:na]
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393) ~[akka-actor_2.11-2.3.4.jar:na]
-	... 4 common frames omitted
-
-2015-03-11 14:52:06,036 - [INFO] - from play in play-internal-execution-context-6 
-database [default] connected at jdbc:postgresql://localhost:5432/webuser
-
-2015-03-11 14:52:06,170 - [INFO] - from play in play-internal-execution-context-6 
+2015-03-24 15:40:14,976 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 

@@ -1,10 +1,20 @@
 [0m[[0mdebug[0m] [0mForking tests - parallelism = false[0m
 [0m[[0mdebug[0m] [0mCreate a single-thread test executor[0m
 [0m[[0mdebug[0m] [0mRunner for com.novocode.junit.JUnitFramework produced 2 initial tasks for 2 tests.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(ApplicationSpec, sbt.ForkMain$AnnotatedFingerscan@2fc631e9, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(IntegrationSpec, sbt.ForkMain$AnnotatedFingerscan@72f4399b, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(IntegrationSpec, sbt.ForkMain$AnnotatedFingerscan@7b0754e6, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(ApplicationSpec, sbt.ForkMain$AnnotatedFingerscan@76f37b16, false, [SuiteSelector])[0m
 [0m[[0mdebug[0m] [0mRunner for org.specs2.runner.Specs2Framework produced 2 initial tasks for 2 tests.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(ApplicationSpec, sbt.ForkMain$SubclassFingerscan@44bbbac1, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(IntegrationSpec, sbt.ForkMain$SubclassFingerscan@300ef07c, false, [SuiteSelector])[0m
+[0m[[0minfo[0m] [0mIntegrationSpec[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37mApplication should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[35mo[0m work from within a browser[0m SKIPPED[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0mTotal for specification IntegrationSpec[0m
+[0m[[0minfo[0m] [0m[36mFinished in 11 ms[0m[0m
+[0m[[0minfo[0m] [0m[36m[0m[36m1 example, 0 failure, 0 error, 1 skipped[0m[0m
+[0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(ApplicationSpec, sbt.ForkMain$SubclassFingerscan@6193ddc7, false, [SuiteSelector])[0m
 [0m[[0minfo[0m] [0mApplicationSpec[37m[0m[0m
 [0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
 [0m[[0minfo[0m] [0m[37m[0m[37mApplication should[0m[37m[0m[0m
@@ -31,19 +41,9 @@
 [0m[[0minfo[0m] [0m[37m[0m[32m+[0m uploading file with empty body[37m[0m[0m
 [0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
 [0m[[0minfo[0m] [0m[37m[0mTotal for specification ApplicationSpec[0m
-[0m[[0minfo[0m] [0m[36mFinished in 6 seconds, 146 ms[0m[0m
+[0m[[0minfo[0m] [0m[36mFinished in 6 seconds, 211 ms[0m[0m
 [0m[[0minfo[0m] [0m[36m[0m[36m21 examples, 0 failure, 0 error[0m[0m
 [0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 21 events.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(IntegrationSpec, sbt.ForkMain$SubclassFingerscan@31256cc9, false, [SuiteSelector])[0m
-[0m[[0minfo[0m] [0mIntegrationSpec[37m[0m[0m
-[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
-[0m[[0minfo[0m] [0m[37m[0m[37mApplication should[0m[37m[0m[0m
-[0m[[0minfo[0m] [0m[37m[0m[37m[35mo[0m work from within a browser[0m SKIPPED[37m[0m[0m
-[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
-[0m[[0minfo[0m] [0m[37m[0mTotal for specification IntegrationSpec[0m
-[0m[[0minfo[0m] [0m[36mFinished in 16 ms[0m[0m
-[0m[[0minfo[0m] [0m[36m[0m[36m1 example, 0 failure, 0 error, 1 skipped[0m[0m
-[0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 1 events.[0m
 [0m[[0mdebug[0m] [0mSummary for JUnit not available.[0m
 [0m[[0mdebug[0m] [0mSummary for specs2 not available.[0m
 [0m[[0minfo[0m] [0mPassed: Total 22, Failed 0, Errors 0, Passed 21, Skipped 1[0m

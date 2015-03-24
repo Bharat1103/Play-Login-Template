@@ -145,3 +145,12 @@
 <IntegrationSpec-results timestamp="1425997797853"><result location="IntegrationSpec (IntegrationSpec.scala:17)" id="708906715"><stats time="14" expectations="1" skipped="1" examples="1"></stats></result>
 </IntegrationSpec-results>
 <IntegrationSpec-stats timestamp="1425997797869"><stats time="16" expectations="1" skipped="1" examples="1"></stats></IntegrationSpec-stats>
+<IntegrationSpec-results timestamp="1426071496092"><result location="IntegrationSpec (IntegrationSpec.scala:17)" id="708906715"><stats time="2" expectations="1" skipped="1" examples="1"></stats></result>
+</IntegrationSpec-results>
+<IntegrationSpec-stats timestamp="1426071496111"><stats time="2" expectations="1" skipped="1" examples="1"></stats></IntegrationSpec-stats>
+<IntegrationSpec-results timestamp="1426072964406"><result location="IntegrationSpec (IntegrationSpec.scala:17)" id="708906715"><stats time="1" expectations="1" skipped="1" examples="1"></stats></result>
+</IntegrationSpec-results>
+<IntegrationSpec-stats timestamp="1426072964418"><stats time="2" expectations="1" skipped="1" examples="1"></stats></IntegrationSpec-stats>
+<IntegrationSpec-results timestamp="1427193141550"><result location="IntegrationSpec (IntegrationSpec.scala:17)" id="708906715"><stats time="5" expectations="1" skipped="1" examples="1"></stats></result>
+</IntegrationSpec-results>
+<IntegrationSpec-stats timestamp="1427193141585"><stats time="11" expectations="1" skipped="1" examples="1"></stats></IntegrationSpec-stats>

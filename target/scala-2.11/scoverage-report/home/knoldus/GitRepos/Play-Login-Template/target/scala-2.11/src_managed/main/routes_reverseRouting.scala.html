@@ -1,0 +1,3234 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          /home/knoldus/GitRepos/Play-Login-Template/target/scala-2.11/src_managed/main/routes_reverseRouting.scala.html
+        </title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.3/addons/pager/jquery.tablesorter.pager.min.js"></script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier;'>1 <span style=''>// @SOURCE:/home/knoldus/play-login/conf/routes
+</span>2 <span style=''>// @HASH:651f52ceca6aa60cca17af2185aecaadaddab141
+</span>3 <span style=''>// @DATE:Tue Mar 10 16:55:13 IST 2015
+</span>4 <span style=''>
+</span>5 <span style=''>import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
+</span>6 <span style=''>import play.core._
+</span>7 <span style=''>import play.core.Router._
+</span>8 <span style=''>import play.core.Router.HandlerInvokerFactory._
+</span>9 <span style=''>import play.core.j._
+</span>10 <span style=''>
+</span>11 <span style=''>import play.api.mvc._
+</span>12 <span style=''>import _root_.controllers.Assets.Asset
+</span>13 <span style=''>
+</span>14 <span style=''>import Router.queryString
+</span>15 <span style=''>
+</span>16 <span style=''>
+</span>17 <span style=''>// @LINE:24
+</span>18 <span style=''>// @LINE:21
+</span>19 <span style=''>// @LINE:19
+</span>20 <span style=''>// @LINE:17
+</span>21 <span style=''>// @LINE:16
+</span>22 <span style=''>// @LINE:14
+</span>23 <span style=''>// @LINE:12
+</span>24 <span style=''>// @LINE:11
+</span>25 <span style=''>// @LINE:9
+</span>26 <span style=''>// @LINE:8
+</span>27 <span style=''>// @LINE:6
+</span>28 <span style=''>package controllers {
+</span>29 <span style=''>
+</span>30 <span style=''>// @LINE:24
+</span>31 <span style=''>class ReverseAssets {
+</span>32 <span style=''>
+</span>33 <span style=''>
+</span>34 <span style=''>// @LINE:24
+</span>35 <span style=''>def at(file:String): Call = {
+</span>36 <span style=''>   implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
+</span>37 <span style=''>   Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
+</span>38 <span style=''>}
+</span>39 <span style=''>                        
+</span>40 <span style=''>
+</span>41 <span style=''>}
+</span>42 <span style=''>                          
+</span>43 <span style=''>
+</span>44 <span style=''>// @LINE:21
+</span>45 <span style=''>// @LINE:19
+</span>46 <span style=''>// @LINE:17
+</span>47 <span style=''>// @LINE:16
+</span>48 <span style=''>// @LINE:14
+</span>49 <span style=''>// @LINE:12
+</span>50 <span style=''>// @LINE:11
+</span>51 <span style=''>// @LINE:9
+</span>52 <span style=''>// @LINE:8
+</span>53 <span style=''>// @LINE:6
+</span>54 <span style=''>class ReverseApplication {
+</span>55 <span style=''>
+</span>56 <span style=''>
+</span>57 <span style=''>// @LINE:21
+</span>58 <span style=''>def uploadFile(email:String): Call = {
+</span>59 <span style=''>   import ReverseRouteContext.empty
+</span>60 <span style=''>   Call("POST", _prefix + { _defaultPrefix } + "upload" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("email", email)))))
+</span>61 <span style=''>}
+</span>62 <span style=''>                        
+</span>63 <span style=''>
+</span>64 <span style=''>// @LINE:9
+</span>65 <span style=''>def registerme(): Call = {
+</span>66 <span style=''>   import ReverseRouteContext.empty
+</span>67 <span style=''>   Call("POST", _prefix + { _defaultPrefix } + "register/newuser")
+</span>68 <span style=''>}
+</span>69 <span style=''>                        
+</span>70 <span style=''>
+</span>71 <span style=''>// @LINE:14
+</span>72 <span style=''>def myprofile(page:String, email:String): Call = {
+</span>73 <span style=''>   import ReverseRouteContext.empty
+</span>74 <span style=''>   Call("GET", _prefix + { _defaultPrefix } + "myprofile" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("page", page)), Some(implicitly[QueryStringBindable[String]].unbind("email", email)))))
+</span>75 <span style=''>}
+</span>76 <span style=''>                        
+</span>77 <span style=''>
+</span>78 <span style=''>// @LINE:19
+</span>79 <span style=''>def logout(): Call = {
+</span>80 <span style=''>   import ReverseRouteContext.empty
+</span>81 <span style=''>   Call("GET", _prefix + { _defaultPrefix } + "logout")
+</span>82 <span style=''>}
+</span>83 <span style=''>                        
+</span>84 <span style=''>
+</span>85 <span style=''>// @LINE:8
+</span>86 <span style=''>def register(): Call = {
+</span>87 <span style=''>   import ReverseRouteContext.empty
+</span>88 <span style=''>   Call("GET", _prefix + { _defaultPrefix } + "register")
+</span>89 <span style=''>}
+</span>90 <span style=''>                        
+</span>91 <span style=''>
+</span>92 <span style=''>// @LINE:17
+</span>93 <span style=''>def update(email:String): Call = {
+</span>94 <span style=''>   import ReverseRouteContext.empty
+</span>95 <span style=''>   Call("POST", _prefix + { _defaultPrefix } + "update" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("email", email)))))
+</span>96 <span style=''>}
+</span>97 <span style=''>                        
+</span>98 <span style=''>
+</span>99 <span style=''>// @LINE:16
+</span>100 <span style=''>def updateprofile(page:String, email:String): Call = {
+</span>101 <span style=''>   import ReverseRouteContext.empty
+</span>102 <span style=''>   Call("GET", _prefix + { _defaultPrefix } + "updateprofile" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("page", page)), Some(implicitly[QueryStringBindable[String]].unbind("email", email)))))
+</span>103 <span style=''>}
+</span>104 <span style=''>                        
+</span>105 <span style=''>
+</span>106 <span style=''>// @LINE:12
+</span>107 <span style=''>def authenticate(): Call = {
+</span>108 <span style=''>   import ReverseRouteContext.empty
+</span>109 <span style=''>   Call("POST", _prefix + { _defaultPrefix } + "authenticate")
+</span>110 <span style=''>}
+</span>111 <span style=''>                        
+</span>112 <span style=''>
+</span>113 <span style=''>// @LINE:6
+</span>114 <span style=''>def home(page:String = "Home", email:String = "Guest", logedIn:Boolean = false): Call = {
+</span>115 <span style=''>   import ReverseRouteContext.empty
+</span>116 <span style=''>   Call("GET", _prefix + queryString(List(if(page == "Home") None else Some(implicitly[QueryStringBindable[String]].unbind("page", page)), if(email == "Guest") None else Some(implicitly[QueryStringBindable[String]].unbind("email", email)), if(logedIn == false) None else Some(implicitly[QueryStringBindable[Boolean]].unbind("logedIn", logedIn)))))
+</span>117 <span style=''>}
+</span>118 <span style=''>                        
+</span>119 <span style=''>
+</span>120 <span style=''>// @LINE:11
+</span>121 <span style=''>def login(): Call = {
+</span>122 <span style=''>   import ReverseRouteContext.empty
+</span>123 <span style=''>   Call("GET", _prefix + { _defaultPrefix } + "login")
+</span>124 <span style=''>}
+</span>125 <span style=''>                        
+</span>126 <span style=''>
+</span>127 <span style=''>}
+</span>128 <span style=''>                          
+</span>129 <span style=''>}
+</span>130 <span style=''>                  
+</span>131 <span style=''>
+</span>132 <span style=''>
+</span>133 <span style=''>// @LINE:24
+</span>134 <span style=''>// @LINE:21
+</span>135 <span style=''>// @LINE:19
+</span>136 <span style=''>// @LINE:17
+</span>137 <span style=''>// @LINE:16
+</span>138 <span style=''>// @LINE:14
+</span>139 <span style=''>// @LINE:12
+</span>140 <span style=''>// @LINE:11
+</span>141 <span style=''>// @LINE:9
+</span>142 <span style=''>// @LINE:8
+</span>143 <span style=''>// @LINE:6
+</span>144 <span style=''>package controllers.javascript {
+</span>145 <span style=''>import ReverseRouteContext.empty
+</span>146 <span style=''>
+</span>147 <span style=''>// @LINE:24
+</span>148 <span style=''>class ReverseAssets {
+</span>149 <span style=''>
+</span>150 <span style=''>
+</span>151 <span style=''>// @LINE:24
+</span>152 <span style=''>def at : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>153 <span style=''>   "controllers.Assets.at",
+</span>154 <span style=''>   """
+</span>155 <span style=''>      function(file) {
+</span>156 <span style=''>      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("file", file)})
+</span>157 <span style=''>      }
+</span>158 <span style=''>   """
+</span>159 <span style=''>)
+</span>160 <span style=''>                        
+</span>161 <span style=''>
+</span>162 <span style=''>}
+</span>163 <span style=''>              
+</span>164 <span style=''>
+</span>165 <span style=''>// @LINE:21
+</span>166 <span style=''>// @LINE:19
+</span>167 <span style=''>// @LINE:17
+</span>168 <span style=''>// @LINE:16
+</span>169 <span style=''>// @LINE:14
+</span>170 <span style=''>// @LINE:12
+</span>171 <span style=''>// @LINE:11
+</span>172 <span style=''>// @LINE:9
+</span>173 <span style=''>// @LINE:8
+</span>174 <span style=''>// @LINE:6
+</span>175 <span style=''>class ReverseApplication {
+</span>176 <span style=''>
+</span>177 <span style=''>
+</span>178 <span style=''>// @LINE:21
+</span>179 <span style=''>def uploadFile : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>180 <span style=''>   "controllers.Application.uploadFile",
+</span>181 <span style=''>   """
+</span>182 <span style=''>      function(email) {
+</span>183 <span style=''>      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "upload" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)])})
+</span>184 <span style=''>      }
+</span>185 <span style=''>   """
+</span>186 <span style=''>)
+</span>187 <span style=''>                        
+</span>188 <span style=''>
+</span>189 <span style=''>// @LINE:9
+</span>190 <span style=''>def registerme : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>191 <span style=''>   "controllers.Application.registerme",
+</span>192 <span style=''>   """
+</span>193 <span style=''>      function() {
+</span>194 <span style=''>      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "register/newuser"})
+</span>195 <span style=''>      }
+</span>196 <span style=''>   """
+</span>197 <span style=''>)
+</span>198 <span style=''>                        
+</span>199 <span style=''>
+</span>200 <span style=''>// @LINE:14
+</span>201 <span style=''>def myprofile : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>202 <span style=''>   "controllers.Application.myprofile",
+</span>203 <span style=''>   """
+</span>204 <span style=''>      function(page,email) {
+</span>205 <span style=''>      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "myprofile" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)])})
+</span>206 <span style=''>      }
+</span>207 <span style=''>   """
+</span>208 <span style=''>)
+</span>209 <span style=''>                        
+</span>210 <span style=''>
+</span>211 <span style=''>// @LINE:19
+</span>212 <span style=''>def logout : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>213 <span style=''>   "controllers.Application.logout",
+</span>214 <span style=''>   """
+</span>215 <span style=''>      function() {
+</span>216 <span style=''>      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "logout"})
+</span>217 <span style=''>      }
+</span>218 <span style=''>   """
+</span>219 <span style=''>)
+</span>220 <span style=''>                        
+</span>221 <span style=''>
+</span>222 <span style=''>// @LINE:8
+</span>223 <span style=''>def register : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>224 <span style=''>   "controllers.Application.register",
+</span>225 <span style=''>   """
+</span>226 <span style=''>      function() {
+</span>227 <span style=''>      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "register"})
+</span>228 <span style=''>      }
+</span>229 <span style=''>   """
+</span>230 <span style=''>)
+</span>231 <span style=''>                        
+</span>232 <span style=''>
+</span>233 <span style=''>// @LINE:17
+</span>234 <span style=''>def update : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>235 <span style=''>   "controllers.Application.update",
+</span>236 <span style=''>   """
+</span>237 <span style=''>      function(email) {
+</span>238 <span style=''>      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "update" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)])})
+</span>239 <span style=''>      }
+</span>240 <span style=''>   """
+</span>241 <span style=''>)
+</span>242 <span style=''>                        
+</span>243 <span style=''>
+</span>244 <span style=''>// @LINE:16
+</span>245 <span style=''>def updateprofile : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>246 <span style=''>   "controllers.Application.updateprofile",
+</span>247 <span style=''>   """
+</span>248 <span style=''>      function(page,email) {
+</span>249 <span style=''>      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "updateprofile" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page), (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)])})
+</span>250 <span style=''>      }
+</span>251 <span style=''>   """
+</span>252 <span style=''>)
+</span>253 <span style=''>                        
+</span>254 <span style=''>
+</span>255 <span style=''>// @LINE:12
+</span>256 <span style=''>def authenticate : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>257 <span style=''>   "controllers.Application.authenticate",
+</span>258 <span style=''>   """
+</span>259 <span style=''>      function() {
+</span>260 <span style=''>      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "authenticate"})
+</span>261 <span style=''>      }
+</span>262 <span style=''>   """
+</span>263 <span style=''>)
+</span>264 <span style=''>                        
+</span>265 <span style=''>
+</span>266 <span style=''>// @LINE:6
+</span>267 <span style=''>def home : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>268 <span style=''>   "controllers.Application.home",
+</span>269 <span style=''>   """
+</span>270 <span style=''>      function(page,email,logedIn) {
+</span>271 <span style=''>      return _wA({method:"GET", url:"""" + _prefix + """" + _qS([(page == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("page", page)), (email == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("email", email)), (logedIn == null ? null : (""" + implicitly[QueryStringBindable[Boolean]].javascriptUnbind + """)("logedIn", logedIn))])})
+</span>272 <span style=''>      }
+</span>273 <span style=''>   """
+</span>274 <span style=''>)
+</span>275 <span style=''>                        
+</span>276 <span style=''>
+</span>277 <span style=''>// @LINE:11
+</span>278 <span style=''>def login : JavascriptReverseRoute = JavascriptReverseRoute(
+</span>279 <span style=''>   "controllers.Application.login",
+</span>280 <span style=''>   """
+</span>281 <span style=''>      function() {
+</span>282 <span style=''>      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "login"})
+</span>283 <span style=''>      }
+</span>284 <span style=''>   """
+</span>285 <span style=''>)
+</span>286 <span style=''>                        
+</span>287 <span style=''>
+</span>288 <span style=''>}
+</span>289 <span style=''>              
+</span>290 <span style=''>}
+</span>291 <span style=''>        
+</span>292 <span style=''>
+</span>293 <span style=''>
+</span>294 <span style=''>// @LINE:24
+</span>295 <span style=''>// @LINE:21
+</span>296 <span style=''>// @LINE:19
+</span>297 <span style=''>// @LINE:17
+</span>298 <span style=''>// @LINE:16
+</span>299 <span style=''>// @LINE:14
+</span>300 <span style=''>// @LINE:12
+</span>301 <span style=''>// @LINE:11
+</span>302 <span style=''>// @LINE:9
+</span>303 <span style=''>// @LINE:8
+</span>304 <span style=''>// @LINE:6
+</span>305 <span style=''>package controllers.ref {
+</span>306 <span style=''>
+</span>307 <span style=''>
+</span>308 <span style=''>// @LINE:24
+</span>309 <span style=''>class ReverseAssets {
+</span>310 <span style=''>
+</span>311 <span style=''>
+</span>312 <span style=''>// @LINE:24
+</span>313 <span style=''>def at(path:String, file:String): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>314 <span style=''></span><span style='background: #F0ADAD'>   controllers.Assets.at(path, file), HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """GET			/navme						controllers.Application.navme(message:String,page:String)
+</span>315 <span style=''></span><span style='background: #F0ADAD'> Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
+</span>316 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>317 <span style=''>                      
+</span>318 <span style=''>
+</span>319 <span style=''>}
+</span>320 <span style=''>                          
+</span>321 <span style=''>
+</span>322 <span style=''>// @LINE:21
+</span>323 <span style=''>// @LINE:19
+</span>324 <span style=''>// @LINE:17
+</span>325 <span style=''>// @LINE:16
+</span>326 <span style=''>// @LINE:14
+</span>327 <span style=''>// @LINE:12
+</span>328 <span style=''>// @LINE:11
+</span>329 <span style=''>// @LINE:9
+</span>330 <span style=''>// @LINE:8
+</span>331 <span style=''>// @LINE:6
+</span>332 <span style=''>class ReverseApplication {
+</span>333 <span style=''>
+</span>334 <span style=''>
+</span>335 <span style=''>// @LINE:21
+</span>336 <span style=''>def uploadFile(email:String): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>337 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.uploadFile(email), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "uploadFile", Seq(classOf[String]), "POST", """""", _prefix + """upload""")
+</span>338 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>339 <span style=''>                      
+</span>340 <span style=''>
+</span>341 <span style=''>// @LINE:9
+</span>342 <span style=''>def registerme(): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>343 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.registerme(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "registerme", Seq(), "POST", """""", _prefix + """register/newuser""")
+</span>344 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>345 <span style=''>                      
+</span>346 <span style=''>
+</span>347 <span style=''>// @LINE:14
+</span>348 <span style=''>def myprofile(page:String, email:String): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>349 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.myprofile(page, email), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "myprofile", Seq(classOf[String], classOf[String]), "GET", """""", _prefix + """myprofile""")
+</span>350 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>351 <span style=''>                      
+</span>352 <span style=''>
+</span>353 <span style=''>// @LINE:19
+</span>354 <span style=''>def logout(): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>355 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.logout(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "logout", Seq(), "GET", """""", _prefix + """logout""")
+</span>356 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>357 <span style=''>                      
+</span>358 <span style=''>
+</span>359 <span style=''>// @LINE:8
+</span>360 <span style=''>def register(): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>361 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.register(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "register", Seq(), "GET", """""", _prefix + """register""")
+</span>362 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>363 <span style=''>                      
+</span>364 <span style=''>
+</span>365 <span style=''>// @LINE:17
+</span>366 <span style=''>def update(email:String): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>367 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.update(email), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "update", Seq(classOf[String]), "POST", """""", _prefix + """update""")
+</span>368 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>369 <span style=''>                      
+</span>370 <span style=''>
+</span>371 <span style=''>// @LINE:16
+</span>372 <span style=''>def updateprofile(page:String, email:String): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>373 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.updateprofile(page, email), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "updateprofile", Seq(classOf[String], classOf[String]), "GET", """""", _prefix + """updateprofile""")
+</span>374 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>375 <span style=''>                      
+</span>376 <span style=''>
+</span>377 <span style=''>// @LINE:12
+</span>378 <span style=''>def authenticate(): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>379 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.authenticate(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "authenticate", Seq(), "POST", """""", _prefix + """authenticate""")
+</span>380 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>381 <span style=''>                      
+</span>382 <span style=''>
+</span>383 <span style=''>// @LINE:6
+</span>384 <span style=''>def home(page:String, email:String, logedIn:Boolean): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>385 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.home(page, email, logedIn), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "home", Seq(classOf[String], classOf[String], classOf[Boolean]), "GET", """ Home page""", _prefix + """""")
+</span>386 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>387 <span style=''>                      
+</span>388 <span style=''>
+</span>389 <span style=''>// @LINE:11
+</span>390 <span style=''>def login(): play.api.mvc.HandlerRef[_] = </span><span style='background: #F0ADAD'>new play.api.mvc.HandlerRef(
+</span>391 <span style=''></span><span style='background: #F0ADAD'>   controllers.Application.login(), HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "login", Seq(), "GET", """""", _prefix + """login""")
+</span>392 <span style=''></span><span style='background: #F0ADAD'>)</span><span style=''>
+</span>393 <span style=''>                      
+</span>394 <span style=''>
+</span>395 <span style=''>}
+</span>396 <span style=''>                          
+</span>397 <span style=''>}
+</span>398 <span style=''>        
+</span>399 <span style=''>    
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          313
+        </td>
+        <td>
+          536
+        </td>
+        <td>
+          8368
+          -
+          8742
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Assets.at(path, file, controllers.Assets.at$default$3), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Assets&quot;, &quot;at&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String]), &quot;GET&quot;, &quot;GET\t\t\t/navme\t\t\t\t\t\tcontrollers.Application.navme(message:String,page:String)\n Map static resources from the /public folder to the /assets URL path&quot;, Routes.prefix.+(&quot;assets/$file&lt;.+&gt;&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          313
+        </td>
+        <td>
+          535
+        </td>
+        <td>
+          8368
+          -
+          8368
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          532
+        </td>
+        <td>
+          8554
+          -
+          8705
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET\t\t\t/navme\t\t\t\t\t\tcontrollers.Application.navme(message:String,page:String)\n Map static resources from the /public folder to the /assets URL path&quot;
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          525
+        </td>
+        <td>
+          8400
+          -
+          8433
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.AssetsBuilder.at
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Assets.at(path, file, controllers.Assets.at$default$3)
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          534
+        </td>
+        <td>
+          8435
+          -
+          8740
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Assets&quot;, &quot;at&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String]), &quot;GET&quot;, &quot;GET\t\t\t/navme\t\t\t\t\t\tcontrollers.Application.navme(message:String,page:String)\n Map static resources from the /public folder to the /assets URL path&quot;, Routes.prefix.+(&quot;assets/$file&lt;.+&gt;&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          528
+        </td>
+        <td>
+          8480
+          -
+          8500
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Assets&quot;
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          531
+        </td>
+        <td>
+          8547
+          -
+          8552
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET&quot;
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          530
+        </td>
+        <td>
+          8508
+          -
+          8545
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String])
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          524
+        </td>
+        <td>
+          8419
+          -
+          8419
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          controllers.AssetsBuilder.at$default$3
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Assets.at$default$3
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          527
+        </td>
+        <td>
+          8476
+          -
+          8478
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          526
+        </td>
+        <td>
+          8446
+          -
+          8474
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          314
+        </td>
+        <td>
+          529
+        </td>
+        <td>
+          8502
+          -
+          8506
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;at&quot;
+        </td>
+      </tr><tr>
+        <td>
+          315
+        </td>
+        <td>
+          533
+        </td>
+        <td>
+          8707
+          -
+          8739
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;assets/$file&lt;.+&gt;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          336
+        </td>
+        <td>
+          548
+        </td>
+        <td>
+          9014
+          -
+          9238
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.MultipartFormData[play.api.libs.Files.TemporaryFile]]](controllers.Application.uploadFile(email), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;uploadFile&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String]), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;upload&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.MultipartFormData[play.api.libs.Files.TemporaryFile]]])
+        </td>
+      </tr><tr>
+        <td>
+          336
+        </td>
+        <td>
+          547
+        </td>
+        <td>
+          9014
+          -
+          9014
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.MultipartFormData[play.api.libs.Files.TemporaryFile]]]
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          541
+        </td>
+        <td>
+          9161
+          -
+          9173
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;uploadFile&quot;
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          540
+        </td>
+        <td>
+          9134
+          -
+          9159
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          543
+        </td>
+        <td>
+          9197
+          -
+          9203
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;POST&quot;
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          537
+        </td>
+        <td>
+          9046
+          -
+          9087
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.Application.uploadFile
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.uploadFile(email)
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          546
+        </td>
+        <td>
+          9089
+          -
+          9236
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;uploadFile&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String]), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;upload&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          539
+        </td>
+        <td>
+          9130
+          -
+          9132
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          542
+        </td>
+        <td>
+          9175
+          -
+          9195
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Class[String]](classOf[java.lang.String])
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          545
+        </td>
+        <td>
+          9213
+          -
+          9235
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;upload&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          544
+        </td>
+        <td>
+          9205
+          -
+          9211
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          337
+        </td>
+        <td>
+          538
+        </td>
+        <td>
+          9100
+          -
+          9128
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          342
+        </td>
+        <td>
+          559
+        </td>
+        <td>
+          9321
+          -
+          9321
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          342
+        </td>
+        <td>
+          560
+        </td>
+        <td>
+          9321
+          -
+          9535
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.registerme.apply(), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;registerme&quot;, collection.this.Seq.apply[Nothing](), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;register/newuser&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          550
+        </td>
+        <td>
+          9402
+          -
+          9430
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          558
+        </td>
+        <td>
+          9391
+          -
+          9533
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;registerme&quot;, collection.this.Seq.apply[Nothing](), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;register/newuser&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          549
+        </td>
+        <td>
+          9353
+          -
+          9389
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Action.apply
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.registerme.apply()
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          552
+        </td>
+        <td>
+          9436
+          -
+          9461
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          555
+        </td>
+        <td>
+          9484
+          -
+          9490
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;POST&quot;
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          557
+        </td>
+        <td>
+          9500
+          -
+          9532
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;register/newuser&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          551
+        </td>
+        <td>
+          9432
+          -
+          9434
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          554
+        </td>
+        <td>
+          9477
+          -
+          9482
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Nothing]()
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          553
+        </td>
+        <td>
+          9463
+          -
+          9475
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;registerme&quot;
+        </td>
+      </tr><tr>
+        <td>
+          343
+        </td>
+        <td>
+          556
+        </td>
+        <td>
+          9492
+          -
+          9498
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          348
+        </td>
+        <td>
+          572
+        </td>
+        <td>
+          9643
+          -
+          9890
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.myprofile(page, email), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;myprofile&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String]), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;myprofile&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          348
+        </td>
+        <td>
+          571
+        </td>
+        <td>
+          9643
+          -
+          9643
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          568
+        </td>
+        <td>
+          9854
+          -
+          9860
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          567
+        </td>
+        <td>
+          9847
+          -
+          9852
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET&quot;
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          561
+        </td>
+        <td>
+          9675
+          -
+          9721
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.Application.myprofile
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.myprofile(page, email)
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          570
+        </td>
+        <td>
+          9723
+          -
+          9888
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;myprofile&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String]), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;myprofile&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          564
+        </td>
+        <td>
+          9768
+          -
+          9793
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          563
+        </td>
+        <td>
+          9764
+          -
+          9766
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          566
+        </td>
+        <td>
+          9808
+          -
+          9845
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String])
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          569
+        </td>
+        <td>
+          9862
+          -
+          9887
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;myprofile&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          562
+        </td>
+        <td>
+          9734
+          -
+          9762
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          349
+        </td>
+        <td>
+          565
+        </td>
+        <td>
+          9795
+          -
+          9806
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;myprofile&quot;
+        </td>
+      </tr><tr>
+        <td>
+          354
+        </td>
+        <td>
+          584
+        </td>
+        <td>
+          9970
+          -
+          10165
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.logout.apply(), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;logout&quot;, collection.this.Seq.apply[Nothing](), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;logout&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          354
+        </td>
+        <td>
+          583
+        </td>
+        <td>
+          9970
+          -
+          9970
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          577
+        </td>
+        <td>
+          10108
+          -
+          10116
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;logout&quot;
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          576
+        </td>
+        <td>
+          10081
+          -
+          10106
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          579
+        </td>
+        <td>
+          10125
+          -
+          10130
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET&quot;
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          573
+        </td>
+        <td>
+          10002
+          -
+          10034
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Action.apply
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.logout.apply()
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          582
+        </td>
+        <td>
+          10036
+          -
+          10163
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;logout&quot;, collection.this.Seq.apply[Nothing](), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;logout&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          581
+        </td>
+        <td>
+          10140
+          -
+          10162
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;logout&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          575
+        </td>
+        <td>
+          10077
+          -
+          10079
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          578
+        </td>
+        <td>
+          10118
+          -
+          10123
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Nothing]()
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          580
+        </td>
+        <td>
+          10132
+          -
+          10138
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          355
+        </td>
+        <td>
+          574
+        </td>
+        <td>
+          10047
+          -
+          10075
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          360
+        </td>
+        <td>
+          596
+        </td>
+        <td>
+          10246
+          -
+          10447
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.register.apply(), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;register&quot;, collection.this.Seq.apply[Nothing](), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;register&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          360
+        </td>
+        <td>
+          595
+        </td>
+        <td>
+          10246
+          -
+          10246
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          585
+        </td>
+        <td>
+          10278
+          -
+          10312
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Action.apply
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.register.apply()
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          594
+        </td>
+        <td>
+          10314
+          -
+          10445
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;register&quot;, collection.this.Seq.apply[Nothing](), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;register&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          588
+        </td>
+        <td>
+          10359
+          -
+          10384
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          591
+        </td>
+        <td>
+          10405
+          -
+          10410
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET&quot;
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          590
+        </td>
+        <td>
+          10398
+          -
+          10403
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Nothing]()
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          593
+        </td>
+        <td>
+          10420
+          -
+          10444
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;register&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          587
+        </td>
+        <td>
+          10355
+          -
+          10357
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          586
+        </td>
+        <td>
+          10325
+          -
+          10353
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          589
+        </td>
+        <td>
+          10386
+          -
+          10396
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;register&quot;
+        </td>
+      </tr><tr>
+        <td>
+          361
+        </td>
+        <td>
+          592
+        </td>
+        <td>
+          10412
+          -
+          10418
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          366
+        </td>
+        <td>
+          608
+        </td>
+        <td>
+          10539
+          -
+          10755
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.update(email), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;update&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String]), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;update&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          366
+        </td>
+        <td>
+          607
+        </td>
+        <td>
+          10539
+          -
+          10539
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          600
+        </td>
+        <td>
+          10655
+          -
+          10680
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          603
+        </td>
+        <td>
+          10714
+          -
+          10720
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;POST&quot;
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          597
+        </td>
+        <td>
+          10571
+          -
+          10608
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.Application.update
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.update(email)
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          606
+        </td>
+        <td>
+          10610
+          -
+          10753
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;update&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String]), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;update&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          599
+        </td>
+        <td>
+          10651
+          -
+          10653
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          602
+        </td>
+        <td>
+          10692
+          -
+          10712
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Class[String]](classOf[java.lang.String])
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          605
+        </td>
+        <td>
+          10730
+          -
+          10752
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;update&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          604
+        </td>
+        <td>
+          10722
+          -
+          10728
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          598
+        </td>
+        <td>
+          10621
+          -
+          10649
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          367
+        </td>
+        <td>
+          601
+        </td>
+        <td>
+          10682
+          -
+          10690
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;update&quot;
+        </td>
+      </tr><tr>
+        <td>
+          372
+        </td>
+        <td>
+          620
+        </td>
+        <td>
+          10867
+          -
+          11126
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.updateprofile(page, email), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;updateprofile&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String]), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;updateprofile&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          372
+        </td>
+        <td>
+          619
+        </td>
+        <td>
+          10867
+          -
+          10867
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          609
+        </td>
+        <td>
+          10899
+          -
+          10949
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.Application.updateprofile
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.updateprofile(page, email)
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          618
+        </td>
+        <td>
+          10951
+          -
+          11124
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;updateprofile&quot;, collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String]), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;updateprofile&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          612
+        </td>
+        <td>
+          10996
+          -
+          11021
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          615
+        </td>
+        <td>
+          11079
+          -
+          11084
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET&quot;
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          617
+        </td>
+        <td>
+          11094
+          -
+          11123
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;updateprofile&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          611
+        </td>
+        <td>
+          10992
+          -
+          10994
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          614
+        </td>
+        <td>
+          11040
+          -
+          11077
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Class[String]](classOf[java.lang.String], classOf[java.lang.String])
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          613
+        </td>
+        <td>
+          11023
+          -
+          11038
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;updateprofile&quot;
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          616
+        </td>
+        <td>
+          11086
+          -
+          11092
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          373
+        </td>
+        <td>
+          610
+        </td>
+        <td>
+          10962
+          -
+          10990
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          378
+        </td>
+        <td>
+          632
+        </td>
+        <td>
+          11212
+          -
+          11426
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.authenticate.apply(), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;authenticate&quot;, collection.this.Seq.apply[Nothing](), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;authenticate&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          378
+        </td>
+        <td>
+          631
+        </td>
+        <td>
+          11212
+          -
+          11212
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          627
+        </td>
+        <td>
+          11379
+          -
+          11385
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;POST&quot;
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          621
+        </td>
+        <td>
+          11244
+          -
+          11282
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Action.apply
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.authenticate.apply()
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          630
+        </td>
+        <td>
+          11284
+          -
+          11424
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;authenticate&quot;, collection.this.Seq.apply[Nothing](), &quot;POST&quot;, &quot;&quot;, Routes.prefix.+(&quot;authenticate&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          624
+        </td>
+        <td>
+          11329
+          -
+          11354
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          623
+        </td>
+        <td>
+          11325
+          -
+          11327
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          626
+        </td>
+        <td>
+          11372
+          -
+          11377
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Nothing]()
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          629
+        </td>
+        <td>
+          11395
+          -
+          11423
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;authenticate&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          622
+        </td>
+        <td>
+          11295
+          -
+          11323
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          625
+        </td>
+        <td>
+          11356
+          -
+          11370
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;authenticate&quot;
+        </td>
+      </tr><tr>
+        <td>
+          379
+        </td>
+        <td>
+          628
+        </td>
+        <td>
+          11387
+          -
+          11393
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          384
+        </td>
+        <td>
+          644
+        </td>
+        <td>
+          11545
+          -
+          11810
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.home(page, email, logedIn), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;home&quot;, collection.this.Seq.apply[Class[_ &gt;: Boolean with String]](classOf[java.lang.String], classOf[java.lang.String], classOf[scala.Boolean]), &quot;GET&quot;, &quot; Home page&quot;, Routes.prefix.+(&quot;&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          384
+        </td>
+        <td>
+          643
+        </td>
+        <td>
+          11545
+          -
+          11545
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          636
+        </td>
+        <td>
+          11674
+          -
+          11699
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          639
+        </td>
+        <td>
+          11766
+          -
+          11771
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET&quot;
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          633
+        </td>
+        <td>
+          11577
+          -
+          11627
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.Application.home
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.home(page, email, logedIn)
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          642
+        </td>
+        <td>
+          11629
+          -
+          11808
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;home&quot;, collection.this.Seq.apply[Class[_ &gt;: Boolean with String]](classOf[java.lang.String], classOf[java.lang.String], classOf[scala.Boolean]), &quot;GET&quot;, &quot; Home page&quot;, Routes.prefix.+(&quot;&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          641
+        </td>
+        <td>
+          11791
+          -
+          11807
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          635
+        </td>
+        <td>
+          11670
+          -
+          11672
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          638
+        </td>
+        <td>
+          11709
+          -
+          11764
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Class[_ &gt;: Boolean with String]](classOf[java.lang.String], classOf[java.lang.String], classOf[scala.Boolean])
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          640
+        </td>
+        <td>
+          11773
+          -
+          11789
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot; Home page&quot;
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          634
+        </td>
+        <td>
+          11640
+          -
+          11668
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          385
+        </td>
+        <td>
+          637
+        </td>
+        <td>
+          11701
+          -
+          11707
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;home&quot;
+        </td>
+      </tr><tr>
+        <td>
+          390
+        </td>
+        <td>
+          656
+        </td>
+        <td>
+          11889
+          -
+          12081
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.HandlerRef.&lt;init&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          new play.api.mvc.HandlerRef[play.api.mvc.Action[play.api.mvc.AnyContent]](controllers.Application.login.apply(), play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;login&quot;, collection.this.Seq.apply[Nothing](), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;login&quot;)))(play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]])
+        </td>
+      </tr><tr>
+        <td>
+          390
+        </td>
+        <td>
+          655
+        </td>
+        <td>
+          11889
+          -
+          11889
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          play.core.Router.HandlerInvokerFactory.passThrough
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerInvokerFactory.passThrough[play.api.mvc.Action[play.api.mvc.AnyContent]]
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          645
+        </td>
+        <td>
+          11921
+          -
+          11952
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Action.apply
+        </td>
+        <td style="background: #F0ADAD">
+          controllers.Application.login.apply()
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          654
+        </td>
+        <td>
+          11954
+          -
+          12079
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.core.Router.HandlerDef.apply
+        </td>
+        <td style="background: #F0ADAD">
+          play.core.Router.HandlerDef.apply(this.getClass().getClassLoader(), &quot;&quot;, &quot;controllers.Application&quot;, &quot;login&quot;, collection.this.Seq.apply[Nothing](), &quot;GET&quot;, &quot;&quot;, Routes.prefix.+(&quot;login&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          648
+        </td>
+        <td>
+          11999
+          -
+          12024
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;controllers.Application&quot;
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          651
+        </td>
+        <td>
+          12042
+          -
+          12047
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;GET&quot;
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          650
+        </td>
+        <td>
+          12035
+          -
+          12040
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.generic.GenericCompanion.apply
+        </td>
+        <td style="background: #F0ADAD">
+          collection.this.Seq.apply[Nothing]()
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          653
+        </td>
+        <td>
+          12057
+          -
+          12078
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td style="background: #F0ADAD">
+          Routes.prefix.+(&quot;login&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          647
+        </td>
+        <td>
+          11995
+          -
+          11997
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          646
+        </td>
+        <td>
+          11965
+          -
+          11993
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Class.getClassLoader
+        </td>
+        <td style="background: #F0ADAD">
+          this.getClass().getClassLoader()
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          649
+        </td>
+        <td>
+          12026
+          -
+          12033
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;login&quot;
+        </td>
+      </tr><tr>
+        <td>
+          391
+        </td>
+        <td>
+          652
+        </td>
+        <td>
+          12049
+          -
+          12055
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;&quot;
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

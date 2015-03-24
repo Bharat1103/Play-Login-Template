@@ -95,162 +95,163 @@
 </span>70 <span style=''></span><span style='background: #AEF1AE'>    regform.bindFromRequest.fold(
 </span>71 <span style=''></span><span style='background: #AEF1AE'>      formWithErrors => BadRequest(html.register("Register", formWithErrors)),
 </span>72 <span style=''></span><span style='background: #AEF1AE'>      user => {
-</span>73 <span style=''></span><span style='background: #AEF1AE'>        val findDetails = myWebUsers.getData(user.email).getOrElse("Not Found")
+</span>73 <span style=''></span><span style='background: #AEF1AE'>        val findDetails = myWebUsers.getData(user.email.toLowerCase.trim).getOrElse("Not Found")
 </span>74 <span style=''></span><span style='background: #AEF1AE'>        if (findDetails != "Not Found") {
 </span>75 <span style=''></span><span style='background: #AEF1AE'>
 </span>76 <span style=''></span><span style='background: #AEF1AE'>          val flash = play.api.mvc.Flash(Map("failedCreate" -> s"WebUser ${user.email} already exist"))
 </span>77 <span style=''></span><span style='background: #AEF1AE'>          Ok(html.register("Register", regform)(flash))
 </span>78 <span style=''></span><span style='background: #AEF1AE'>        } else {
-</span>79 <span style=''></span><span style='background: #AEF1AE'>          myWebUsers.create(user)
-</span>80 <span style=''></span><span style='background: #AEF1AE'>          //For Testing without mocking
-</span>81 <span style=''></span><span style='background: #AEF1AE'>          if (user.email == "Test@knoldus.com")
-</span>82 <span style=''></span><span style='background: #AEF1AE'>            myWebUsers.delete("Test@knoldus.com")
-</span>83 <span style=''></span><span style='background: #AEF1AE'>          Redirect(routes.Application.login).flashing("successCreate" -> s"WebUser ${user.name} created, please Login")
-</span>84 <span style=''></span><span style='background: #AEF1AE'>        }
-</span>85 <span style=''></span><span style='background: #AEF1AE'>      })
-</span>86 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>87 <span style=''>
-</span>88 <span style=''>  /**
-</span>89 <span style=''>   * @param email : registered email of the user / takes the value of the email with which
-</span>90 <span style=''>   *                user has loged into the system, value originates from the session variable.
-</span>91 <span style=''>   *
-</span>92 <span style=''>   * renders the Profile page of the user after successful update / redirects to the login page
-</span>93 <span style=''>   * if the session of the user has expired or does not exist to begin with.
-</span>94 <span style=''>   *
-</span>95 <span style=''>   * Make updates in the profile details of the user depending on the Update Form filled by the user.
-</span>96 <span style=''>   *
-</span>97 <span style=''>   * Invoked as the POST action of the Update Form
-</span>98 <span style=''>   */
-</span>99 <span style=''>  def update(email: String) = </span><span style='background: #AEF1AE'>DBAction { implicit rs =>
-</span>100 <span style=''></span><span style='background: #AEF1AE'>    regform.bindFromRequest.fold(
-</span>101 <span style=''></span><span style='background: #AEF1AE'>      formWithErrors => BadRequest(html.updateprofile("Edit User", email, formWithErrors)),
-</span>102 <span style=''></span><span style='background: #AEF1AE'>      user => {
-</span>103 <span style=''></span><span style='background: #AEF1AE'>        val webuser = myWebUsers.getData(email)
-</span>104 <span style=''></span><span style='background: #AEF1AE'>
-</span>105 <span style=''></span><span style='background: #AEF1AE'>        webuser match {
-</span>106 <span style=''></span><span style='background: #AEF1AE'>          case Some(record: User) => {
-</span>107 <span style=''></span><span style='background: #AEF1AE'>            val createdOriginal = record.created
-</span>108 <span style=''></span><span style='background: #AEF1AE'>            val updatedUser = user.copy(id = record.id, created = createdOriginal, email = email)
-</span>109 <span style=''></span><span style='background: #AEF1AE'>            myWebUsers.updateUser(updatedUser, record.id.get)
-</span>110 <span style=''></span><span style='background: #AEF1AE'>            val flash = play.api.mvc.Flash(Map("successUpdate" -> s"WebUser ${updatedUser.name} has been updated"))
-</span>111 <span style=''></span><span style='background: #AEF1AE'>            Ok(html.myprofile("Profile", email)(flash))
-</span>112 <span style=''></span><span style='background: #AEF1AE'>          }
-</span>113 <span style=''></span><span style='background: #AEF1AE'>          case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
-</span>114 <span style=''></span><span style='background: #AEF1AE'>        }
-</span>115 <span style=''></span><span style='background: #AEF1AE'>      })
-</span>116 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>117 <span style=''>
-</span>118 <span style=''>  /**
-</span>119 <span style=''>   * @param page : contains the title of the page / default "Edit".
-</span>120 <span style=''>   * @param email : email address retrieved from the session variable / default "Guest"
-</span>121 <span style=''>   *
-</span>122 <span style=''>   * renders and fills the required details of the user in the Update Form, if the registered
-</span>123 <span style=''>   * email address of the user is in the session.
-</span>124 <span style=''>   *
-</span>125 <span style=''>   * Redirects to the login page otherwise.
-</span>126 <span style=''>   */
-</span>127 <span style=''>  def updateprofile(page: String, email: String) = </span><span style='background: #AEF1AE'>DBAction { implicit rs =>
-</span>128 <span style=''></span><span style='background: #AEF1AE'>    rs.session.get("email") match {
-</span>129 <span style=''></span><span style='background: #AEF1AE'>      case Some(email) => {
-</span>130 <span style=''></span><span style='background: #AEF1AE'>        val existingData = myWebUsers.getData(email).get
-</span>131 <span style=''></span><span style='background: #AEF1AE'>        Ok(html.updateprofile("Edit", email, regform.fill(existingData)))
-</span>132 <span style=''></span><span style='background: #AEF1AE'>      }
-</span>133 <span style=''></span><span style='background: #AEF1AE'>      case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
-</span>134 <span style=''></span><span style='background: #AEF1AE'>
-</span>135 <span style=''></span><span style='background: #AEF1AE'>    }
-</span>136 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>137 <span style=''>
-</span>138 <span style=''>  /**
-</span>139 <span style=''>   * renders the Register Form
-</span>140 <span style=''>   */
-</span>141 <span style=''>  def register = </span><span style='background: #AEF1AE'>Action { implicit rs =>
-</span>142 <span style=''></span><span style='background: #AEF1AE'>    Ok(html.register("Register", regform))
-</span>143 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>144 <span style=''>
-</span>145 <span style=''>  /**
-</span>146 <span style=''>   * authenticate the email and password entered, creates session and stores the authenticated email in
-</span>147 <span style=''>   * session variable, also renders the profile page of the user upon successful login.
-</span>148 <span style=''>   *
-</span>149 <span style=''>   * redirects to login page if the authentication fails.
-</span>150 <span style=''>   *
-</span>151 <span style=''>   * Invoked as the POST action of the Login Form
-</span>152 <span style=''>   */
-</span>153 <span style=''>  def authenticate = </span><span style='background: #AEF1AE'>DBAction { implicit rs =>
-</span>154 <span style=''></span><span style='background: #AEF1AE'>
-</span>155 <span style=''></span><span style='background: #AEF1AE'>    loginform.bindFromRequest.fold(
-</span>156 <span style=''></span><span style='background: #AEF1AE'>      formWithErrors => BadRequest(html.login("Login", formWithErrors)),
-</span>157 <span style=''></span><span style='background: #AEF1AE'>      user =>
-</span>158 <span style=''></span><span style='background: #AEF1AE'>        if (myWebUsers.connect(user)) {
-</span>159 <span style=''></span><span style='background: #AEF1AE'>          val userConn = myWebUsers.getData(user._1).get
-</span>160 <span style=''></span><span style='background: #AEF1AE'>          val flash = play.api.mvc.Flash(Map("successIn" -> s"Welcome ${userConn.name}"))
-</span>161 <span style=''></span><span style='background: #AEF1AE'>          Ok(html.myprofile("Profile", userConn.email)(flash)).withSession("email" -> userConn.email)
-</span>162 <span style=''></span><span style='background: #AEF1AE'>        } else {
-</span>163 <span style=''></span><span style='background: #AEF1AE'>          Redirect(routes.Application.login).flashing("failed" -> "Email and/or Password is not valid")
-</span>164 <span style=''></span><span style='background: #AEF1AE'>        })
-</span>165 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>166 <span style=''>
-</span>167 <span style=''>  /**
-</span>168 <span style=''>   * @param page : contains the title of the page / "Profile" default
-</span>169 <span style=''>   * @param email : registered email of the user retrieved from the session variable / "Guest" default
-</span>170 <span style=''>   *
-</span>171 <span style=''>   * renders the profile page of the user if his registered email exist in the session,
-</span>172 <span style=''>   * redirects to the login page otherwise.
-</span>173 <span style=''>   */
-</span>174 <span style=''>  def myprofile(page: String, email: String) = </span><span style='background: #AEF1AE'>Action { implicit rs =>
-</span>175 <span style=''></span><span style='background: #AEF1AE'>    if (rs.session.isEmpty) {
-</span>176 <span style=''></span><span style='background: #AEF1AE'>      Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
-</span>177 <span style=''></span><span style='background: #AEF1AE'>    } else {
-</span>178 <span style=''></span><span style='background: #AEF1AE'>      rs.session.get("email") match {
-</span>179 <span style=''></span><span style='background: #AEF1AE'>        case Some(email: String) =>
-</span>180 <span style=''></span><span style='background: #AEF1AE'>          Ok(html.myprofile(page, email))
-</span>181 <span style=''></span><span style='background: #AEF1AE'>        case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
-</span>182 <span style=''></span><span style='background: #AEF1AE'>      }
-</span>183 <span style=''></span><span style='background: #AEF1AE'>    }
-</span>184 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>185 <span style=''>
-</span>186 <span style=''>  /**
-</span>187 <span style=''>   * clears any session in place and renders the login page
-</span>188 <span style=''>   */
-</span>189 <span style=''>  def logout = </span><span style='background: #AEF1AE'>Action { implicit rs =>
-</span>190 <span style=''></span><span style='background: #AEF1AE'>    val flash = play.api.mvc.Flash(Map("successOut" -> "You are now logged out."))
-</span>191 <span style=''></span><span style='background: #AEF1AE'>    Ok(html.login("Login", loginform)(flash)).withNewSession
-</span>192 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>193 <span style=''>
-</span>194 <span style=''>  /**
-</span>195 <span style=''>   * @param email : email retrieved from session variable.
-</span>196 <span style=''>   *
-</span>197 <span style=''>   * uploads an image in simple image format and stores it on the server side with registered
-</span>198 <span style=''>   * email of the user as file name.
-</span>199 <span style=''>   *
-</span>200 <span style=''>   * renders the profile page of the user after uploading.
-</span>201 <span style=''>   * Invoked as the POST action of the Upload Form.
-</span>202 <span style=''>   */
-</span>203 <span style=''>  def uploadFile(email: String) = </span><span style='background: #AEF1AE'>Action(parse.multipartFormData) { implicit request =>
-</span>204 <span style=''></span><span style='background: #AEF1AE'>   //Logger.warn(">>>>>>>>>> request - " + request.body.file("fileUpload"))
-</span>205 <span style=''></span><span style='background: #AEF1AE'>    request.body.file("fileUpload").map { picture =>
-</span>206 <span style=''></span><span style='background: #AEF1AE'>      
-</span>207 <span style=''></span><span style='background: #AEF1AE'>        picture.ref.moveTo(new File("public/images/tmp.png"), true)
-</span>208 <span style=''></span><span style='background: #AEF1AE'>        val uploadedFile = new File("public/images/tmp.png")
-</span>209 <span style=''></span><span style='background: #AEF1AE'>        val targetStream = new FileInputStream(uploadedFile)
-</span>210 <span style=''></span><span style='background: #AEF1AE'>    try {
-</span>211 <span style=''></span><span style='background: #AEF1AE'>        val img = ImageIO.read(targetStream)
-</span>212 <span style=''></span><span style='background: #AEF1AE'>        // It's an image (only BMP, GIF, JPG and PNG are recognized).
-</span>213 <span style=''></span><span style='background: #AEF1AE'>        val mypic = new File("public/images/" + email + ".jpeg")
-</span>214 <span style=''></span><span style='background: #AEF1AE'>        ImageIO.write(img, "jpeg", mypic)
-</span>215 <span style=''></span><span style='background: #AEF1AE'>        val flash=</span><span style='background: #F0ADAD'>play.api.mvc.Flash(Map("successUpdate" -> s"WebUser pic has been updated"))</span><span style='background: #AEF1AE'>
-</span>216 <span style=''></span><span style='background: #AEF1AE'>        </span><span style='background: #F0ADAD'>Ok(html.myprofile("Profile", email)(flash))</span><span style='background: #AEF1AE'>
-</span>217 <span style=''></span><span style='background: #AEF1AE'>      } 
-</span>218 <span style=''></span><span style='background: #AEF1AE'>     catch {
-</span>219 <span style=''></span><span style='background: #AEF1AE'>        case e: Exception =>
-</span>220 <span style=''></span><span style='background: #AEF1AE'>          Redirect(routes.Application.myprofile("Profile", email)).flashing("failedUpdate" -> s"WebUser pic has not been updated")
-</span>221 <span style=''></span><span style='background: #AEF1AE'>      }
-</span>222 <span style=''></span><span style='background: #AEF1AE'>     finally{
-</span>223 <span style=''></span><span style='background: #AEF1AE'>        targetStream.close
-</span>224 <span style=''></span><span style='background: #AEF1AE'>        uploadedFile.delete
-</span>225 <span style=''></span><span style='background: #AEF1AE'>      }
-</span>226 <span style=''></span><span style='background: #AEF1AE'>    }.getOrElse(Redirect(routes.Application.myprofile("Profile", email)).flashing("failedUpdate" -> s"WebUser empty upload"))    
-</span>227 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
-</span>228 <span style=''>}
+</span>79 <span style=''></span><span style='background: #AEF1AE'>	  val createUser=user.copy(email=user.email.toLowerCase.trim)
+</span>80 <span style=''></span><span style='background: #AEF1AE'>          myWebUsers.create(createUser)
+</span>81 <span style=''></span><span style='background: #AEF1AE'>          //For Testing without mocking
+</span>82 <span style=''></span><span style='background: #AEF1AE'>          if (user.email == "test@knoldus.com")
+</span>83 <span style=''></span><span style='background: #AEF1AE'>            </span><span style='background: #F0ADAD'>myWebUsers.delete("test@knoldus.com")</span><span style='background: #AEF1AE'>
+</span>84 <span style=''></span><span style='background: #AEF1AE'>          Redirect(routes.Application.login).flashing("successCreate" -> s"WebUser ${user.name} created, please Login")
+</span>85 <span style=''></span><span style='background: #AEF1AE'>        }
+</span>86 <span style=''></span><span style='background: #AEF1AE'>      })
+</span>87 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>88 <span style=''>
+</span>89 <span style=''>  /**
+</span>90 <span style=''>   * @param email : registered email of the user / takes the value of the email with which
+</span>91 <span style=''>   *                user has loged into the system, value originates from the session variable.
+</span>92 <span style=''>   *
+</span>93 <span style=''>   * renders the Profile page of the user after successful update / redirects to the login page
+</span>94 <span style=''>   * if the session of the user has expired or does not exist to begin with.
+</span>95 <span style=''>   *
+</span>96 <span style=''>   * Make updates in the profile details of the user depending on the Update Form filled by the user.
+</span>97 <span style=''>   *
+</span>98 <span style=''>   * Invoked as the POST action of the Update Form
+</span>99 <span style=''>   */
+</span>100 <span style=''>  def update(email: String) = </span><span style='background: #AEF1AE'>DBAction { implicit rs =>
+</span>101 <span style=''></span><span style='background: #AEF1AE'>    regform.bindFromRequest.fold(
+</span>102 <span style=''></span><span style='background: #AEF1AE'>      formWithErrors => BadRequest(html.updateprofile("Edit User", email, formWithErrors)),
+</span>103 <span style=''></span><span style='background: #AEF1AE'>      user => {
+</span>104 <span style=''></span><span style='background: #AEF1AE'>        val webuser = myWebUsers.getData(email)
+</span>105 <span style=''></span><span style='background: #AEF1AE'>
+</span>106 <span style=''></span><span style='background: #AEF1AE'>        webuser match {
+</span>107 <span style=''></span><span style='background: #AEF1AE'>          case Some(record: User) => {
+</span>108 <span style=''></span><span style='background: #AEF1AE'>            val createdOriginal = record.created
+</span>109 <span style=''></span><span style='background: #AEF1AE'>            val updatedUser = user.copy(id = record.id, created = createdOriginal, email = email)
+</span>110 <span style=''></span><span style='background: #AEF1AE'>            myWebUsers.updateUser(updatedUser, record.id.get)
+</span>111 <span style=''></span><span style='background: #AEF1AE'>            val flash = play.api.mvc.Flash(Map("successUpdate" -> s"WebUser ${updatedUser.name} has been updated"))
+</span>112 <span style=''></span><span style='background: #AEF1AE'>            Ok(html.myprofile("Profile", email)(flash))
+</span>113 <span style=''></span><span style='background: #AEF1AE'>          }
+</span>114 <span style=''></span><span style='background: #AEF1AE'>          case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
+</span>115 <span style=''></span><span style='background: #AEF1AE'>        }
+</span>116 <span style=''></span><span style='background: #AEF1AE'>      })
+</span>117 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>118 <span style=''>
+</span>119 <span style=''>  /**
+</span>120 <span style=''>   * @param page : contains the title of the page / default "Edit".
+</span>121 <span style=''>   * @param email : email address retrieved from the session variable / default "Guest"
+</span>122 <span style=''>   *
+</span>123 <span style=''>   * renders and fills the required details of the user in the Update Form, if the registered
+</span>124 <span style=''>   * email address of the user is in the session.
+</span>125 <span style=''>   *
+</span>126 <span style=''>   * Redirects to the login page otherwise.
+</span>127 <span style=''>   */
+</span>128 <span style=''>  def updateprofile(page: String, email: String) = </span><span style='background: #AEF1AE'>DBAction { implicit rs =>
+</span>129 <span style=''></span><span style='background: #AEF1AE'>    rs.session.get("email") match {
+</span>130 <span style=''></span><span style='background: #AEF1AE'>      case Some(email) => {
+</span>131 <span style=''></span><span style='background: #AEF1AE'>        val existingData = myWebUsers.getData(email).get
+</span>132 <span style=''></span><span style='background: #AEF1AE'>        Ok(html.updateprofile("Edit", email, regform.fill(existingData)))
+</span>133 <span style=''></span><span style='background: #AEF1AE'>      }
+</span>134 <span style=''></span><span style='background: #AEF1AE'>      case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
+</span>135 <span style=''></span><span style='background: #AEF1AE'>
+</span>136 <span style=''></span><span style='background: #AEF1AE'>    }
+</span>137 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>138 <span style=''>
+</span>139 <span style=''>  /**
+</span>140 <span style=''>   * renders the Register Form
+</span>141 <span style=''>   */
+</span>142 <span style=''>  def register = </span><span style='background: #AEF1AE'>Action { implicit rs =>
+</span>143 <span style=''></span><span style='background: #AEF1AE'>    Ok(html.register("Register", regform))
+</span>144 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>145 <span style=''>
+</span>146 <span style=''>  /**
+</span>147 <span style=''>   * authenticate the email and password entered, creates session and stores the authenticated email in
+</span>148 <span style=''>   * session variable, also renders the profile page of the user upon successful login.
+</span>149 <span style=''>   *
+</span>150 <span style=''>   * redirects to login page if the authentication fails.
+</span>151 <span style=''>   *
+</span>152 <span style=''>   * Invoked as the POST action of the Login Form
+</span>153 <span style=''>   */
+</span>154 <span style=''>  def authenticate = </span><span style='background: #AEF1AE'>DBAction { implicit rs =>
+</span>155 <span style=''></span><span style='background: #AEF1AE'>
+</span>156 <span style=''></span><span style='background: #AEF1AE'>    loginform.bindFromRequest.fold(
+</span>157 <span style=''></span><span style='background: #AEF1AE'>      formWithErrors => BadRequest(html.login("Login", formWithErrors)),
+</span>158 <span style=''></span><span style='background: #AEF1AE'>      user =>
+</span>159 <span style=''></span><span style='background: #AEF1AE'>        if (myWebUsers.connect(user)) {
+</span>160 <span style=''></span><span style='background: #AEF1AE'>          val userConn = myWebUsers.getData(user._1.toLowerCase.trim).get
+</span>161 <span style=''></span><span style='background: #AEF1AE'>          val flash = play.api.mvc.Flash(Map("successIn" -> s"Welcome ${userConn.name}"))
+</span>162 <span style=''></span><span style='background: #AEF1AE'>          Ok(html.myprofile("Profile", userConn.email)(flash)).withSession("email" -> userConn.email)
+</span>163 <span style=''></span><span style='background: #AEF1AE'>        } else {
+</span>164 <span style=''></span><span style='background: #AEF1AE'>          Redirect(routes.Application.login).flashing("failed" -> "Email and/or Password is not valid")
+</span>165 <span style=''></span><span style='background: #AEF1AE'>        })
+</span>166 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>167 <span style=''>
+</span>168 <span style=''>  /**
+</span>169 <span style=''>   * @param page : contains the title of the page / "Profile" default
+</span>170 <span style=''>   * @param email : registered email of the user retrieved from the session variable / "Guest" default
+</span>171 <span style=''>   *
+</span>172 <span style=''>   * renders the profile page of the user if his registered email exist in the session,
+</span>173 <span style=''>   * redirects to the login page otherwise.
+</span>174 <span style=''>   */
+</span>175 <span style=''>  def myprofile(page: String, email: String) = </span><span style='background: #AEF1AE'>Action { implicit rs =>
+</span>176 <span style=''></span><span style='background: #AEF1AE'>    if (rs.session.isEmpty) {
+</span>177 <span style=''></span><span style='background: #AEF1AE'>      Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
+</span>178 <span style=''></span><span style='background: #AEF1AE'>    } else {
+</span>179 <span style=''></span><span style='background: #AEF1AE'>      rs.session.get("email") match {
+</span>180 <span style=''></span><span style='background: #AEF1AE'>        case Some(email: String) =>
+</span>181 <span style=''></span><span style='background: #AEF1AE'>          Ok(html.myprofile(page, email))
+</span>182 <span style=''></span><span style='background: #AEF1AE'>        case None => Redirect(routes.Application.login).flashing("failed" -> "Cannot Fetch Your Profile, Please Login First")
+</span>183 <span style=''></span><span style='background: #AEF1AE'>      }
+</span>184 <span style=''></span><span style='background: #AEF1AE'>    }
+</span>185 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>186 <span style=''>
+</span>187 <span style=''>  /**
+</span>188 <span style=''>   * clears any session in place and renders the login page
+</span>189 <span style=''>   */
+</span>190 <span style=''>  def logout = </span><span style='background: #AEF1AE'>Action { implicit rs =>
+</span>191 <span style=''></span><span style='background: #AEF1AE'>    val flash = play.api.mvc.Flash(Map("successOut" -> "You are now logged out."))
+</span>192 <span style=''></span><span style='background: #AEF1AE'>    Ok(html.login("Login", loginform)(flash)).withNewSession
+</span>193 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>194 <span style=''>
+</span>195 <span style=''>  /**
+</span>196 <span style=''>   * @param email : email retrieved from session variable.
+</span>197 <span style=''>   *
+</span>198 <span style=''>   * uploads an image in simple image format and stores it on the server side with registered
+</span>199 <span style=''>   * email of the user as file name.
+</span>200 <span style=''>   *
+</span>201 <span style=''>   * renders the profile page of the user after uploading.
+</span>202 <span style=''>   * Invoked as the POST action of the Upload Form.
+</span>203 <span style=''>   */
+</span>204 <span style=''>  def uploadFile(email: String) = </span><span style='background: #AEF1AE'>Action(parse.multipartFormData) { implicit request =>
+</span>205 <span style=''></span><span style='background: #AEF1AE'>   //Logger.warn(">>>>>>>>>> request - " + request.body.file("fileUpload"))
+</span>206 <span style=''></span><span style='background: #AEF1AE'>    request.body.file("fileUpload").map { picture =>
+</span>207 <span style=''></span><span style='background: #AEF1AE'>      
+</span>208 <span style=''></span><span style='background: #AEF1AE'>        picture.ref.moveTo(new File("public/images/tmp.png"), true)
+</span>209 <span style=''></span><span style='background: #AEF1AE'>        val uploadedFile = new File("public/images/tmp.png")
+</span>210 <span style=''></span><span style='background: #AEF1AE'>        val targetStream = new FileInputStream(uploadedFile)
+</span>211 <span style=''></span><span style='background: #AEF1AE'>    try {
+</span>212 <span style=''></span><span style='background: #AEF1AE'>        val img = ImageIO.read(targetStream)
+</span>213 <span style=''></span><span style='background: #AEF1AE'>        // It's an image (only BMP, GIF, JPG and PNG are recognized).
+</span>214 <span style=''></span><span style='background: #AEF1AE'>        val mypic = new File("public/images/" + email + ".jpeg")
+</span>215 <span style=''></span><span style='background: #AEF1AE'>        ImageIO.write(img, "jpeg", mypic)
+</span>216 <span style=''></span><span style='background: #AEF1AE'>        val flash=</span><span style='background: #F0ADAD'>play.api.mvc.Flash(Map("successUpdate" -> s"WebUser pic has been updated"))</span><span style='background: #AEF1AE'>
+</span>217 <span style=''></span><span style='background: #AEF1AE'>        </span><span style='background: #F0ADAD'>Ok(html.myprofile("Profile", email)(flash))</span><span style='background: #AEF1AE'>
+</span>218 <span style=''></span><span style='background: #AEF1AE'>      } 
+</span>219 <span style=''></span><span style='background: #AEF1AE'>     catch {
+</span>220 <span style=''></span><span style='background: #AEF1AE'>        case e: Exception =>
+</span>221 <span style=''></span><span style='background: #AEF1AE'>          Redirect(routes.Application.myprofile("Profile", email)).flashing("failedUpdate" -> s"WebUser pic has not been updated")
+</span>222 <span style=''></span><span style='background: #AEF1AE'>      }
+</span>223 <span style=''></span><span style='background: #AEF1AE'>     finally{
+</span>224 <span style=''></span><span style='background: #AEF1AE'>        targetStream.close
+</span>225 <span style=''></span><span style='background: #AEF1AE'>        uploadedFile.delete
+</span>226 <span style=''></span><span style='background: #AEF1AE'>      }
+</span>227 <span style=''></span><span style='background: #AEF1AE'>    }.getOrElse(Redirect(routes.Application.myprofile("Profile", email)).flashing("failedUpdate" -> s"WebUser empty upload"))    
+</span>228 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>229 <span style=''>}
 </span></pre>
           </div>
           <div class="tab-pane" id="statementlist">
@@ -1598,65 +1599,7 @@
           69
         </td>
         <td>
-          110
-        </td>
-        <td>
-          1828
-          -
-          2597
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.db.slick.PredicatedDBAction.apply
-        </td>
-        <td style="background: #AEF1AE">
-          play.api.db.slick.DBAction.apply(((implicit rs: play.api.db.slick.DBSessionRequest[play.api.mvc.AnyContent]) =&gt; Application.this.regform.bindFromRequest()(rs).fold[play.api.mvc.Result](((formWithErrors: play.api.data.Form[models.User]) =&gt; Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.register.apply(&quot;Register&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))), ((user: models.User) =&gt; {
-  val findDetails: java.io.Serializable = Application.this.myWebUsers.getData(user.email)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).getOrElse[java.io.Serializable](&quot;Not Found&quot;);
-  if (findDetails.!=(&quot;Not Found&quot;))
-    {
-      val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;failedCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; already exist&quot;).s(user.email))));
-      Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.register.apply(&quot;Register&quot;, Application.this.regform)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
-    }
-  else
-    {
-      Application.this.myWebUsers.create(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
-      if (user.email.==(&quot;Test@knoldus.com&quot;))
-        Application.this.myWebUsers.delete(&quot;Test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
-      else
-        ();
-      Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)))
-    }
-}))))(slick.this.MaybeApplication.maybe(play.api.Play.current))
-        </td>
-      </tr><tr>
-        <td>
-          69
-        </td>
-        <td>
-          109
-        </td>
-        <td>
-          1837
-          -
-          1837
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.db.slick.MaybeApplication.maybe
-        </td>
-        <td style="background: #AEF1AE">
-          slick.this.MaybeApplication.maybe(play.api.Play.current)
-        </td>
-      </tr><tr>
-        <td>
-          69
-        </td>
-        <td>
-          108
+          119
         </td>
         <td>
           1837
@@ -1674,15 +1617,86 @@
         </td>
       </tr><tr>
         <td>
+          69
+        </td>
+        <td>
+          121
+        </td>
+        <td>
+          1828
+          -
+          2683
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.db.slick.PredicatedDBAction.apply
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.DBAction.apply(((implicit rs: play.api.db.slick.DBSessionRequest[play.api.mvc.AnyContent]) =&gt; Application.this.regform.bindFromRequest()(rs).fold[play.api.mvc.Result](((formWithErrors: play.api.data.Form[models.User]) =&gt; Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.register.apply(&quot;Register&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))), ((user: models.User) =&gt; {
+  val findDetails: java.io.Serializable = Application.this.myWebUsers.getData(user.email.toLowerCase().trim())(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).getOrElse[java.io.Serializable](&quot;Not Found&quot;);
+  if (findDetails.!=(&quot;Not Found&quot;))
+    {
+      val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;failedCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; already exist&quot;).s(user.email))));
+      Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.register.apply(&quot;Register&quot;, Application.this.regform)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+    }
+  else
+    {
+      val createUser: models.User = {
+        &lt;artifact&gt; val x$1: String = user.email.toLowerCase().trim();
+        &lt;artifact&gt; val x$2: String = user.copy$default$1;
+        &lt;artifact&gt; val x$3: String = user.copy$default$3;
+        &lt;artifact&gt; val x$4: Long = user.copy$default$4;
+        &lt;artifact&gt; val x$5: String = user.copy$default$5;
+        &lt;artifact&gt; val x$6: String = user.copy$default$6;
+        &lt;artifact&gt; val x$7: org.joda.time.LocalDateTime = user.copy$default$7;
+        &lt;artifact&gt; val x$8: org.joda.time.LocalDateTime = user.copy$default$8;
+        &lt;artifact&gt; val x$9: Int = user.copy$default$9;
+        &lt;artifact&gt; val x$10: Option[Int] @scala.reflect.internal.annotations.uncheckedBounds = user.copy$default$10;
+        user.copy(x$2, x$1, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10)
+      };
+      Application.this.myWebUsers.create(createUser)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
+      if (user.email.==(&quot;test@knoldus.com&quot;))
+        Application.this.myWebUsers.delete(&quot;test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
+      else
+        ();
+      Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)))
+    }
+}))))(slick.this.MaybeApplication.maybe(play.api.Play.current))
+        </td>
+      </tr><tr>
+        <td>
+          69
+        </td>
+        <td>
+          120
+        </td>
+        <td>
+          1837
+          -
+          1837
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.db.slick.MaybeApplication.maybe
+        </td>
+        <td style="background: #AEF1AE">
+          slick.this.MaybeApplication.maybe(play.api.Play.current)
+        </td>
+      </tr><tr>
+        <td>
           70
         </td>
         <td>
-          107
+          118
         </td>
         <td>
           1858
           -
-          2593
+          2679
         </td>
         <td>
           Apply
@@ -1692,7 +1706,7 @@
         </td>
         <td style="background: #AEF1AE">
           Application.this.regform.bindFromRequest()(rs).fold[play.api.mvc.Result](((formWithErrors: play.api.data.Form[models.User]) =&gt; Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.register.apply(&quot;Register&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))), ((user: models.User) =&gt; {
-  val findDetails: java.io.Serializable = Application.this.myWebUsers.getData(user.email)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).getOrElse[java.io.Serializable](&quot;Not Found&quot;);
+  val findDetails: java.io.Serializable = Application.this.myWebUsers.getData(user.email.toLowerCase().trim())(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).getOrElse[java.io.Serializable](&quot;Not Found&quot;);
   if (findDetails.!=(&quot;Not Found&quot;))
     {
       val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;failedCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; already exist&quot;).s(user.email))));
@@ -1700,9 +1714,22 @@
     }
   else
     {
-      Application.this.myWebUsers.create(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
-      if (user.email.==(&quot;Test@knoldus.com&quot;))
-        Application.this.myWebUsers.delete(&quot;Test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
+      val createUser: models.User = {
+        &lt;artifact&gt; val x$1: String = user.email.toLowerCase().trim();
+        &lt;artifact&gt; val x$2: String = user.copy$default$1;
+        &lt;artifact&gt; val x$3: String = user.copy$default$3;
+        &lt;artifact&gt; val x$4: Long = user.copy$default$4;
+        &lt;artifact&gt; val x$5: String = user.copy$default$5;
+        &lt;artifact&gt; val x$6: String = user.copy$default$6;
+        &lt;artifact&gt; val x$7: org.joda.time.LocalDateTime = user.copy$default$7;
+        &lt;artifact&gt; val x$8: org.joda.time.LocalDateTime = user.copy$default$8;
+        &lt;artifact&gt; val x$9: Int = user.copy$default$9;
+        &lt;artifact&gt; val x$10: Option[Int] @scala.reflect.internal.annotations.uncheckedBounds = user.copy$default$10;
+        user.copy(x$2, x$1, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10)
+      };
+      Application.this.myWebUsers.create(createUser)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
+      if (user.email.==(&quot;test@knoldus.com&quot;))
+        Application.this.myWebUsers.delete(&quot;test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
       else
         ();
       Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)))
@@ -1887,7 +1914,7 @@
         <td>
           2009
           -
-          2062
+          2079
         </td>
         <td>
           Apply
@@ -1896,7 +1923,7 @@
           scala.Option.getOrElse
         </td>
         <td style="background: #AEF1AE">
-          Application.this.myWebUsers.getData(user.email)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).getOrElse[java.io.Serializable](&quot;Not Found&quot;)
+          Application.this.myWebUsers.getData(user.email.toLowerCase().trim())(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).getOrElse[java.io.Serializable](&quot;Not Found&quot;)
         </td>
       </tr><tr>
         <td>
@@ -1906,9 +1933,9 @@
           73
         </td>
         <td>
-          2075
+          2092
           -
-          2101
+          2118
         </td>
         <td>
           Apply
@@ -1927,9 +1954,9 @@
           88
         </td>
         <td>
-          2103
+          2120
           -
-          2275
+          2292
         </td>
         <td>
           Block
@@ -1951,9 +1978,9 @@
           77
         </td>
         <td>
-          2181
+          2198
           -
-          2191
+          2208
         </td>
         <td>
           Select
@@ -1972,9 +1999,9 @@
           80
         </td>
         <td>
-          2147
+          2164
           -
-          2208
+          2225
         </td>
         <td>
           Apply
@@ -1993,9 +2020,9 @@
           74
         </td>
         <td>
-          2151
+          2168
           -
-          2165
+          2182
         </td>
         <td>
           Literal
@@ -2014,9 +2041,9 @@
           76
         </td>
         <td>
-          2192
+          2209
           -
-          2207
+          2224
         </td>
         <td>
           Literal
@@ -2035,9 +2062,9 @@
           79
         </td>
         <td>
-          2151
+          2168
           -
-          2207
+          2224
         </td>
         <td>
           Apply
@@ -2056,9 +2083,9 @@
           78
         </td>
         <td>
-          2169
+          2186
           -
-          2207
+          2224
         </td>
         <td>
           Apply
@@ -2077,9 +2104,9 @@
           81
         </td>
         <td>
-          2128
+          2145
           -
-          2209
+          2226
         </td>
         <td>
           Apply
@@ -2098,9 +2125,9 @@
           75
         </td>
         <td>
-          2171
+          2188
           -
-          2180
+          2197
         </td>
         <td>
           Literal
@@ -2119,9 +2146,9 @@
           83
         </td>
         <td>
-          2222
+          2239
           -
-          2222
+          2239
         </td>
         <td>
           Select
@@ -2140,9 +2167,9 @@
           86
         </td>
         <td>
-          2222
+          2239
           -
-          2222
+          2239
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2161,9 +2188,9 @@
           82
         </td>
         <td>
-          2223
+          2240
           -
-          2264
+          2281
         </td>
         <td>
           Apply
@@ -2182,9 +2209,9 @@
           85
         </td>
         <td>
-          2222
+          2239
           -
-          2222
+          2239
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2203,9 +2230,9 @@
           87
         </td>
         <td>
-          2220
+          2237
           -
-          2265
+          2282
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2224,9 +2251,9 @@
           84
         </td>
         <td>
-          2222
+          2239
           -
-          2222
+          2239
         </td>
         <td>
           Select
@@ -2242,12 +2269,12 @@
           78
         </td>
         <td>
-          106
+          117
         </td>
         <td>
-          2281
+          2298
           -
-          2584
+          2670
         </td>
         <td>
           Block
@@ -2257,9 +2284,22 @@
         </td>
         <td style="background: #AEF1AE">
           {
-  Application.this.myWebUsers.create(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
-  if (user.email.==(&quot;Test@knoldus.com&quot;))
-    Application.this.myWebUsers.delete(&quot;Test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
+  val createUser: models.User = {
+    &lt;artifact&gt; val x$1: String = user.email.toLowerCase().trim();
+    &lt;artifact&gt; val x$2: String = user.copy$default$1;
+    &lt;artifact&gt; val x$3: String = user.copy$default$3;
+    &lt;artifact&gt; val x$4: Long = user.copy$default$4;
+    &lt;artifact&gt; val x$5: String = user.copy$default$5;
+    &lt;artifact&gt; val x$6: String = user.copy$default$6;
+    &lt;artifact&gt; val x$7: org.joda.time.LocalDateTime = user.copy$default$7;
+    &lt;artifact&gt; val x$8: org.joda.time.LocalDateTime = user.copy$default$8;
+    &lt;artifact&gt; val x$9: Int = user.copy$default$9;
+    &lt;artifact&gt; val x$10: Option[Int] @scala.reflect.internal.annotations.uncheckedBounds = user.copy$default$10;
+    user.copy(x$2, x$1, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10)
+  };
+  Application.this.myWebUsers.create(createUser)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
+  if (user.email.==(&quot;test@knoldus.com&quot;))
+    Application.this.myWebUsers.delete(&quot;test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
   else
     ();
   Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)))
@@ -2270,12 +2310,264 @@
           79
         </td>
         <td>
+          92
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$4
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$4
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          95
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$7
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$7
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
           89
         </td>
         <td>
-          2310
+          2334
           -
-          2310
+          2361
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.trim
+        </td>
+        <td style="background: #AEF1AE">
+          user.email.toLowerCase().trim()
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          98
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$10
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$10
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          91
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$3
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$3
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          94
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$6
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$6
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          97
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$9
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$9
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          96
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$8
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$8
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          90
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$1
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$1
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          99
+        </td>
+        <td>
+          2318
+          -
+          2362
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          models.User.copy
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy(x$2, x$1, x$3, x$4, x$5, x$6, x$7, x$8, x$9, x$10)
+        </td>
+      </tr><tr>
+        <td>
+          79
+        </td>
+        <td>
+          93
+        </td>
+        <td>
+          2323
+          -
+          2323
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$5
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$5
+        </td>
+      </tr><tr>
+        <td>
+          80
+        </td>
+        <td>
+          101
+        </td>
+        <td>
+          2373
+          -
+          2402
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          models.WebUsersTrait.create
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.myWebUsers.create(createUser)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
+        </td>
+      </tr><tr>
+        <td>
+          80
+        </td>
+        <td>
+          100
+        </td>
+        <td>
+          2390
+          -
+          2390
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2288,97 +2580,13 @@
         </td>
       </tr><tr>
         <td>
-          79
-        </td>
-        <td>
-          90
-        </td>
-        <td>
-          2293
-          -
-          2316
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          models.WebUsersTrait.create
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.myWebUsers.create(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
-        </td>
-      </tr><tr>
-        <td>
-          81
-        </td>
-        <td>
-          91
-        </td>
-        <td>
-          2371
-          -
-          2403
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          java.lang.Object.==
-        </td>
-        <td style="background: #AEF1AE">
-          user.email.==(&quot;Test@knoldus.com&quot;)
-        </td>
-      </tr><tr>
-        <td>
-          81
-        </td>
-        <td>
-          97
-        </td>
-        <td>
-          2367
-          -
-          2367
-        </td>
-        <td>
-          Block
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #F0ADAD">
-          ()
-        </td>
-      </tr><tr>
-        <td>
-          81
-        </td>
-        <td>
-          96
-        </td>
-        <td>
-          2367
-          -
-          2367
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #F0ADAD">
-          ()
-        </td>
-      </tr><tr>
-        <td>
           82
         </td>
         <td>
-          92
+          107
         </td>
         <td>
-          2435
+          2453
           -
           2453
         </td>
@@ -2389,91 +2597,49 @@
           &lt;nosymbol&gt;
         </td>
         <td style="background: #AEF1AE">
-          &quot;Test@knoldus.com&quot;
+          ()
         </td>
       </tr><tr>
         <td>
           82
         </td>
         <td>
-          95
+          108
         </td>
         <td>
-          2417
+          2453
           -
-          2454
+          2453
         </td>
         <td>
           Block
         </td>
         <td>
-          models.WebUsersTrait.delete
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.myWebUsers.delete(&quot;Test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
-        </td>
-      </tr><tr>
-        <td>
-          82
-        </td>
-        <td>
-          94
-        </td>
-        <td>
-          2417
-          -
-          2454
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          models.WebUsersTrait.delete
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.myWebUsers.delete(&quot;Test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
-        </td>
-      </tr><tr>
-        <td>
-          82
-        </td>
-        <td>
-          93
-        </td>
-        <td>
-          2434
-          -
-          2434
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.db.slick.dbSessionRequestAsSession
-        </td>
-        <td style="background: #AEF1AE">
-          play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)
-        </td>
-      </tr><tr>
-        <td>
-          83
-        </td>
-        <td>
-          101
-        </td>
-        <td>
-          2550
-          -
-          2573
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
           &lt;nosymbol&gt;
         </td>
         <td style="background: #AEF1AE">
-          &quot; created, please Login&quot;
+          ()
+        </td>
+      </tr><tr>
+        <td>
+          82
+        </td>
+        <td>
+          102
+        </td>
+        <td>
+          2457
+          -
+          2489
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.==
+        </td>
+        <td style="background: #AEF1AE">
+          user.email.==(&quot;test@knoldus.com&quot;)
         </td>
       </tr><tr>
         <td>
@@ -2483,60 +2649,39 @@
           104
         </td>
         <td>
-          2509
+          2520
           -
-          2573
+          2520
         </td>
         <td>
-          Apply
+          ApplyToImplicitArgs
         </td>
         <td>
-          scala.Predef.ArrowAssoc.-&gt;
+          play.api.db.slick.dbSessionRequestAsSession
         </td>
-        <td style="background: #AEF1AE">
-          scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name))
+        <td style="background: #F0ADAD">
+          play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)
         </td>
       </tr><tr>
         <td>
           83
         </td>
         <td>
-          98
+          106
         </td>
         <td>
-          2474
+          2503
           -
-          2498
+          2540
         </td>
         <td>
-          Apply
+          Block
         </td>
         <td>
-          controllers.ReverseApplication.login
+          models.WebUsersTrait.delete
         </td>
-        <td style="background: #AEF1AE">
-          routes.Application.login()
-        </td>
-      </tr><tr>
-        <td>
-          83
-        </td>
-        <td>
-          100
-        </td>
-        <td>
-          2530
-          -
-          2539
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;WebUser &quot;
+        <td style="background: #F0ADAD">
+          Application.this.myWebUsers.delete(&quot;test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
         </td>
       </tr><tr>
         <td>
@@ -2546,18 +2691,18 @@
           103
         </td>
         <td>
-          2528
+          2521
           -
-          2573
+          2539
         </td>
         <td>
-          Apply
+          Literal
         </td>
         <td>
-          scala.StringContext.s
+          &lt;nosymbol&gt;
         </td>
-        <td style="background: #AEF1AE">
-          scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)
+        <td style="background: #F0ADAD">
+          &quot;test@knoldus.com&quot;
         </td>
       </tr><tr>
         <td>
@@ -2567,30 +2712,30 @@
           105
         </td>
         <td>
-          2465
+          2503
           -
-          2574
+          2540
         </td>
         <td>
-          Apply
+          ApplyToImplicitArgs
         </td>
         <td>
-          play.api.mvc.Result.flashing
+          models.WebUsersTrait.delete
         </td>
-        <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)))
+        <td style="background: #F0ADAD">
+          Application.this.myWebUsers.delete(&quot;test@knoldus.com&quot;)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
         </td>
       </tr><tr>
         <td>
-          83
+          84
         </td>
         <td>
-          99
+          110
         </td>
         <td>
-          2509
+          2595
           -
-          2524
+          2610
         </td>
         <td>
           Literal
@@ -2603,15 +2748,15 @@
         </td>
       </tr><tr>
         <td>
-          83
+          84
         </td>
         <td>
-          102
+          113
         </td>
         <td>
-          2540
+          2626
           -
-          2549
+          2635
         </td>
         <td>
           Select
@@ -2624,57 +2769,141 @@
         </td>
       </tr><tr>
         <td>
-          99
+          84
         </td>
         <td>
-          151
+          116
         </td>
         <td>
-          3178
+          2551
           -
-          3178
+          2660
         </td>
         <td>
-          ApplyToImplicitArgs
+          Apply
         </td>
         <td>
-          play.api.db.slick.MaybeApplication.maybe
+          play.api.mvc.Result.flashing
         </td>
         <td style="background: #AEF1AE">
-          slick.this.MaybeApplication.maybe(play.api.Play.current)
+          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)))
         </td>
       </tr><tr>
         <td>
-          99
+          84
         </td>
         <td>
-          150
+          115
         </td>
         <td>
-          3178
+          2595
           -
-          3178
+          2659
         </td>
         <td>
-          Select
+          Apply
         </td>
         <td>
-          play.api.Play.current
+          scala.Predef.ArrowAssoc.-&gt;
         </td>
         <td style="background: #AEF1AE">
-          play.api.Play.current
+          scala.this.Predef.ArrowAssoc[String](&quot;successCreate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name))
         </td>
       </tr><tr>
         <td>
-          99
+          84
         </td>
         <td>
-          152
+          109
         </td>
         <td>
-          3169
+          2560
           -
-          3992
+          2584
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.login
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.login()
+        </td>
+      </tr><tr>
+        <td>
+          84
+        </td>
+        <td>
+          112
+        </td>
+        <td>
+          2636
+          -
+          2659
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot; created, please Login&quot;
+        </td>
+      </tr><tr>
+        <td>
+          84
+        </td>
+        <td>
+          114
+        </td>
+        <td>
+          2614
+          -
+          2659
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td style="background: #AEF1AE">
+          scala.StringContext.apply(&quot;WebUser &quot;, &quot; created, please Login&quot;).s(user.name)
+        </td>
+      </tr><tr>
+        <td>
+          84
+        </td>
+        <td>
+          111
+        </td>
+        <td>
+          2616
+          -
+          2625
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;WebUser &quot;
+        </td>
+      </tr><tr>
+        <td>
+          100
+        </td>
+        <td>
+          163
+        </td>
+        <td>
+          3255
+          -
+          4078
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2689,17 +2918,17 @@
     case (x: models.User)Some[models.User]((record @ (_: models.User))) =&gt; {
       val createdOriginal: org.joda.time.LocalDateTime = record.created;
       val updatedUser: models.User = {
-        &lt;artifact&gt; val x$1: Option[Int] @scala.reflect.internal.annotations.uncheckedBounds = record.id;
-        &lt;artifact&gt; val x$2: org.joda.time.LocalDateTime = createdOriginal;
-        &lt;artifact&gt; val x$3: String = email;
-        &lt;artifact&gt; val x$4: String = user.copy$default$1;
-        &lt;artifact&gt; val x$5: String = user.copy$default$3;
-        &lt;artifact&gt; val x$6: Long = user.copy$default$4;
-        &lt;artifact&gt; val x$7: String = user.copy$default$5;
-        &lt;artifact&gt; val x$8: String = user.copy$default$6;
-        &lt;artifact&gt; val x$9: org.joda.time.LocalDateTime = user.copy$default$8;
-        &lt;artifact&gt; val x$10: Int = user.copy$default$9;
-        user.copy(x$4, x$3, x$5, x$6, x$7, x$8, x$2, x$9, x$10, x$1)
+        &lt;artifact&gt; val x$11: Option[Int] @scala.reflect.internal.annotations.uncheckedBounds = record.id;
+        &lt;artifact&gt; val x$12: org.joda.time.LocalDateTime = createdOriginal;
+        &lt;artifact&gt; val x$13: String = email;
+        &lt;artifact&gt; val x$14: String = user.copy$default$1;
+        &lt;artifact&gt; val x$15: String = user.copy$default$3;
+        &lt;artifact&gt; val x$16: Long = user.copy$default$4;
+        &lt;artifact&gt; val x$17: String = user.copy$default$5;
+        &lt;artifact&gt; val x$18: String = user.copy$default$6;
+        &lt;artifact&gt; val x$19: org.joda.time.LocalDateTime = user.copy$default$8;
+        &lt;artifact&gt; val x$20: Int = user.copy$default$9;
+        user.copy(x$14, x$13, x$15, x$16, x$17, x$18, x$12, x$19, x$20, x$11)
       };
       Application.this.myWebUsers.updateUser(updatedUser, record.id.get)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
       val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name))));
@@ -2714,12 +2943,54 @@
           100
         </td>
         <td>
-          149
+          162
         </td>
         <td>
-          3199
+          3264
           -
-          3988
+          3264
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.db.slick.MaybeApplication.maybe
+        </td>
+        <td style="background: #AEF1AE">
+          slick.this.MaybeApplication.maybe(play.api.Play.current)
+        </td>
+      </tr><tr>
+        <td>
+          100
+        </td>
+        <td>
+          161
+        </td>
+        <td>
+          3264
+          -
+          3264
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.Play.current
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.Play.current
+        </td>
+      </tr><tr>
+        <td>
+          101
+        </td>
+        <td>
+          160
+        </td>
+        <td>
+          3285
+          -
+          4074
         </td>
         <td>
           Apply
@@ -2734,17 +3005,17 @@
     case (x: models.User)Some[models.User]((record @ (_: models.User))) =&gt; {
       val createdOriginal: org.joda.time.LocalDateTime = record.created;
       val updatedUser: models.User = {
-        &lt;artifact&gt; val x$1: Option[Int] @scala.reflect.internal.annotations.uncheckedBounds = record.id;
-        &lt;artifact&gt; val x$2: org.joda.time.LocalDateTime = createdOriginal;
-        &lt;artifact&gt; val x$3: String = email;
-        &lt;artifact&gt; val x$4: String = user.copy$default$1;
-        &lt;artifact&gt; val x$5: String = user.copy$default$3;
-        &lt;artifact&gt; val x$6: Long = user.copy$default$4;
-        &lt;artifact&gt; val x$7: String = user.copy$default$5;
-        &lt;artifact&gt; val x$8: String = user.copy$default$6;
-        &lt;artifact&gt; val x$9: org.joda.time.LocalDateTime = user.copy$default$8;
-        &lt;artifact&gt; val x$10: Int = user.copy$default$9;
-        user.copy(x$4, x$3, x$5, x$6, x$7, x$8, x$2, x$9, x$10, x$1)
+        &lt;artifact&gt; val x$11: Option[Int] @scala.reflect.internal.annotations.uncheckedBounds = record.id;
+        &lt;artifact&gt; val x$12: org.joda.time.LocalDateTime = createdOriginal;
+        &lt;artifact&gt; val x$13: String = email;
+        &lt;artifact&gt; val x$14: String = user.copy$default$1;
+        &lt;artifact&gt; val x$15: String = user.copy$default$3;
+        &lt;artifact&gt; val x$16: Long = user.copy$default$4;
+        &lt;artifact&gt; val x$17: String = user.copy$default$5;
+        &lt;artifact&gt; val x$18: String = user.copy$default$6;
+        &lt;artifact&gt; val x$19: org.joda.time.LocalDateTime = user.copy$default$8;
+        &lt;artifact&gt; val x$20: Int = user.copy$default$9;
+        user.copy(x$14, x$13, x$15, x$16, x$17, x$18, x$12, x$19, x$20, x$11)
       };
       Application.this.myWebUsers.updateUser(updatedUser, record.id.get)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs));
       val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name))));
@@ -2756,120 +3027,15 @@
         </td>
       </tr><tr>
         <td>
-          101
+          102
         </td>
         <td>
-          113
+          122
         </td>
         <td>
-          3263
+          3350
           -
-          3263
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          101
-        </td>
-        <td>
-          116
-        </td>
-        <td>
-          3253
-          -
-          3319
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.mvc.Results.Status.apply
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.updateprofile.apply(&quot;Edit User&quot;, email, formWithErrors))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
-        </td>
-      </tr><tr>
-        <td>
-          101
-        </td>
-        <td>
-          115
-        </td>
-        <td>
-          3263
-          -
-          3263
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.LowPriorityWriteables.writeableOf_Content
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
-        </td>
-      </tr><tr>
-        <td>
-          101
-        </td>
-        <td>
-          112
-        </td>
-        <td>
-          3263
-          -
-          3263
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          101
-        </td>
-        <td>
-          114
-        </td>
-        <td>
-          3263
-          -
-          3263
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
-        </td>
-      </tr><tr>
-        <td>
-          101
-        </td>
-        <td>
-          111
-        </td>
-        <td>
-          3264
-          -
-          3318
+          3404
         </td>
         <td>
           Apply
@@ -2882,36 +3048,120 @@
         </td>
       </tr><tr>
         <td>
-          103
+          102
         </td>
         <td>
-          118
+          125
         </td>
         <td>
-          3359
+          3349
           -
-          3384
+          3349
         </td>
         <td>
           ApplyToImplicitArgs
         </td>
         <td>
-          models.WebUsersTrait.getData
+          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
         </td>
         <td style="background: #AEF1AE">
-          Application.this.myWebUsers.getData(email)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
+          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
         </td>
       </tr><tr>
         <td>
-          103
+          102
         </td>
         <td>
-          117
+          124
         </td>
         <td>
-          3377
+          3349
           -
-          3377
+          3349
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          102
+        </td>
+        <td>
+          127
+        </td>
+        <td>
+          3339
+          -
+          3405
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.Results.Status.apply
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.updateprofile.apply(&quot;Edit User&quot;, email, formWithErrors))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+        </td>
+      </tr><tr>
+        <td>
+          102
+        </td>
+        <td>
+          123
+        </td>
+        <td>
+          3349
+          -
+          3349
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          102
+        </td>
+        <td>
+          126
+        </td>
+        <td>
+          3349
+          -
+          3349
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.http.LowPriorityWriteables.writeableOf_Content
+        </td>
+        <td style="background: #AEF1AE">
+          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
+        </td>
+      </tr><tr>
+        <td>
+          104
+        </td>
+        <td>
+          128
+        </td>
+        <td>
+          3463
+          -
+          3463
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2924,15 +3174,36 @@
         </td>
       </tr><tr>
         <td>
-          107
+          104
         </td>
         <td>
-          119
+          129
         </td>
         <td>
-          3483
+          3445
           -
-          3497
+          3470
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          models.WebUsersTrait.getData
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.myWebUsers.getData(email)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
+        </td>
+      </tr><tr>
+        <td>
+          108
+        </td>
+        <td>
+          130
+        </td>
+        <td>
+          3569
+          -
+          3583
         </td>
         <td>
           Select
@@ -2945,183 +3216,15 @@
         </td>
       </tr><tr>
         <td>
-          108
+          109
         </td>
         <td>
-          128
+          137
         </td>
         <td>
-          3528
+          3619
           -
-          3595
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          models.User.copy
-        </td>
-        <td style="background: #AEF1AE">
-          user.copy(x$4, x$3, x$5, x$6, x$7, x$8, x$2, x$9, x$10, x$1)
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          122
-        </td>
-        <td>
-          3533
-          -
-          3533
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.copy$default$3
-        </td>
-        <td style="background: #AEF1AE">
-          user.copy$default$3
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          125
-        </td>
-        <td>
-          3533
-          -
-          3533
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.copy$default$6
-        </td>
-        <td style="background: #AEF1AE">
-          user.copy$default$6
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          124
-        </td>
-        <td>
-          3533
-          -
-          3533
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.copy$default$5
-        </td>
-        <td style="background: #AEF1AE">
-          user.copy$default$5
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          127
-        </td>
-        <td>
-          3533
-          -
-          3533
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.copy$default$9
-        </td>
-        <td style="background: #AEF1AE">
-          user.copy$default$9
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          121
-        </td>
-        <td>
-          3533
-          -
-          3533
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.copy$default$1
-        </td>
-        <td style="background: #AEF1AE">
-          user.copy$default$1
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          120
-        </td>
-        <td>
-          3543
-          -
-          3552
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.id
-        </td>
-        <td style="background: #AEF1AE">
-          record.id
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          123
-        </td>
-        <td>
-          3533
-          -
-          3533
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.copy$default$4
-        </td>
-        <td style="background: #AEF1AE">
-          user.copy$default$4
-        </td>
-      </tr><tr>
-        <td>
-          108
-        </td>
-        <td>
-          126
-        </td>
-        <td>
-          3533
-          -
-          3533
+          3619
         </td>
         <td>
           Select
@@ -3140,51 +3243,177 @@
           131
         </td>
         <td>
-          3608
+          3629
           -
-          3657
+          3638
         </td>
         <td>
-          ApplyToImplicitArgs
+          Select
         </td>
         <td>
-          models.WebUsersTrait.updateUser
+          models.User.id
         </td>
         <td style="background: #AEF1AE">
-          Application.this.myWebUsers.updateUser(updatedUser, record.id.get)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
+          record.id
         </td>
       </tr><tr>
         <td>
           109
         </td>
         <td>
-          130
+          134
         </td>
         <td>
-          3629
+          3619
           -
-          3629
+          3619
         </td>
         <td>
-          ApplyToImplicitArgs
+          Select
         </td>
         <td>
-          play.api.db.slick.dbSessionRequestAsSession
+          models.User.copy$default$4
         </td>
         <td style="background: #AEF1AE">
-          play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)
+          user.copy$default$4
         </td>
       </tr><tr>
         <td>
           109
         </td>
         <td>
-          129
+          133
         </td>
         <td>
-          3643
+          3619
           -
-          3656
+          3619
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$3
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$3
+        </td>
+      </tr><tr>
+        <td>
+          109
+        </td>
+        <td>
+          136
+        </td>
+        <td>
+          3619
+          -
+          3619
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$6
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$6
+        </td>
+      </tr><tr>
+        <td>
+          109
+        </td>
+        <td>
+          139
+        </td>
+        <td>
+          3614
+          -
+          3681
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          models.User.copy
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy(x$14, x$13, x$15, x$16, x$17, x$18, x$12, x$19, x$20, x$11)
+        </td>
+      </tr><tr>
+        <td>
+          109
+        </td>
+        <td>
+          138
+        </td>
+        <td>
+          3619
+          -
+          3619
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$9
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$9
+        </td>
+      </tr><tr>
+        <td>
+          109
+        </td>
+        <td>
+          132
+        </td>
+        <td>
+          3619
+          -
+          3619
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$1
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$1
+        </td>
+      </tr><tr>
+        <td>
+          109
+        </td>
+        <td>
+          135
+        </td>
+        <td>
+          3619
+          -
+          3619
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.copy$default$5
+        </td>
+        <td style="background: #AEF1AE">
+          user.copy$default$5
+        </td>
+      </tr><tr>
+        <td>
+          110
+        </td>
+        <td>
+          140
+        </td>
+        <td>
+          3729
+          -
+          3742
         </td>
         <td>
           Select
@@ -3200,159 +3429,54 @@
           110
         </td>
         <td>
-          137
+          142
         </td>
         <td>
-          3705
+          3694
           -
-          3771
+          3743
         </td>
         <td>
-          Apply
+          ApplyToImplicitArgs
         </td>
         <td>
-          scala.Predef.ArrowAssoc.-&gt;
+          models.WebUsersTrait.updateUser
         </td>
         <td style="background: #AEF1AE">
-          scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name))
+          Application.this.myWebUsers.updateUser(updatedUser, record.id.get)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs))
         </td>
       </tr><tr>
         <td>
           110
         </td>
         <td>
-          134
+          141
         </td>
         <td>
-          3753
+          3715
           -
-          3771
+          3715
         </td>
         <td>
-          Literal
+          ApplyToImplicitArgs
         </td>
         <td>
-          &lt;nosymbol&gt;
+          play.api.db.slick.dbSessionRequestAsSession
         </td>
         <td style="background: #AEF1AE">
-          &quot; has been updated&quot;
+          play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)
         </td>
       </tr><tr>
         <td>
-          110
+          111
         </td>
         <td>
-          133
+          146
         </td>
         <td>
-          3726
+          3822
           -
-          3735
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;WebUser &quot;
-        </td>
-      </tr><tr>
-        <td>
-          110
-        </td>
-        <td>
-          136
-        </td>
-        <td>
-          3724
-          -
-          3771
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.StringContext.s
-        </td>
-        <td style="background: #AEF1AE">
-          scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name)
-        </td>
-      </tr><tr>
-        <td>
-          110
-        </td>
-        <td>
-          139
-        </td>
-        <td>
-          3682
-          -
-          3773
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.mvc.Flash.apply
-        </td>
-        <td style="background: #AEF1AE">
-          play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name))))
-        </td>
-      </tr><tr>
-        <td>
-          110
-        </td>
-        <td>
-          138
-        </td>
-        <td>
-          3701
-          -
-          3772
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.collection.generic.GenMapFactory.apply
-        </td>
-        <td style="background: #AEF1AE">
-          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name)))
-        </td>
-      </tr><tr>
-        <td>
-          110
-        </td>
-        <td>
-          132
-        </td>
-        <td>
-          3705
-          -
-          3720
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;successUpdate&quot;
-        </td>
-      </tr><tr>
-        <td>
-          110
-        </td>
-        <td>
-          135
-        </td>
-        <td>
-          3736
-          -
-          3752
+          3838
         </td>
         <td>
           Select
@@ -3368,42 +3492,21 @@
           111
         </td>
         <td>
-          140
+          149
         </td>
         <td>
-          3789
+          3787
           -
-          3828
+          3858
         </td>
         <td>
           Apply
         </td>
         <td>
-          views.html.myprofile.apply
+          scala.collection.generic.GenMapFactory.apply
         </td>
         <td style="background: #AEF1AE">
-          views.html.myprofile.apply(&quot;Profile&quot;, email)(flash)
-        </td>
-      </tr><tr>
-        <td>
-          111
-        </td>
-        <td>
-          142
-        </td>
-        <td>
-          3788
-          -
-          3788
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
+          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name)))
         </td>
       </tr><tr>
         <td>
@@ -3413,39 +3516,81 @@
           145
         </td>
         <td>
-          3786
+          3839
           -
-          3829
+          3857
         </td>
         <td>
-          ApplyToImplicitArgs
+          Literal
         </td>
         <td>
-          play.api.mvc.Results.Status.apply
+          &lt;nosymbol&gt;
         </td>
         <td style="background: #AEF1AE">
-          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+          &quot; has been updated&quot;
         </td>
       </tr><tr>
         <td>
           111
         </td>
         <td>
-          141
+          148
         </td>
         <td>
-          3788
+          3791
           -
-          3788
+          3857
         </td>
         <td>
-          Select
+          Apply
         </td>
         <td>
-          play.api.mvc.Codec.utf_8
+          scala.Predef.ArrowAssoc.-&gt;
         </td>
         <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
+          scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name))
+        </td>
+      </tr><tr>
+        <td>
+          111
+        </td>
+        <td>
+          147
+        </td>
+        <td>
+          3810
+          -
+          3857
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td style="background: #AEF1AE">
+          scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name)
+        </td>
+      </tr><tr>
+        <td>
+          111
+        </td>
+        <td>
+          150
+        </td>
+        <td>
+          3768
+          -
+          3859
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Flash.apply
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser &quot;, &quot; has been updated&quot;).s(updatedUser.name))))
         </td>
       </tr><tr>
         <td>
@@ -3455,9 +3600,51 @@
           144
         </td>
         <td>
-          3788
+          3812
           -
-          3788
+          3821
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;WebUser &quot;
+        </td>
+      </tr><tr>
+        <td>
+          111
+        </td>
+        <td>
+          143
+        </td>
+        <td>
+          3791
+          -
+          3806
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;successUpdate&quot;
+        </td>
+      </tr><tr>
+        <td>
+          112
+        </td>
+        <td>
+          155
+        </td>
+        <td>
+          3874
+          -
+          3874
         </td>
         <td>
           ApplyToImplicitArgs
@@ -3470,15 +3657,36 @@
         </td>
       </tr><tr>
         <td>
-          111
+          112
         </td>
         <td>
-          143
+          151
         </td>
         <td>
-          3788
+          3875
           -
-          3788
+          3914
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.myprofile.apply
+        </td>
+        <td style="background: #AEF1AE">
+          views.html.myprofile.apply(&quot;Profile&quot;, email)(flash)
+        </td>
+      </tr><tr>
+        <td>
+          112
+        </td>
+        <td>
+          154
+        </td>
+        <td>
+          3874
+          -
+          3874
         </td>
         <td>
           ApplyToImplicitArgs
@@ -3491,57 +3699,78 @@
         </td>
       </tr><tr>
         <td>
-          113
+          112
         </td>
         <td>
-          146
+          156
+        </td>
+        <td>
+          3872
+          -
+          3915
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.Results.Status.apply
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+        </td>
+      </tr><tr>
+        <td>
+          112
+        </td>
+        <td>
+          153
         </td>
         <td>
           3874
           -
-          3898
+          3874
         </td>
         <td>
-          Apply
+          Select
         </td>
         <td>
-          controllers.ReverseApplication.login
+          play.api.mvc.Codec.utf_8
         </td>
         <td style="background: #AEF1AE">
-          routes.Application.login()
+          mvc.this.Codec.utf_8
         </td>
       </tr><tr>
         <td>
-          113
+          112
         </td>
         <td>
-          148
+          152
         </td>
         <td>
-          3865
+          3874
           -
-          3969
+          3874
         </td>
         <td>
-          Apply
+          Select
         </td>
         <td>
-          play.api.mvc.Result.flashing
+          play.api.mvc.Codec.utf_8
         </td>
         <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
+          mvc.this.Codec.utf_8
         </td>
       </tr><tr>
         <td>
-          113
+          114
         </td>
         <td>
-          147
+          158
         </td>
         <td>
-          3909
+          3995
           -
-          3968
+          4054
         </td>
         <td>
           Apply
@@ -3554,15 +3783,57 @@
         </td>
       </tr><tr>
         <td>
-          127
+          114
         </td>
         <td>
-          167
+          157
         </td>
         <td>
-          4420
+          3960
           -
-          4420
+          3984
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.login
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.login()
+        </td>
+      </tr><tr>
+        <td>
+          114
+        </td>
+        <td>
+          159
+        </td>
+        <td>
+          3951
+          -
+          4055
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          128
+        </td>
+        <td>
+          178
+        </td>
+        <td>
+          4506
+          -
+          4506
         </td>
         <td>
           Select
@@ -3575,15 +3846,15 @@
         </td>
       </tr><tr>
         <td>
-          127
+          128
         </td>
         <td>
-          169
+          180
         </td>
         <td>
-          4411
+          4497
           -
-          4774
+          4860
         </td>
         <td>
           ApplyToImplicitArgs
@@ -3602,15 +3873,15 @@
         </td>
       </tr><tr>
         <td>
-          127
+          128
         </td>
         <td>
-          168
+          179
         </td>
         <td>
-          4420
+          4506
           -
-          4420
+          4506
         </td>
         <td>
           ApplyToImplicitArgs
@@ -3623,15 +3894,15 @@
         </td>
       </tr><tr>
         <td>
-          128
+          129
         </td>
         <td>
-          153
+          164
         </td>
         <td>
-          4441
+          4527
           -
-          4464
+          4550
         </td>
         <td>
           Apply
@@ -3644,15 +3915,15 @@
         </td>
       </tr><tr>
         <td>
-          130
+          131
         </td>
         <td>
-          155
+          166
         </td>
         <td>
-          4528
+          4614
           -
-          4557
+          4643
         </td>
         <td>
           Select
@@ -3665,15 +3936,15 @@
         </td>
       </tr><tr>
         <td>
-          130
+          131
         </td>
         <td>
-          154
+          165
         </td>
         <td>
-          4546
+          4632
           -
-          4546
+          4632
         </td>
         <td>
           ApplyToImplicitArgs
@@ -3686,99 +3957,36 @@
         </td>
       </tr><tr>
         <td>
-          131
+          132
         </td>
         <td>
-          158
+          173
         </td>
         <td>
-          4569
+          4654
           -
-          4630
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          views.html.updateprofile.apply
-        </td>
-        <td style="background: #AEF1AE">
-          views.html.updateprofile.apply(&quot;Edit&quot;, email, Application.this.regform.fill(existingData))
-        </td>
-      </tr><tr>
-        <td>
-          131
-        </td>
-        <td>
-          160
-        </td>
-        <td>
-          4568
-          -
-          4568
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          131
-        </td>
-        <td>
-          163
-        </td>
-        <td>
-          4566
-          -
-          4631
+          4654
         </td>
         <td>
           ApplyToImplicitArgs
         </td>
         <td>
-          play.api.mvc.Results.Status.apply
+          play.api.http.LowPriorityWriteables.writeableOf_Content
         </td>
         <td style="background: #AEF1AE">
-          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.updateprofile.apply(&quot;Edit&quot;, email, Application.this.regform.fill(existingData)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
         </td>
       </tr><tr>
         <td>
-          131
+          132
         </td>
         <td>
-          157
+          167
         </td>
         <td>
-          4603
+          4674
           -
-          4629
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.data.Form.fill
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.regform.fill(existingData)
-        </td>
-      </tr><tr>
-        <td>
-          131
-        </td>
-        <td>
-          156
-        </td>
-        <td>
-          4588
-          -
-          4594
+          4680
         </td>
         <td>
           Literal
@@ -3791,57 +3999,36 @@
         </td>
       </tr><tr>
         <td>
-          131
+          132
         </td>
         <td>
-          159
+          169
         </td>
         <td>
-          4568
+          4655
           -
-          4568
+          4716
         </td>
         <td>
-          Select
+          Apply
         </td>
         <td>
-          play.api.mvc.Codec.utf_8
+          views.html.updateprofile.apply
         </td>
         <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
+          views.html.updateprofile.apply(&quot;Edit&quot;, email, Application.this.regform.fill(existingData))
         </td>
       </tr><tr>
         <td>
-          131
+          132
         </td>
         <td>
-          162
+          172
         </td>
         <td>
-          4568
+          4654
           -
-          4568
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.LowPriorityWriteables.writeableOf_Content
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
-        </td>
-      </tr><tr>
-        <td>
-          131
-        </td>
-        <td>
-          161
-        </td>
-        <td>
-          4568
-          -
-          4568
+          4654
         </td>
         <td>
           ApplyToImplicitArgs
@@ -3854,57 +4041,99 @@
         </td>
       </tr><tr>
         <td>
-          133
+          132
         </td>
         <td>
-          164
+          174
         </td>
         <td>
-          4668
+          4652
           -
-          4692
+          4717
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.Results.Status.apply
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.updateprofile.apply(&quot;Edit&quot;, email, Application.this.regform.fill(existingData)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+        </td>
+      </tr><tr>
+        <td>
+          132
+        </td>
+        <td>
+          168
+        </td>
+        <td>
+          4689
+          -
+          4715
         </td>
         <td>
           Apply
         </td>
         <td>
-          controllers.ReverseApplication.login
+          play.api.data.Form.fill
         </td>
         <td style="background: #AEF1AE">
-          routes.Application.login()
+          Application.this.regform.fill(existingData)
         </td>
       </tr><tr>
         <td>
-          133
+          132
         </td>
         <td>
-          166
+          171
         </td>
         <td>
-          4659
+          4654
           -
-          4763
+          4654
         </td>
         <td>
-          Apply
+          Select
         </td>
         <td>
-          play.api.mvc.Result.flashing
+          play.api.mvc.Codec.utf_8
         </td>
         <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
+          mvc.this.Codec.utf_8
         </td>
       </tr><tr>
         <td>
-          133
+          132
         </td>
         <td>
-          165
+          170
         </td>
         <td>
-          4703
+          4654
           -
-          4762
+          4654
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          134
+        </td>
+        <td>
+          176
+        </td>
+        <td>
+          4789
+          -
+          4848
         </td>
         <td>
           Apply
@@ -3917,15 +4146,57 @@
         </td>
       </tr><tr>
         <td>
-          141
+          134
         </td>
         <td>
-          179
+          175
         </td>
         <td>
-          4836
+          4754
           -
-          4906
+          4778
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.login
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.login()
+        </td>
+      </tr><tr>
+        <td>
+          134
+        </td>
+        <td>
+          177
+        </td>
+        <td>
+          4745
+          -
+          4849
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          142
+        </td>
+        <td>
+          190
+        </td>
+        <td>
+          4922
+          -
+          4992
         </td>
         <td>
           Apply
@@ -3938,162 +4209,15 @@
         </td>
       </tr><tr>
         <td>
-          142
+          143
         </td>
         <td>
-          173
+          182
         </td>
         <td>
-          4867
+          4979
           -
-          4901
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          views.html.register.apply
-        </td>
-        <td style="background: #AEF1AE">
-          views.html.register.apply(&quot;Register&quot;, Application.this.regform)(Application.this.request2flash(rs))
-        </td>
-      </tr><tr>
-        <td>
-          142
-        </td>
-        <td>
-          176
-        </td>
-        <td>
-          4866
-          -
-          4866
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
-        </td>
-      </tr><tr>
-        <td>
-          142
-        </td>
-        <td>
-          175
-        </td>
-        <td>
-          4866
-          -
-          4866
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          142
-        </td>
-        <td>
-          178
-        </td>
-        <td>
-          4864
-          -
-          4902
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.mvc.Results.Status.apply
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.register.apply(&quot;Register&quot;, Application.this.regform)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
-        </td>
-      </tr><tr>
-        <td>
-          142
-        </td>
-        <td>
-          172
-        </td>
-        <td>
-          4880
-          -
-          4880
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.mvc.Controller.request2flash
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.request2flash(rs)
-        </td>
-      </tr><tr>
-        <td>
-          142
-        </td>
-        <td>
-          174
-        </td>
-        <td>
-          4866
-          -
-          4866
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          142
-        </td>
-        <td>
-          177
-        </td>
-        <td>
-          4866
-          -
-          4866
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.LowPriorityWriteables.writeableOf_Content
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
-        </td>
-      </tr><tr>
-        <td>
-          142
-        </td>
-        <td>
-          171
-        </td>
-        <td>
-          4893
-          -
-          4900
+          4986
         </td>
         <td>
           Select
@@ -4106,155 +4230,57 @@
         </td>
       </tr><tr>
         <td>
-          142
-        </td>
-        <td>
-          170
-        </td>
-        <td>
-          4881
-          -
-          4891
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;Register&quot;
-        </td>
-      </tr><tr>
-        <td>
-          153
-        </td>
-        <td>
-          218
-        </td>
-        <td>
-          5251
-          -
-          5825
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.db.slick.PredicatedDBAction.apply
-        </td>
-        <td style="background: #AEF1AE">
-          play.api.db.slick.DBAction.apply(((implicit rs: play.api.db.slick.DBSessionRequest[play.api.mvc.AnyContent]) =&gt; Application.this.loginform.bindFromRequest()(rs).fold[play.api.mvc.Result](((formWithErrors: play.api.data.Form[(String, String)]) =&gt; Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))), ((user: (String, String)) =&gt; if (Application.this.myWebUsers.connect(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)))
-  {
-    val userConn: models.User = Application.this.myWebUsers.getData(user._1)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get;
-    val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name))));
-    Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withSession(scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email))
-  }
-else
-  Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))))))(slick.this.MaybeApplication.maybe(play.api.Play.current))
-        </td>
-      </tr><tr>
-        <td>
-          153
-        </td>
-        <td>
-          217
-        </td>
-        <td>
-          5260
-          -
-          5260
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.db.slick.MaybeApplication.maybe
-        </td>
-        <td style="background: #AEF1AE">
-          slick.this.MaybeApplication.maybe(play.api.Play.current)
-        </td>
-      </tr><tr>
-        <td>
-          153
-        </td>
-        <td>
-          216
-        </td>
-        <td>
-          5260
-          -
-          5260
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.Play.current
-        </td>
-        <td style="background: #AEF1AE">
-          play.api.Play.current
-        </td>
-      </tr><tr>
-        <td>
-          155
-        </td>
-        <td>
-          215
-        </td>
-        <td>
-          5282
-          -
-          5821
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.data.Form.fold
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.loginform.bindFromRequest()(rs).fold[play.api.mvc.Result](((formWithErrors: play.api.data.Form[(String, String)]) =&gt; Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))), ((user: (String, String)) =&gt; if (Application.this.myWebUsers.connect(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)))
-  {
-    val userConn: models.User = Application.this.myWebUsers.getData(user._1)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get;
-    val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name))));
-    Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withSession(scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email))
-  }
-else
-  Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))))
-        </td>
-      </tr><tr>
-        <td>
-          156
-        </td>
-        <td>
-          182
-        </td>
-        <td>
-          5349
-          -
-          5384
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          views.html.login.apply
-        </td>
-        <td style="background: #AEF1AE">
-          views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs))
-        </td>
-      </tr><tr>
-        <td>
-          156
+          143
         </td>
         <td>
           185
         </td>
         <td>
-          5348
+          4952
           -
-          5348
+          4952
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          143
+        </td>
+        <td>
+          184
+        </td>
+        <td>
+          4953
+          -
+          4987
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.register.apply
+        </td>
+        <td style="background: #AEF1AE">
+          views.html.register.apply(&quot;Register&quot;, Application.this.regform)(Application.this.request2flash(rs))
+        </td>
+      </tr><tr>
+        <td>
+          143
+        </td>
+        <td>
+          187
+        </td>
+        <td>
+          4952
+          -
+          4952
         </td>
         <td>
           ApplyToImplicitArgs
@@ -4267,36 +4293,36 @@ else
         </td>
       </tr><tr>
         <td>
-          156
+          143
         </td>
         <td>
-          184
+          181
         </td>
         <td>
-          5348
+          4967
           -
-          5348
+          4977
         </td>
         <td>
-          Select
+          Literal
         </td>
         <td>
-          play.api.mvc.Codec.utf_8
+          &lt;nosymbol&gt;
         </td>
         <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
+          &quot;Register&quot;
         </td>
       </tr><tr>
         <td>
-          156
+          143
         </td>
         <td>
-          187
+          189
         </td>
         <td>
-          5338
+          4950
           -
-          5385
+          4988
         </td>
         <td>
           ApplyToImplicitArgs
@@ -4305,19 +4331,19 @@ else
           play.api.mvc.Results.Status.apply
         </td>
         <td style="background: #AEF1AE">
-          Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.register.apply(&quot;Register&quot;, Application.this.regform)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
         </td>
       </tr><tr>
         <td>
-          156
+          143
         </td>
         <td>
-          181
+          183
         </td>
         <td>
-          5359
+          4966
           -
-          5359
+          4966
         </td>
         <td>
           ApplyToImplicitArgs
@@ -4330,36 +4356,15 @@ else
         </td>
       </tr><tr>
         <td>
-          156
+          143
         </td>
         <td>
-          180
+          186
         </td>
         <td>
-          5360
+          4952
           -
-          5367
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;Login&quot;
-        </td>
-      </tr><tr>
-        <td>
-          156
-        </td>
-        <td>
-          183
-        </td>
-        <td>
-          5348
-          -
-          5348
+          4952
         </td>
         <td>
           Select
@@ -4372,15 +4377,15 @@ else
         </td>
       </tr><tr>
         <td>
-          156
+          143
         </td>
         <td>
-          186
+          188
         </td>
         <td>
-          5348
+          4952
           -
-          5348
+          4952
         </td>
         <td>
           ApplyToImplicitArgs
@@ -4393,15 +4398,281 @@ else
         </td>
       </tr><tr>
         <td>
-          158
+          154
         </td>
         <td>
-          189
+          227
         </td>
         <td>
-          5413
+          5346
           -
-          5437
+          5346
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.Play.current
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.Play.current
+        </td>
+      </tr><tr>
+        <td>
+          154
+        </td>
+        <td>
+          229
+        </td>
+        <td>
+          5337
+          -
+          5928
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.db.slick.PredicatedDBAction.apply
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.DBAction.apply(((implicit rs: play.api.db.slick.DBSessionRequest[play.api.mvc.AnyContent]) =&gt; Application.this.loginform.bindFromRequest()(rs).fold[play.api.mvc.Result](((formWithErrors: play.api.data.Form[(String, String)]) =&gt; Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))), ((user: (String, String)) =&gt; if (Application.this.myWebUsers.connect(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)))
+  {
+    val userConn: models.User = Application.this.myWebUsers.getData(user._1.toLowerCase().trim())(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get;
+    val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name))));
+    Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withSession(scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email))
+  }
+else
+  Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))))))(slick.this.MaybeApplication.maybe(play.api.Play.current))
+        </td>
+      </tr><tr>
+        <td>
+          154
+        </td>
+        <td>
+          228
+        </td>
+        <td>
+          5346
+          -
+          5346
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.db.slick.MaybeApplication.maybe
+        </td>
+        <td style="background: #AEF1AE">
+          slick.this.MaybeApplication.maybe(play.api.Play.current)
+        </td>
+      </tr><tr>
+        <td>
+          156
+        </td>
+        <td>
+          226
+        </td>
+        <td>
+          5368
+          -
+          5924
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.data.Form.fold
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.loginform.bindFromRequest()(rs).fold[play.api.mvc.Result](((formWithErrors: play.api.data.Form[(String, String)]) =&gt; Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))), ((user: (String, String)) =&gt; if (Application.this.myWebUsers.connect(user)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)))
+  {
+    val userConn: models.User = Application.this.myWebUsers.getData(user._1.toLowerCase().trim())(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get;
+    val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name))));
+    Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withSession(scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email))
+  }
+else
+  Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))))
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          191
+        </td>
+        <td>
+          5446
+          -
+          5453
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Login&quot;
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          194
+        </td>
+        <td>
+          5434
+          -
+          5434
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          193
+        </td>
+        <td>
+          5435
+          -
+          5470
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.login.apply
+        </td>
+        <td style="background: #AEF1AE">
+          views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs))
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          196
+        </td>
+        <td>
+          5434
+          -
+          5434
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
+        </td>
+        <td style="background: #AEF1AE">
+          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          198
+        </td>
+        <td>
+          5424
+          -
+          5471
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.Results.Status.apply
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.BadRequest.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, formWithErrors)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          192
+        </td>
+        <td>
+          5445
+          -
+          5445
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.Controller.request2flash
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.request2flash(rs)
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          195
+        </td>
+        <td>
+          5434
+          -
+          5434
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          157
+        </td>
+        <td>
+          197
+        </td>
+        <td>
+          5434
+          -
+          5434
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.http.LowPriorityWriteables.writeableOf_Content
+        </td>
+        <td style="background: #AEF1AE">
+          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
+        </td>
+      </tr><tr>
+        <td>
+          159
+        </td>
+        <td>
+          200
+        </td>
+        <td>
+          5499
+          -
+          5523
         </td>
         <td>
           ApplyToImplicitArgs
@@ -4414,15 +4685,36 @@ else
         </td>
       </tr><tr>
         <td>
-          158
+          159
         </td>
         <td>
-          210
+          199
         </td>
         <td>
-          5439
+          5517
           -
-          5699
+          5517
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.db.slick.dbSessionRequestAsSession
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)
+        </td>
+      </tr><tr>
+        <td>
+          159
+        </td>
+        <td>
+          221
+        </td>
+        <td>
+          5525
+          -
+          5802
         </td>
         <td>
           Block
@@ -4432,22 +4724,22 @@ else
         </td>
         <td style="background: #AEF1AE">
           {
-  val userConn: models.User = Application.this.myWebUsers.getData(user._1)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get;
+  val userConn: models.User = Application.this.myWebUsers.getData(user._1.toLowerCase().trim())(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get;
   val flash: play.api.mvc.Flash = play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name))));
   Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withSession(scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email))
 }
         </td>
       </tr><tr>
         <td>
-          158
+          160
         </td>
         <td>
-          188
+          202
         </td>
         <td>
-          5431
+          5570
           -
-          5431
+          5570
         </td>
         <td>
           ApplyToImplicitArgs
@@ -4460,57 +4752,36 @@ else
         </td>
       </tr><tr>
         <td>
-          159
+          160
         </td>
         <td>
-          191
+          201
         </td>
         <td>
-          5484
+          5571
           -
-          5484
+          5595
         </td>
         <td>
-          ApplyToImplicitArgs
+          Apply
         </td>
         <td>
-          play.api.db.slick.dbSessionRequestAsSession
+          java.lang.String.trim
         </td>
         <td style="background: #AEF1AE">
-          play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)
+          user._1.toLowerCase().trim()
         </td>
       </tr><tr>
         <td>
-          159
+          160
         </td>
         <td>
-          190
+          203
         </td>
         <td>
-          5485
+          5552
           -
-          5492
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          scala.Tuple2._1
-        </td>
-        <td style="background: #AEF1AE">
-          user._1
-        </td>
-      </tr><tr>
-        <td>
-          159
-        </td>
-        <td>
-          192
-        </td>
-        <td>
-          5466
-          -
-          5497
+          5600
         </td>
         <td>
           Select
@@ -4519,124 +4790,19 @@ else
           scala.Option.get
         </td>
         <td style="background: #AEF1AE">
-          Application.this.myWebUsers.getData(user._1)(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get
+          Application.this.myWebUsers.getData(user._1.toLowerCase().trim())(play.api.db.slick.`package`.dbSessionRequestAsSession[Nothing](rs)).get
         </td>
       </tr><tr>
         <td>
-          160
+          161
         </td>
         <td>
-          200
+          209
         </td>
         <td>
-          5520
+          5646
           -
-          5587
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.mvc.Flash.apply
-        </td>
-        <td style="background: #AEF1AE">
-          play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name))))
-        </td>
-      </tr><tr>
-        <td>
-          160
-        </td>
-        <td>
-          194
-        </td>
-        <td>
-          5560
-          -
-          5569
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;Welcome &quot;
-        </td>
-      </tr><tr>
-        <td>
-          160
-        </td>
-        <td>
-          193
-        </td>
-        <td>
-          5543
-          -
-          5554
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;successIn&quot;
-        </td>
-      </tr><tr>
-        <td>
-          160
-        </td>
-        <td>
-          196
-        </td>
-        <td>
-          5570
-          -
-          5583
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          models.User.name
-        </td>
-        <td style="background: #AEF1AE">
-          userConn.name
-        </td>
-      </tr><tr>
-        <td>
-          160
-        </td>
-        <td>
-          199
-        </td>
-        <td>
-          5539
-          -
-          5586
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.collection.generic.GenMapFactory.apply
-        </td>
-        <td style="background: #AEF1AE">
-          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name)))
-        </td>
-      </tr><tr>
-        <td>
-          160
-        </td>
-        <td>
-          198
-        </td>
-        <td>
-          5543
-          -
-          5585
+          5688
         </td>
         <td>
           Apply
@@ -4649,15 +4815,36 @@ else
         </td>
       </tr><tr>
         <td>
-          160
+          161
         </td>
         <td>
-          195
+          211
         </td>
         <td>
-          5584
+          5623
           -
-          5585
+          5690
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Flash.apply
+        </td>
+        <td style="background: #AEF1AE">
+          play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name))))
+        </td>
+      </tr><tr>
+        <td>
+          161
+        </td>
+        <td>
+          205
+        </td>
+        <td>
+          5663
+          -
+          5672
         </td>
         <td>
           Literal
@@ -4666,19 +4853,19 @@ else
           &lt;nosymbol&gt;
         </td>
         <td style="background: #AEF1AE">
-          &quot;&quot;
+          &quot;Welcome &quot;
         </td>
       </tr><tr>
         <td>
-          160
+          161
         </td>
         <td>
-          197
+          208
         </td>
         <td>
-          5558
+          5661
           -
-          5585
+          5688
         </td>
         <td>
           Apply
@@ -4694,10 +4881,31 @@ else
           161
         </td>
         <td>
-          209
+          207
         </td>
         <td>
-          5598
+          5673
+          -
+          5686
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          models.User.name
+        </td>
+        <td style="background: #AEF1AE">
+          userConn.name
+        </td>
+      </tr><tr>
+        <td>
+          161
+        </td>
+        <td>
+          210
+        </td>
+        <td>
+          5642
           -
           5689
         </td>
@@ -4705,85 +4913,64 @@ else
           Apply
         </td>
         <td>
-          play.api.mvc.Result.withSession
+          scala.collection.generic.GenMapFactory.apply
         </td>
         <td style="background: #AEF1AE">
-          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withSession(scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email))
+          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successIn&quot;).-&gt;[String](scala.StringContext.apply(&quot;Welcome &quot;, &quot;&quot;).s(userConn.name)))
         </td>
       </tr><tr>
         <td>
           161
         </td>
         <td>
-          202
+          204
         </td>
         <td>
-          5600
+          5646
           -
-          5600
+          5657
         </td>
         <td>
-          Select
+          Literal
         </td>
         <td>
-          play.api.mvc.Codec.utf_8
+          &lt;nosymbol&gt;
         </td>
         <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
+          &quot;successIn&quot;
         </td>
       </tr><tr>
         <td>
           161
         </td>
         <td>
-          205
+          206
         </td>
         <td>
-          5600
-          -
-          5600
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.LowPriorityWriteables.writeableOf_Content
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
-        </td>
-      </tr><tr>
-        <td>
-          161
-        </td>
-        <td>
-          208
-        </td>
-        <td>
-          5663
+          5687
           -
           5688
         </td>
         <td>
-          Apply
+          Literal
         </td>
         <td>
-          scala.Predef.ArrowAssoc.-&gt;
+          &lt;nosymbol&gt;
         </td>
         <td style="background: #AEF1AE">
-          scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email)
+          &quot;&quot;
         </td>
       </tr><tr>
         <td>
-          161
+          162
         </td>
         <td>
-          207
+          218
         </td>
         <td>
-          5674
+          5777
           -
-          5688
+          5791
         </td>
         <td>
           Select
@@ -4796,57 +4983,36 @@ else
         </td>
       </tr><tr>
         <td>
-          161
+          162
         </td>
         <td>
-          201
+          220
         </td>
         <td>
-          5601
+          5701
           -
-          5649
+          5792
         </td>
         <td>
           Apply
         </td>
         <td>
-          views.html.myprofile.apply
+          play.api.mvc.Result.withSession
         </td>
         <td style="background: #AEF1AE">
-          views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash)
+          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withSession(scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email))
         </td>
       </tr><tr>
         <td>
-          161
+          162
         </td>
         <td>
-          204
+          214
         </td>
         <td>
-          5600
+          5703
           -
-          5600
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
-        </td>
-      </tr><tr>
-        <td>
-          161
-        </td>
-        <td>
-          203
-        </td>
-        <td>
-          5600
-          -
-          5600
+          5703
         </td>
         <td>
           Select
@@ -4859,15 +5025,15 @@ else
         </td>
       </tr><tr>
         <td>
-          161
+          162
         </td>
         <td>
-          206
+          217
         </td>
         <td>
-          5663
+          5766
           -
-          5670
+          5773
         </td>
         <td>
           Literal
@@ -4880,78 +5046,120 @@ else
         </td>
       </tr><tr>
         <td>
-          163
+          162
         </td>
         <td>
-          211
+          216
         </td>
         <td>
-          5726
+          5703
           -
-          5750
+          5703
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.http.LowPriorityWriteables.writeableOf_Content
+        </td>
+        <td style="background: #AEF1AE">
+          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
+        </td>
+      </tr><tr>
+        <td>
+          162
+        </td>
+        <td>
+          219
+        </td>
+        <td>
+          5766
+          -
+          5791
         </td>
         <td>
           Apply
         </td>
         <td>
-          controllers.ReverseApplication.login
+          scala.Predef.ArrowAssoc.-&gt;
         </td>
         <td style="background: #AEF1AE">
-          routes.Application.login()
+          scala.this.Predef.ArrowAssoc[String](&quot;email&quot;).-&gt;[String](userConn.email)
         </td>
       </tr><tr>
         <td>
-          163
-        </td>
-        <td>
-          214
-        </td>
-        <td>
-          5717
-          -
-          5810
-        </td>
-        <td>
-          Block
-        </td>
-        <td>
-          play.api.mvc.Result.flashing
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))
-        </td>
-      </tr><tr>
-        <td>
-          163
+          162
         </td>
         <td>
           213
         </td>
         <td>
-          5717
+          5703
           -
-          5810
+          5703
         </td>
         <td>
-          Apply
+          Select
         </td>
         <td>
-          play.api.mvc.Result.flashing
+          play.api.mvc.Codec.utf_8
         </td>
         <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))
+          mvc.this.Codec.utf_8
         </td>
       </tr><tr>
         <td>
-          163
+          162
         </td>
         <td>
           212
         </td>
         <td>
-          5761
+          5704
           -
-          5809
+          5752
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.myprofile.apply
+        </td>
+        <td style="background: #AEF1AE">
+          views.html.myprofile.apply(&quot;Profile&quot;, userConn.email)(flash)
+        </td>
+      </tr><tr>
+        <td>
+          162
+        </td>
+        <td>
+          215
+        </td>
+        <td>
+          5703
+          -
+          5703
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
+        </td>
+        <td style="background: #AEF1AE">
+          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
+        </td>
+      </tr><tr>
+        <td>
+          164
+        </td>
+        <td>
+          223
+        </td>
+        <td>
+          5864
+          -
+          5912
         </td>
         <td>
           Apply
@@ -4964,15 +5172,78 @@ else
         </td>
       </tr><tr>
         <td>
-          174
+          164
         </td>
         <td>
-          236
+          225
         </td>
         <td>
-          6196
+          5820
           -
-          6633
+          5913
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          164
+        </td>
+        <td>
+          222
+        </td>
+        <td>
+          5829
+          -
+          5853
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.login
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.login()
+        </td>
+      </tr><tr>
+        <td>
+          164
+        </td>
+        <td>
+          224
+        </td>
+        <td>
+          5820
+          -
+          5913
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Email and/or Password is not valid&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          175
+        </td>
+        <td>
+          247
+        </td>
+        <td>
+          6299
+          -
+          6736
         </td>
         <td>
           Apply
@@ -4991,15 +5262,15 @@ else
         </td>
       </tr><tr>
         <td>
-          175
+          176
         </td>
         <td>
-          219
+          230
         </td>
         <td>
-          6228
+          6331
           -
-          6246
+          6349
         </td>
         <td>
           Select
@@ -5012,78 +5283,15 @@ else
         </td>
       </tr><tr>
         <td>
-          176
+          177
         </td>
         <td>
-          220
+          232
         </td>
         <td>
-          6265
+          6403
           -
-          6289
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          controllers.ReverseApplication.login
-        </td>
-        <td style="background: #AEF1AE">
-          routes.Application.login()
-        </td>
-      </tr><tr>
-        <td>
-          176
-        </td>
-        <td>
-          223
-        </td>
-        <td>
-          6256
-          -
-          6360
-        </td>
-        <td>
-          Block
-        </td>
-        <td>
-          play.api.mvc.Result.flashing
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
-        </td>
-      </tr><tr>
-        <td>
-          176
-        </td>
-        <td>
-          222
-        </td>
-        <td>
-          6256
-          -
-          6360
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.mvc.Result.flashing
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
-        </td>
-      </tr><tr>
-        <td>
-          176
-        </td>
-        <td>
-          221
-        </td>
-        <td>
-          6300
-          -
-          6359
+          6462
         </td>
         <td>
           Apply
@@ -5096,15 +5304,99 @@ else
         </td>
       </tr><tr>
         <td>
-          178
+          177
+        </td>
+        <td>
+          234
+        </td>
+        <td>
+          6359
+          -
+          6463
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          177
+        </td>
+        <td>
+          231
+        </td>
+        <td>
+          6368
+          -
+          6392
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.login
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.login()
+        </td>
+      </tr><tr>
+        <td>
+          177
+        </td>
+        <td>
+          233
+        </td>
+        <td>
+          6359
+          -
+          6463
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.login()).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failed&quot;).-&gt;[String](&quot;Cannot Fetch Your Profile, Please Login First&quot;))
+        </td>
+      </tr><tr>
+        <td>
+          179
         </td>
         <td>
           235
         </td>
         <td>
-          6380
+          6483
           -
-          6623
+          6506
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Session.get
+        </td>
+        <td style="background: #AEF1AE">
+          rs.session.get(&quot;email&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          179
+        </td>
+        <td>
+          246
+        </td>
+        <td>
+          6483
+          -
+          6726
         </td>
         <td>
           Match
@@ -5120,99 +5412,15 @@ else
         </td>
       </tr><tr>
         <td>
-          178
+          181
         </td>
         <td>
-          224
+          236
         </td>
         <td>
-          6380
+          6578
           -
-          6403
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.mvc.Session.get
-        </td>
-        <td style="background: #AEF1AE">
-          rs.session.get(&quot;email&quot;)
-        </td>
-      </tr><tr>
-        <td>
-          180
-        </td>
-        <td>
-          227
-        </td>
-        <td>
-          6460
-          -
-          6460
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          180
-        </td>
-        <td>
-          226
-        </td>
-        <td>
-          6461
-          -
-          6488
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          views.html.myprofile.apply
-        </td>
-        <td style="background: #AEF1AE">
-          views.html.myprofile.apply(page, email)(Application.this.request2flash(rs))
-        </td>
-      </tr><tr>
-        <td>
-          180
-        </td>
-        <td>
-          229
-        </td>
-        <td>
-          6460
-          -
-          6460
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
-        </td>
-      </tr><tr>
-        <td>
-          180
-        </td>
-        <td>
-          225
-        </td>
-        <td>
-          6475
-          -
-          6475
+          6578
         </td>
         <td>
           ApplyToImplicitArgs
@@ -5225,15 +5433,15 @@ else
         </td>
       </tr><tr>
         <td>
-          180
+          181
         </td>
         <td>
-          228
+          238
         </td>
         <td>
-          6460
+          6563
           -
-          6460
+          6563
         </td>
         <td>
           Select
@@ -5246,36 +5454,15 @@ else
         </td>
       </tr><tr>
         <td>
-          180
+          181
         </td>
         <td>
-          231
+          241
         </td>
         <td>
-          6458
+          6563
           -
-          6489
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.mvc.Results.Status.apply
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(page, email)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
-        </td>
-      </tr><tr>
-        <td>
-          180
-        </td>
-        <td>
-          230
-        </td>
-        <td>
-          6460
-          -
-          6460
+          6563
         </td>
         <td>
           ApplyToImplicitArgs
@@ -5291,33 +5478,96 @@ else
           181
         </td>
         <td>
-          232
+          240
         </td>
         <td>
-          6520
+          6563
           -
-          6544
+          6563
         </td>
         <td>
-          Apply
+          ApplyToImplicitArgs
         </td>
         <td>
-          controllers.ReverseApplication.login
+          play.api.http.DefaultContentTypeOfs.contentTypeOf_Html
         </td>
         <td style="background: #AEF1AE">
-          routes.Application.login()
+          http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)
         </td>
       </tr><tr>
         <td>
           181
         </td>
         <td>
-          234
+          237
         </td>
         <td>
-          6511
+          6564
           -
-          6615
+          6591
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          views.html.myprofile.apply
+        </td>
+        <td style="background: #AEF1AE">
+          views.html.myprofile.apply(page, email)(Application.this.request2flash(rs))
+        </td>
+      </tr><tr>
+        <td>
+          181
+        </td>
+        <td>
+          239
+        </td>
+        <td>
+          6563
+          -
+          6563
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          181
+        </td>
+        <td>
+          242
+        </td>
+        <td>
+          6561
+          -
+          6592
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.mvc.Results.Status.apply
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(page, email)(Application.this.request2flash(rs)))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+        </td>
+      </tr><tr>
+        <td>
+          182
+        </td>
+        <td>
+          245
+        </td>
+        <td>
+          6614
+          -
+          6718
         </td>
         <td>
           Apply
@@ -5330,15 +5580,15 @@ else
         </td>
       </tr><tr>
         <td>
-          181
+          182
         </td>
         <td>
-          233
+          244
         </td>
         <td>
-          6555
+          6658
           -
-          6614
+          6717
         </td>
         <td>
           Apply
@@ -5351,15 +5601,36 @@ else
         </td>
       </tr><tr>
         <td>
-          189
+          182
         </td>
         <td>
-          246
+          243
         </td>
         <td>
-          6722
+          6623
           -
-          6893
+          6647
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.login
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.login()
+        </td>
+      </tr><tr>
+        <td>
+          190
+        </td>
+        <td>
+          257
+        </td>
+        <td>
+          6825
+          -
+          6996
         </td>
         <td>
           Apply
@@ -5375,57 +5646,15 @@ else
         </td>
       </tr><tr>
         <td>
-          190
+          191
         </td>
         <td>
-          238
+          250
         </td>
         <td>
-          6781
+          6865
           -
-          6827
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.collection.generic.GenMapFactory.apply
-        </td>
-        <td style="background: #AEF1AE">
-          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successOut&quot;).-&gt;[String](&quot;You are now logged out.&quot;))
-        </td>
-      </tr><tr>
-        <td>
-          190
-        </td>
-        <td>
-          237
-        </td>
-        <td>
-          6785
-          -
-          6826
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.Predef.ArrowAssoc.-&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          scala.this.Predef.ArrowAssoc[String](&quot;successOut&quot;).-&gt;[String](&quot;You are now logged out.&quot;)
-        </td>
-      </tr><tr>
-        <td>
-          190
-        </td>
-        <td>
-          239
-        </td>
-        <td>
-          6762
-          -
-          6828
+          6931
         </td>
         <td>
           Apply
@@ -5441,96 +5670,54 @@ else
           191
         </td>
         <td>
-          245
+          249
         </td>
         <td>
-          6833
+          6884
           -
-          6889
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Result.withNewSession
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, Application.this.loginform)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withNewSession
-        </td>
-      </tr><tr>
-        <td>
-          191
-        </td>
-        <td>
-          244
-        </td>
-        <td>
-          6835
-          -
-          6835
-        </td>
-        <td>
-          ApplyToImplicitArgs
-        </td>
-        <td>
-          play.api.http.LowPriorityWriteables.writeableOf_Content
-        </td>
-        <td style="background: #AEF1AE">
-          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
-        </td>
-      </tr><tr>
-        <td>
-          191
-        </td>
-        <td>
-          241
-        </td>
-        <td>
-          6835
-          -
-          6835
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #AEF1AE">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          191
-        </td>
-        <td>
-          240
-        </td>
-        <td>
-          6836
-          -
-          6873
+          6930
         </td>
         <td>
           Apply
         </td>
         <td>
-          views.html.login.apply
+          scala.collection.generic.GenMapFactory.apply
         </td>
         <td style="background: #AEF1AE">
-          views.html.login.apply(&quot;Login&quot;, Application.this.loginform)(flash)
+          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successOut&quot;).-&gt;[String](&quot;You are now logged out.&quot;))
         </td>
       </tr><tr>
         <td>
           191
         </td>
         <td>
-          243
+          248
         </td>
         <td>
-          6835
+          6888
           -
-          6835
+          6929
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[String](&quot;successOut&quot;).-&gt;[String](&quot;You are now logged out.&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          192
+        </td>
+        <td>
+          254
+        </td>
+        <td>
+          6938
+          -
+          6938
         </td>
         <td>
           ApplyToImplicitArgs
@@ -5543,15 +5730,15 @@ else
         </td>
       </tr><tr>
         <td>
-          191
+          192
         </td>
         <td>
-          242
+          253
         </td>
         <td>
-          6835
+          6938
           -
-          6835
+          6938
         </td>
         <td>
           Select
@@ -5564,15 +5751,99 @@ else
         </td>
       </tr><tr>
         <td>
-          203
+          192
         </td>
         <td>
-          247
+          256
         </td>
         <td>
-          7259
+          6936
           -
-          7282
+          6992
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Result.withNewSession
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.login.apply(&quot;Login&quot;, Application.this.loginform)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))).withNewSession
+        </td>
+      </tr><tr>
+        <td>
+          192
+        </td>
+        <td>
+          252
+        </td>
+        <td>
+          6938
+          -
+          6938
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          play.api.mvc.Codec.utf_8
+        </td>
+        <td style="background: #AEF1AE">
+          mvc.this.Codec.utf_8
+        </td>
+      </tr><tr>
+        <td>
+          192
+        </td>
+        <td>
+          255
+        </td>
+        <td>
+          6938
+          -
+          6938
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.http.LowPriorityWriteables.writeableOf_Content
+        </td>
+        <td style="background: #AEF1AE">
+          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
+        </td>
+      </tr><tr>
+        <td>
+          192
+        </td>
+        <td>
+          251
+        </td>
+        <td>
+          6939
+          -
+          6976
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          views.html.login.apply
+        </td>
+        <td style="background: #AEF1AE">
+          views.html.login.apply(&quot;Login&quot;, Application.this.loginform)(flash)
+        </td>
+      </tr><tr>
+        <td>
+          204
+        </td>
+        <td>
+          258
+        </td>
+        <td>
+          7362
+          -
+          7385
         </td>
         <td>
           Select
@@ -5585,15 +5856,15 @@ else
         </td>
       </tr><tr>
         <td>
-          203
+          204
         </td>
         <td>
-          285
+          296
         </td>
         <td>
-          7252
+          7355
           -
-          8410
+          8513
         </td>
         <td>
           Apply
@@ -5625,15 +5896,15 @@ else
         </td>
       </tr><tr>
         <td>
-          205
+          206
         </td>
         <td>
-          248
+          259
         </td>
         <td>
-          7404
+          7507
           -
-          7416
+          7519
         </td>
         <td>
           Literal
@@ -5646,57 +5917,15 @@ else
         </td>
       </tr><tr>
         <td>
-          207
+          208
         </td>
         <td>
-          250
+          262
         </td>
         <td>
-          7504
+          7553
           -
-          7508
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          true
-        </td>
-      </tr><tr>
-        <td>
-          207
-        </td>
-        <td>
-          249
-        </td>
-        <td>
-          7469
-          -
-          7502
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          java.io.File.&lt;init&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          new java.io.File(&quot;public/images/tmp.png&quot;)
-        </td>
-      </tr><tr>
-        <td>
-          207
-        </td>
-        <td>
-          251
-        </td>
-        <td>
-          7450
-          -
-          7509
+          7612
         </td>
         <td>
           Apply
@@ -5712,12 +5941,33 @@ else
           208
         </td>
         <td>
-          252
+          261
         </td>
         <td>
-          7537
+          7607
           -
-          7570
+          7611
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          true
+        </td>
+      </tr><tr>
+        <td>
+          208
+        </td>
+        <td>
+          260
+        </td>
+        <td>
+          7572
+          -
+          7605
         </td>
         <td>
           Apply
@@ -5733,12 +5983,33 @@ else
           209
         </td>
         <td>
-          253
+          263
         </td>
         <td>
-          7598
+          7640
           -
-          7631
+          7673
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.io.File.&lt;init&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          new java.io.File(&quot;public/images/tmp.png&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          210
+        </td>
+        <td>
+          264
+        </td>
+        <td>
+          7701
+          -
+          7734
         </td>
         <td>
           Apply
@@ -5751,15 +6022,15 @@ else
         </td>
       </tr><tr>
         <td>
-          210
+          211
         </td>
         <td>
-          269
+          280
         </td>
         <td>
-          7650
+          7753
           -
-          8009
+          8112
         </td>
         <td>
           Block
@@ -5778,15 +6049,15 @@ else
         </td>
       </tr><tr>
         <td>
-          211
+          212
         </td>
         <td>
-          254
+          265
         </td>
         <td>
-          7660
+          7763
           -
-          7686
+          7789
         </td>
         <td>
           Apply
@@ -5799,15 +6070,15 @@ else
         </td>
       </tr><tr>
         <td>
-          213
+          214
         </td>
         <td>
-          256
+          267
         </td>
         <td>
-          7777
+          7880
           -
-          7821
+          7924
         </td>
         <td>
           Apply
@@ -5820,15 +6091,15 @@ else
         </td>
       </tr><tr>
         <td>
-          213
+          214
         </td>
         <td>
-          255
+          266
         </td>
         <td>
-          7786
+          7889
           -
-          7820
+          7923
         </td>
         <td>
           Apply
@@ -5841,15 +6112,15 @@ else
         </td>
       </tr><tr>
         <td>
-          214
+          215
         </td>
         <td>
-          257
+          268
         </td>
         <td>
-          7830
+          7933
           -
-          7863
+          7966
         </td>
         <td>
           Apply
@@ -5862,99 +6133,15 @@ else
         </td>
       </tr><tr>
         <td>
-          215
+          216
         </td>
         <td>
-          262
+          271
         </td>
         <td>
-          7882
+          8008
           -
-          7957
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.mvc.Flash.apply
-        </td>
-        <td style="background: #F0ADAD">
-          play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has been updated&quot;).s())))
-        </td>
-      </tr><tr>
-        <td>
-          215
-        </td>
-        <td>
-          259
-        </td>
-        <td>
-          7924
-          -
-          7955
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.StringContext.s
-        </td>
-        <td style="background: #F0ADAD">
-          scala.StringContext.apply(&quot;WebUser pic has been updated&quot;).s()
-        </td>
-      </tr><tr>
-        <td>
-          215
-        </td>
-        <td>
-          258
-        </td>
-        <td>
-          7905
-          -
-          7920
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #F0ADAD">
-          &quot;successUpdate&quot;
-        </td>
-      </tr><tr>
-        <td>
-          215
-        </td>
-        <td>
-          261
-        </td>
-        <td>
-          7901
-          -
-          7956
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.collection.generic.GenMapFactory.apply
-        </td>
-        <td style="background: #F0ADAD">
-          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has been updated&quot;).s()))
-        </td>
-      </tr><tr>
-        <td>
-          215
-        </td>
-        <td>
-          260
-        </td>
-        <td>
-          7905
-          -
-          7955
+          8058
         </td>
         <td>
           Apply
@@ -5970,96 +6157,96 @@ else
           216
         </td>
         <td>
-          265
+          270
         </td>
         <td>
-          7968
+          8027
           -
-          7968
+          8058
         </td>
         <td>
-          Select
+          Apply
         </td>
         <td>
-          play.api.mvc.Codec.utf_8
+          scala.StringContext.s
         </td>
         <td style="background: #F0ADAD">
-          mvc.this.Codec.utf_8
+          scala.StringContext.apply(&quot;WebUser pic has been updated&quot;).s()
         </td>
       </tr><tr>
         <td>
           216
         </td>
         <td>
-          268
+          273
         </td>
         <td>
-          7966
+          7985
           -
-          8009
+          8060
         </td>
         <td>
-          ApplyToImplicitArgs
+          Apply
         </td>
         <td>
-          play.api.mvc.Results.Status.apply
+          play.api.mvc.Flash.apply
         </td>
         <td style="background: #F0ADAD">
-          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
+          play.api.mvc.Flash.apply(scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has been updated&quot;).s())))
         </td>
       </tr><tr>
         <td>
           216
         </td>
         <td>
-          267
+          272
         </td>
         <td>
-          7968
+          8004
           -
-          7968
+          8059
         </td>
         <td>
-          ApplyToImplicitArgs
+          Apply
         </td>
         <td>
-          play.api.http.LowPriorityWriteables.writeableOf_Content
+          scala.collection.generic.GenMapFactory.apply
         </td>
         <td style="background: #F0ADAD">
-          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
+          scala.this.Predef.Map.apply[String, String](scala.this.Predef.ArrowAssoc[String](&quot;successUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has been updated&quot;).s()))
         </td>
       </tr><tr>
         <td>
           216
         </td>
         <td>
-          264
+          269
         </td>
         <td>
-          7968
-          -
-          7968
-        </td>
-        <td>
-          Select
-        </td>
-        <td>
-          play.api.mvc.Codec.utf_8
-        </td>
-        <td style="background: #F0ADAD">
-          mvc.this.Codec.utf_8
-        </td>
-      </tr><tr>
-        <td>
-          216
-        </td>
-        <td>
-          263
-        </td>
-        <td>
-          7969
-          -
           8008
+          -
+          8023
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          &quot;successUpdate&quot;
+        </td>
+      </tr><tr>
+        <td>
+          217
+        </td>
+        <td>
+          274
+        </td>
+        <td>
+          8072
+          -
+          8111
         </td>
         <td>
           Apply
@@ -6072,15 +6259,15 @@ else
         </td>
       </tr><tr>
         <td>
-          216
+          217
         </td>
         <td>
-          266
+          277
         </td>
         <td>
-          7968
+          8071
           -
-          7968
+          8071
         </td>
         <td>
           ApplyToImplicitArgs
@@ -6093,99 +6280,99 @@ else
         </td>
       </tr><tr>
         <td>
-          220
+          217
         </td>
         <td>
-          271
-        </td>
-        <td>
-          8137
-          -
-          8151
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;failedUpdate&quot;
-        </td>
-      </tr><tr>
-        <td>
-          220
-        </td>
-        <td>
-          274
+          276
         </td>
         <td>
           8071
           -
-          8191
+          8071
         </td>
         <td>
-          Apply
+          Select
         </td>
         <td>
-          play.api.mvc.Result.flashing
+          play.api.mvc.Codec.utf_8
         </td>
-        <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.myprofile(&quot;Profile&quot;, email)).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has not been updated&quot;).s()))
+        <td style="background: #F0ADAD">
+          mvc.this.Codec.utf_8
         </td>
       </tr><tr>
         <td>
-          220
+          217
         </td>
         <td>
-          270
+          279
         </td>
         <td>
-          8080
+          8069
           -
-          8126
+          8112
         </td>
         <td>
-          Apply
+          ApplyToImplicitArgs
         </td>
         <td>
-          controllers.ReverseApplication.myprofile
+          play.api.mvc.Results.Status.apply
         </td>
-        <td style="background: #AEF1AE">
-          routes.Application.myprofile(&quot;Profile&quot;, email)
+        <td style="background: #F0ADAD">
+          Application.this.Ok.apply[play.twirl.api.HtmlFormat.Appendable](views.html.myprofile.apply(&quot;Profile&quot;, email)(flash))(http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8)))
         </td>
       </tr><tr>
         <td>
-          220
+          217
         </td>
         <td>
-          273
+          275
         </td>
         <td>
-          8137
+          8071
           -
-          8190
+          8071
         </td>
         <td>
-          Apply
+          Select
         </td>
         <td>
-          scala.Predef.ArrowAssoc.-&gt;
+          play.api.mvc.Codec.utf_8
         </td>
-        <td style="background: #AEF1AE">
-          scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has not been updated&quot;).s())
+        <td style="background: #F0ADAD">
+          mvc.this.Codec.utf_8
         </td>
       </tr><tr>
         <td>
-          220
+          217
         </td>
         <td>
-          272
+          278
         </td>
         <td>
-          8155
+          8071
           -
-          8190
+          8071
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          play.api.http.LowPriorityWriteables.writeableOf_Content
+        </td>
+        <td style="background: #F0ADAD">
+          http.this.Writeable.writeableOf_Content[play.twirl.api.HtmlFormat.Appendable](mvc.this.Codec.utf_8, http.this.ContentTypeOf.contentTypeOf_Html(mvc.this.Codec.utf_8))
+        </td>
+      </tr><tr>
+        <td>
+          221
+        </td>
+        <td>
+          283
+        </td>
+        <td>
+          8258
+          -
+          8293
         </td>
         <td>
           Apply
@@ -6198,15 +6385,99 @@ else
         </td>
       </tr><tr>
         <td>
-          222
+          221
         </td>
         <td>
-          278
+          285
         </td>
         <td>
-          8212
+          8174
           -
-          8276
+          8294
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.myprofile(&quot;Profile&quot;, email)).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has not been updated&quot;).s()))
+        </td>
+      </tr><tr>
+        <td>
+          221
+        </td>
+        <td>
+          282
+        </td>
+        <td>
+          8240
+          -
+          8254
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;failedUpdate&quot;
+        </td>
+      </tr><tr>
+        <td>
+          221
+        </td>
+        <td>
+          281
+        </td>
+        <td>
+          8183
+          -
+          8229
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.myprofile
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.myprofile(&quot;Profile&quot;, email)
+        </td>
+      </tr><tr>
+        <td>
+          221
+        </td>
+        <td>
+          284
+        </td>
+        <td>
+          8240
+          -
+          8293
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser pic has not been updated&quot;).s())
+        </td>
+      </tr><tr>
+        <td>
+          223
+        </td>
+        <td>
+          289
+        </td>
+        <td>
+          8315
+          -
+          8379
         </td>
         <td>
           Block
@@ -6225,15 +6496,15 @@ else
         </td>
       </tr><tr>
         <td>
-          223
+          224
         </td>
         <td>
-          275
+          286
         </td>
         <td>
-          8222
+          8325
           -
-          8240
+          8343
         </td>
         <td>
           Apply
@@ -6246,15 +6517,15 @@ else
         </td>
       </tr><tr>
         <td>
-          224
+          225
         </td>
         <td>
-          277
+          288
         </td>
         <td>
-          8262
+          8365
           -
-          8262
+          8365
         </td>
         <td>
           Literal
@@ -6267,15 +6538,15 @@ else
         </td>
       </tr><tr>
         <td>
-          224
+          225
         </td>
         <td>
-          276
+          287
         </td>
         <td>
-          8249
+          8352
           -
-          8268
+          8371
         </td>
         <td>
           Apply
@@ -6288,120 +6559,15 @@ else
         </td>
       </tr><tr>
         <td>
-          226
+          227
         </td>
         <td>
-          280
+          295
         </td>
         <td>
-          8359
+          7489
           -
-          8373
-        </td>
-        <td>
-          Literal
-        </td>
-        <td>
-          &lt;nosymbol&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          &quot;failedUpdate&quot;
-        </td>
-      </tr><tr>
-        <td>
-          226
-        </td>
-        <td>
-          283
-        </td>
-        <td>
-          8293
-          -
-          8401
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          play.api.mvc.Result.flashing
-        </td>
-        <td style="background: #AEF1AE">
-          Application.this.Redirect(routes.Application.myprofile(&quot;Profile&quot;, email)).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser empty upload&quot;).s()))
-        </td>
-      </tr><tr>
-        <td>
-          226
-        </td>
-        <td>
-          279
-        </td>
-        <td>
-          8302
-          -
-          8348
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          controllers.ReverseApplication.myprofile
-        </td>
-        <td style="background: #AEF1AE">
-          routes.Application.myprofile(&quot;Profile&quot;, email)
-        </td>
-      </tr><tr>
-        <td>
-          226
-        </td>
-        <td>
-          282
-        </td>
-        <td>
-          8359
-          -
-          8400
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.Predef.ArrowAssoc.-&gt;
-        </td>
-        <td style="background: #AEF1AE">
-          scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser empty upload&quot;).s())
-        </td>
-      </tr><tr>
-        <td>
-          226
-        </td>
-        <td>
-          281
-        </td>
-        <td>
-          8377
-          -
-          8400
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          scala.StringContext.s
-        </td>
-        <td style="background: #AEF1AE">
-          scala.StringContext.apply(&quot;WebUser empty upload&quot;).s()
-        </td>
-      </tr><tr>
-        <td>
-          226
-        </td>
-        <td>
-          284
-        </td>
-        <td>
-          7386
-          -
-          8402
+          8505
         </td>
         <td>
           Apply
@@ -6430,6 +6596,111 @@ else
     }
   }
 })).getOrElse[play.api.mvc.Result](Application.this.Redirect(routes.Application.myprofile(&quot;Profile&quot;, email)).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser empty upload&quot;).s())))
+        </td>
+      </tr><tr>
+        <td>
+          227
+        </td>
+        <td>
+          292
+        </td>
+        <td>
+          8480
+          -
+          8503
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.StringContext.s
+        </td>
+        <td style="background: #AEF1AE">
+          scala.StringContext.apply(&quot;WebUser empty upload&quot;).s()
+        </td>
+      </tr><tr>
+        <td>
+          227
+        </td>
+        <td>
+          294
+        </td>
+        <td>
+          8396
+          -
+          8504
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          play.api.mvc.Result.flashing
+        </td>
+        <td style="background: #AEF1AE">
+          Application.this.Redirect(routes.Application.myprofile(&quot;Profile&quot;, email)).flashing(scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser empty upload&quot;).s()))
+        </td>
+      </tr><tr>
+        <td>
+          227
+        </td>
+        <td>
+          291
+        </td>
+        <td>
+          8462
+          -
+          8476
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;failedUpdate&quot;
+        </td>
+      </tr><tr>
+        <td>
+          227
+        </td>
+        <td>
+          290
+        </td>
+        <td>
+          8405
+          -
+          8451
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          controllers.ReverseApplication.myprofile
+        </td>
+        <td style="background: #AEF1AE">
+          routes.Application.myprofile(&quot;Profile&quot;, email)
+        </td>
+      </tr><tr>
+        <td>
+          227
+        </td>
+        <td>
+          293
+        </td>
+        <td>
+          8462
+          -
+          8503
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          scala.this.Predef.ArrowAssoc[String](&quot;failedUpdate&quot;).-&gt;[String](scala.StringContext.apply(&quot;WebUser empty upload&quot;).s())
         </td>
       </tr>
     </table>

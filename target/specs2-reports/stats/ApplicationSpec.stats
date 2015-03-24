@@ -101,3 +101,6 @@
 <ApplicationSpec-stats timestamp="1425997663761"><stats time="5850" expectations="22" errors="1" successes="21" examples="22"></stats></ApplicationSpec-stats>
 <ApplicationSpec-stats timestamp="1425997719556"><stats time="5921" expectations="21" successes="21" examples="21"><trend><stats time="5921" expectations="-1" errors="-1" examples="-1"></stats></trend></stats></ApplicationSpec-stats>
 <ApplicationSpec-stats timestamp="1425997797696"><stats time="6146" expectations="21" successes="21" examples="21"></stats></ApplicationSpec-stats>
+<ApplicationSpec-stats timestamp="1426071495922"><stats time="6130" expectations="21" successes="21" examples="21"></stats></ApplicationSpec-stats>
+<ApplicationSpec-stats timestamp="1426072964256"><stats time="6041" expectations="21" successes="21" examples="21"></stats></ApplicationSpec-stats>
+<ApplicationSpec-stats timestamp="1427193148371"><stats time="6211" expectations="21" successes="21" examples="21"></stats></ApplicationSpec-stats>
